@@ -13,3 +13,6 @@ bower install
 ```
 Set <b>read</b> and <b>write</b> permissions for the following folder:<br />
 wp-vlib/js/VLib/data/<b>groups</b>
+
+Set <b>execute</b> permissions for
+wp-vlib/processBulkUpload.php<b>groups</b>
