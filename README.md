@@ -4,6 +4,8 @@ vPlot
 #### A Wordpress Plugin ####
 The aim of this project is to simplify the installation process of the {v}Plot.js Framework.
 
+A Demo can be found [HERE](http://vplot.yettie.at/)
+
 ### Usage ###
 Download this repository.<br />
 Browse to the following subfolder: <i>wp-vlib/js/VLib/</i> <br />
