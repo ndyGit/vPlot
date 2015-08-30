@@ -1,104 +1,0 @@
-10
-
-dir
-19
-http://andy@yettie.at/svn/repo2/branches/wp-vlib/VLib/js/VLib/plugins/plugins_3d
-http://andy@yettie.at/svn/repo2
-
-
-
-2014-03-03T09:35:47.708189Z
-18
-andy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-d5209a34-9113-402e-89a5-673f9a3d54ea
-
-file
-dir
-
-materials
-dir
-
-dataset
-dir
-
-lineplot
-dir
-
-surfaceplot
-dir
-
-fun
-dir
-
-cameraControl
-dir
-
-geometry
-dir
-
-default_plugin_icon.png
-file
-
-
-
-
-2014-02-14T11:19:53.000000Z
-3a9de1940dfd41af279425de814a5404
-2014-03-03T09:35:47.708189Z
-18
-andy
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-191072
-
-axes
-dir
-
-scatterplot
-dir
-
-3d
-dir
-
-light
-dir
-
-heatmapPoints
-dir
-
-color
-dir
-

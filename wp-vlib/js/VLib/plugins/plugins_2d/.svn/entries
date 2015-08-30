@@ -1,55 +1,0 @@
-10
-
-dir
-19
-http://andy@yettie.at/svn/repo2/branches/wp-vlib/VLib/js/VLib/plugins/plugins_2d
-http://andy@yettie.at/svn/repo2
-
-
-
-2014-03-03T09:35:47.708189Z
-18
-andy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-d5209a34-9113-402e-89a5-673f9a3d54ea
-
-piechart
-dir
-
-axes
-dir
-
-bar
-dir
-
-2d
-dir
-
-dataset
-dir
-
-area
-dir
-
-linechart
-dir
-
-lineType
-dir
-
-color
-dir
-
