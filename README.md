@@ -2,7 +2,8 @@ vPlot
 ========
 
 #### A Wordpress Plugin ####
-The aim of this project is to simplify the installation process of the {v}Plot.js Framework.
+The aim of this project is to simplify the installation process of the {v}Plot.js Framework.<br />
+[{v}Plot.js](https://github.com/ndyGit/vPlot.js) is an Interactive Information Visualization Framework based on THREE.js
 
 A Demo can be found [HERE](http://vplot.yettie.at/)
 
