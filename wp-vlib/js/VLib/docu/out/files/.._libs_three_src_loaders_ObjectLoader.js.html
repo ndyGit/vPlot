@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/src/loaders/ObjectLoader.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/src/loaders/ObjectLoader.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
+THREE.ObjectLoader = function ( manager ) {
+
+	this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
+
+};
+
+THREE.ObjectLoader.prototype = {
+
+	constructor: THREE.ObjectLoader,
+
+	load: function ( url, onLoad, onProgress, onError ) {
+
+		var scope = this;
+
+		var loader = new THREE.XHRLoader( scope.manager );
+		loader.setCrossOrigin( this.crossOrigin );
+		loader.load( url, function ( text ) {
+
+			onLoad( scope.parse( JSON.parse( text ) ) );
+
+		} );
+
+	},
+
+	setCrossOrigin: function ( value ) {
+
+		this.crossOrigin = value;
+
+	},
+
+	parse: function ( json ) {
+
+		var geometries = this.parseGeometries( json.geometries );
+		var materials = this.parseMaterials( json.materials );
+		var object = this.parseObject( json.object, geometries, materials );
+
+		return object;
+
+	},
+
+	parseGeometries: function ( json ) {
+
+		var geometries = {};
+
+		if ( json !== undefined ) {
+
+			var geometryLoader = new THREE.JSONLoader();
+			var bufferGeometryLoader = new THREE.BufferGeometryLoader();
+
+			for ( var i = 0, l = json.length; i &lt; l; i ++ ) {
+
+				var geometry;
+				var data = json[ i ];
+
+				switch ( data.type ) {
+
+					case &#x27;PlaneGeometry&#x27;:
+
+						geometry = new THREE.PlaneGeometry(
+							data.width,
+							data.height,
+							data.widthSegments,
+							data.heightSegments
+						);
+
+						break;
+
+					case &#x27;CircleGeometry&#x27;:
+
+						geometry = new THREE.CircleGeometry(
+							data.radius,
+							data.segments
+						);
+
+						break;
+
+					case &#x27;CubeGeometry&#x27;:
+
+						geometry = new THREE.CubeGeometry(
+							data.width,
+							data.height,
+							data.depth,
+							data.widthSegments,
+							data.heightSegments,
+							data.depthSegments
+						);
+
+						break;
+
+					case &#x27;CylinderGeometry&#x27;:
+
+						geometry = new THREE.CylinderGeometry(
+							data.radiusTop,
+							data.radiusBottom,
+							data.height,
+							data.radialSegments,
+							data.heightSegments,
+							data.openEnded
+						);
+
+						break;
+
+					case &#x27;SphereGeometry&#x27;:
+
+						geometry = new THREE.SphereGeometry(
+							data.radius,
+							data.widthSegments,
+							data.heightSegments,
+							data.phiStart,
+							data.phiLength,
+							data.thetaStart,
+							data.thetaLength
+						);
+
+						break;
+
+					case &#x27;IcosahedronGeometry&#x27;:
+
+						geometry = new THREE.IcosahedronGeometry(
+							data.radius,
+							data.detail
+						);
+
+						break;
+
+					case &#x27;TorusGeometry&#x27;:
+
+						geometry = new THREE.TorusGeometry(
+							data.radius,
+							data.tube,
+							data.radialSegments,
+							data.tubularSegments,
+							data.arc
+						);
+
+						break;
+
+					case &#x27;TorusKnotGeometry&#x27;:
+
+						geometry = new THREE.TorusKnotGeometry(
+							data.radius,
+							data.tube,
+							data.radialSegments,
+							data.tubularSegments,
+							data.p,
+							data.q,
+							data.heightScale
+						);
+
+						break;
+
+					case &#x27;BufferGeometry&#x27;:
+
+						geometry = bufferGeometryLoader.parse( data.data );
+
+						break;
+
+					case &#x27;Geometry&#x27;:
+
+						geometry = geometryLoader.parse( data.data ).geometry;
+
+						break;
+
+				}
+
+				geometry.uuid = data.uuid;
+
+				if ( data.name !== undefined ) geometry.name = data.name;
+
+				geometries[ data.uuid ] = geometry;
+
+			}
+
+		}
+
+		return geometries;
+
+	},
+
+	parseMaterials: function ( json ) {
+
+		var materials = {};
+
+		if ( json !== undefined ) {
+
+			var loader = new THREE.MaterialLoader();
+
+			for ( var i = 0, l = json.length; i &lt; l; i ++ ) {
+
+				var data = json[ i ];
+				var material = loader.parse( data );
+
+				material.uuid = data.uuid;
+
+				if ( data.name !== undefined ) material.name = data.name;
+
+				materials[ data.uuid ] = material;
+
+			}
+
+		}
+
+		return materials;
+
+	},
+
+	parseObject: function () {
+
+		var matrix = new THREE.Matrix4();
+
+		return function ( data, geometries, materials ) {
+
+			var object;
+
+			switch ( data.type ) {
+
+				case &#x27;Scene&#x27;:
+
+					object = new THREE.Scene();
+
+					break;
+
+				case &#x27;PerspectiveCamera&#x27;:
+
+					object = new THREE.PerspectiveCamera( data.fov, data.aspect, data.near, data.far );
+
+					break;
+
+				case &#x27;OrthographicCamera&#x27;:
+
+					object = new THREE.OrthographicCamera( data.left, data.right, data.top, data.bottom, data.near, data.far );
+
+					break;
+
+				case &#x27;AmbientLight&#x27;:
+
+					object = new THREE.AmbientLight( data.color );
+
+					break;
+
+				case &#x27;DirectionalLight&#x27;:
+
+					object = new THREE.DirectionalLight( data.color, data.intensity );
+
+					break;
+
+				case &#x27;PointLight&#x27;:
+
+					object = new THREE.PointLight( data.color, data.intensity, data.distance );
+
+					break;
+
+				case &#x27;SpotLight&#x27;:
+
+					object = new THREE.SpotLight( data.color, data.intensity, data.distance, data.angle, data.exponent );
+
+					break;
+
+				case &#x27;HemisphereLight&#x27;:
+
+					object = new THREE.HemisphereLight( data.color, data.groundColor, data.intensity );
+
+					break;
+
+				case &#x27;Mesh&#x27;:
+
+					var geometry = geometries[ data.geometry ];
+					var material = materials[ data.material ];
+
+					if ( geometry === undefined ) {
+
+						console.error( &#x27;THREE.ObjectLoader: Undefined geometry &#x27; + data.geometry );
+
+					}
+
+					if ( material === undefined ) {
+
+						console.error( &#x27;THREE.ObjectLoader: Undefined material &#x27; + data.material );
+
+					}
+
+					object = new THREE.Mesh( geometry, material );
+
+					break;
+
+				case &#x27;Sprite&#x27;:
+
+					var material = materials[ data.material ];
+
+					if ( material === undefined ) {
+
+						console.error( &#x27;THREE.ObjectLoader: Undefined material &#x27; + data.material );
+
+					}
+
+					object = new THREE.Sprite( material );
+
+					break;
+
+				default:
+
+					object = new THREE.Object3D();
+
+			}
+
+			object.uuid = data.uuid;
+
+			if ( data.name !== undefined ) object.name = data.name;
+			if ( data.matrix !== undefined ) {
+
+				matrix.fromArray( data.matrix );
+				matrix.decompose( object.position, object.quaternion, object.scale );
+
+			} else {
+
+				if ( data.position !== undefined ) object.position.fromArray( data.position );
+				if ( data.rotation !== undefined ) object.rotation.fromArray( data.rotation );
+				if ( data.scale !== undefined ) object.scale.fromArray( data.scale );
+
+			}
+
+			if ( data.visible !== undefined ) object.visible = data.visible;
+			if ( data.userData !== undefined ) object.userData = data.userData;
+
+			if ( data.children !== undefined ) {
+
+				for ( var child in data.children ) {
+
+					object.add( this.parseObject( data.children[ child ], geometries, materials ) );
+
+				}
+
+			}
+
+			return object;
+
+		}
+
+	}()
+
+};
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

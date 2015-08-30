@@ -1,0 +1,134 @@
+<script type="text/html" class="pluginConfigForm" id="file">
+
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#info-tab" role="tab" data-toggle="tab">Info</a></li>
+			<li><a href="#file-tab" role="tab" data-toggle="tab">File</a></li>
+			<li><a href="#mapping-tab" role="tab" data-toggle="tab">Mapping</a></li>
+		</ul>
+		<br />
+		<div class="tab-content">
+			<div class="tab-pane active" id="info-tab">
+				<div id="file-info" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Info</h3>
+					</div>
+					<div class="panel-body">
+						<div>
+							<b>Link: </b>
+							<a id="info-link" href="" target="_blank"></a>
+						</div>
+						<div>
+							<b>Format: </b> <span id="info-format"></span>
+						</div>
+						<div>
+							<b>Name: </b> <span id="info-name"></span>
+						</div>
+						<div>
+							<b>Description: </b><span id="info-description"></span>
+						</div>
+						<div>
+							<b>Mapping: </b> <span id="info-mapping"></span>
+						</div>
+						<div id="path" style="display:none;"></div>
+					</div>
+				</div>
+				<div id="info-placeholder" class="panel panel-default ">
+					<div class="panel-heading">
+						<h3 class="panel-title">PLACEHOLDER</h3>
+					</div>
+					<div class="panel-body">
+						<span class="label label-info">File will be selected dynamically during bulk import.</span>
+						<div>
+							<b>Format: </b> <span id="info-placeholder-format"></span>
+						</div>
+						<div>
+							<b>Mapping: </b> <span id="info-placeholder-mapping"></span>
+						</div>
+						<div>
+							<b>Regex: </b> <span id="info-placeholder-regex"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="file-tab">
+				<div id="file-select" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">File</h3>
+					</div>
+					<div class="panel-body">
+						<input class="form-control" type="text" id="file" style="display:none;">
+						<select id="fileSelect"class="form-control">
+						</select>
+						<br />
+						<div id="file-regex-container" class="input-group" style="display:none;">
+							<span class="input-group-addon">Regex</span>
+							<input id="file-regex" type="text" class="form-control" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div id="file-select" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Format</h3>
+					</div>
+					<div class="panel-body">
+						<input class="form-control" type="text" id="format" style="display:none;">
+						<select id="formatSelect"class="form-control">
+						</select>
+						<div id="format-cutom-container" class="controls" style="display:none;">
+							<label class="control-label" for="data">Custom seperator</label>
+							<div class="input-group">
+								<span class="input-group-addon">Row</span>
+								<input id="format-custom-row" type="text" class="form-control" placeholder="">
+								<span class="input-group-addon">Col</span>
+								<input id="format-custom-col" type="text" class="form-control" placeholder="">
+							</div>
+							<button style="width:100%;" type="button" class="btn btn-primary" id="format-cutom-update">
+								<span class="glyphicon glyphicon-refresh"></span>
+							</button>
+							Special seperators:<br />
+							<span class="label label-info">space = &lt;space&gt;</span>
+							<span class="label label-info">&#92;t = &lt;tab&gt;</span>
+							<span class="label label-info">&#92;n = &lt;newline&gt;</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="mapping-tab">
+				<div id="file-mapping"class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Mapping</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Column</th>
+									<th>Key</th>
+									<th>
+										value <br />
+										<a href="#" id="file-row-back"><span class="glyphicon glyphicon-chevron-left"></span></a>
+										<span id="current_preview_row"></span> /
+										<span id="preview_rows"></span>
+										<a href="#" id="file-row-next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+									</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<td colspan=4>
+										<button style="width:100%;" type="button" class="btn btn-primary" id="mapping-add">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+									</td>
+								</tr>
+							</tfoot>
+							<tbody id="mapping-table">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</script>

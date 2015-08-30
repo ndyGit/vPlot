@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/src/Three.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/src/Three.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @author mrdoob / http://mrdoob.com/
+ * @author Larry Battle / http://bateru.com/news
+ * @author bhouston / http://exocortex.com
+ */
+
+var THREE = { REVISION: &#x27;65&#x27; };
+
+self.console = self.console || {
+
+	info: function () {},
+	log: function () {},
+	debug: function () {},
+	warn: function () {},
+	error: function () {}
+
+};
+
+String.prototype.trim = String.prototype.trim || function () {
+
+	return this.replace( /^\s+|\s+$/g, &#x27;&#x27; );
+
+};
+
+// based on https://github.com/documentcloud/underscore/blob/bf657be243a075b5e72acc8a83e6f12a564d8f55/underscore.js#L767
+THREE.extend = function ( obj, source ) {
+
+	// ECMAScript5 compatibility based on: http://www.nczonline.net/blog/2012/12/11/are-your-mixins-ecmascript-5-compatible/
+	if ( Object.keys ) {
+
+		var keys = Object.keys( source );
+
+		for (var i = 0, il = keys.length; i &lt; il; i++) {
+
+			var prop = keys[i];
+			Object.defineProperty( obj, prop, Object.getOwnPropertyDescriptor( source, prop ) );
+
+		}
+
+	} else {
+
+		var safeHasOwnProperty = {}.hasOwnProperty;
+
+		for ( var prop in source ) {
+
+			if ( safeHasOwnProperty.call( source, prop ) ) {
+
+				obj[prop] = source[prop];
+
+			}
+
+		}
+
+	}
+
+	return obj;
+
+};
+
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+
+// requestAnimationFrame polyfill by Erik Möller
+// fixes from Paul Irish and Tino Zijdel
+// using &#x27;self&#x27; instead of &#x27;window&#x27; for compatibility with both NodeJS and IE10.
+( function () {
+
+	var lastTime = 0;
+	var vendors = [ &#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27; ];
+
+	for ( var x = 0; x &lt; vendors.length &amp;&amp; !self.requestAnimationFrame; ++ x ) {
+
+		self.requestAnimationFrame = self[ vendors[ x ] + &#x27;RequestAnimationFrame&#x27; ];
+		self.cancelAnimationFrame = self[ vendors[ x ] + &#x27;CancelAnimationFrame&#x27; ] || self[ vendors[ x ] + &#x27;CancelRequestAnimationFrame&#x27; ];
+
+	}
+
+	if ( self.requestAnimationFrame === undefined &amp;&amp; self[&#x27;setTimeout&#x27;] !== undefined ) {
+
+		self.requestAnimationFrame = function ( callback ) {
+
+			var currTime = Date.now(), timeToCall = Math.max( 0, 16 - ( currTime - lastTime ) );
+			var id = self.setTimeout( function() { callback( currTime + timeToCall ); }, timeToCall );
+			lastTime = currTime + timeToCall;
+			return id;
+
+		};
+
+	}
+
+	if( self.cancelAnimationFrame === undefined &amp;&amp; self[&#x27;clearTimeout&#x27;] !== undefined ) {
+
+		self.cancelAnimationFrame = function ( id ) { self.clearTimeout( id ) };
+
+	}
+
+}() );
+
+// GL STATE CONSTANTS
+
+THREE.CullFaceNone = 0;
+THREE.CullFaceBack = 1;
+THREE.CullFaceFront = 2;
+THREE.CullFaceFrontBack = 3;
+
+THREE.FrontFaceDirectionCW = 0;
+THREE.FrontFaceDirectionCCW = 1;
+
+// SHADOWING TYPES
+
+THREE.BasicShadowMap = 0;
+THREE.PCFShadowMap = 1;
+THREE.PCFSoftShadowMap = 2;
+
+// MATERIAL CONSTANTS
+
+// side
+
+THREE.FrontSide = 0;
+THREE.BackSide = 1;
+THREE.DoubleSide = 2;
+
+// shading
+
+THREE.NoShading = 0;
+THREE.FlatShading = 1;
+THREE.SmoothShading = 2;
+
+// colors
+
+THREE.NoColors = 0;
+THREE.FaceColors = 1;
+THREE.VertexColors = 2;
+
+// blending modes
+
+THREE.NoBlending = 0;
+THREE.NormalBlending = 1;
+THREE.AdditiveBlending = 2;
+THREE.SubtractiveBlending = 3;
+THREE.MultiplyBlending = 4;
+THREE.CustomBlending = 5;
+
+// custom blending equations
+// (numbers start from 100 not to clash with other
+//  mappings to OpenGL constants defined in Texture.js)
+
+THREE.AddEquation = 100;
+THREE.SubtractEquation = 101;
+THREE.ReverseSubtractEquation = 102;
+
+// custom blending destination factors
+
+THREE.ZeroFactor = 200;
+THREE.OneFactor = 201;
+THREE.SrcColorFactor = 202;
+THREE.OneMinusSrcColorFactor = 203;
+THREE.SrcAlphaFactor = 204;
+THREE.OneMinusSrcAlphaFactor = 205;
+THREE.DstAlphaFactor = 206;
+THREE.OneMinusDstAlphaFactor = 207;
+
+// custom blending source factors
+
+//THREE.ZeroFactor = 200;
+//THREE.OneFactor = 201;
+//THREE.SrcAlphaFactor = 204;
+//THREE.OneMinusSrcAlphaFactor = 205;
+//THREE.DstAlphaFactor = 206;
+//THREE.OneMinusDstAlphaFactor = 207;
+THREE.DstColorFactor = 208;
+THREE.OneMinusDstColorFactor = 209;
+THREE.SrcAlphaSaturateFactor = 210;
+
+
+// TEXTURE CONSTANTS
+
+THREE.MultiplyOperation = 0;
+THREE.MixOperation = 1;
+THREE.AddOperation = 2;
+
+// Mapping modes
+
+THREE.UVMapping = function () {};
+
+THREE.CubeReflectionMapping = function () {};
+THREE.CubeRefractionMapping = function () {};
+
+THREE.SphericalReflectionMapping = function () {};
+THREE.SphericalRefractionMapping = function () {};
+
+// Wrapping modes
+
+THREE.RepeatWrapping = 1000;
+THREE.ClampToEdgeWrapping = 1001;
+THREE.MirroredRepeatWrapping = 1002;
+
+// Filters
+
+THREE.NearestFilter = 1003;
+THREE.NearestMipMapNearestFilter = 1004;
+THREE.NearestMipMapLinearFilter = 1005;
+THREE.LinearFilter = 1006;
+THREE.LinearMipMapNearestFilter = 1007;
+THREE.LinearMipMapLinearFilter = 1008;
+
+// Data types
+
+THREE.UnsignedByteType = 1009;
+THREE.ByteType = 1010;
+THREE.ShortType = 1011;
+THREE.UnsignedShortType = 1012;
+THREE.IntType = 1013;
+THREE.UnsignedIntType = 1014;
+THREE.FloatType = 1015;
+
+// Pixel types
+
+//THREE.UnsignedByteType = 1009;
+THREE.UnsignedShort4444Type = 1016;
+THREE.UnsignedShort5551Type = 1017;
+THREE.UnsignedShort565Type = 1018;
+
+// Pixel formats
+
+THREE.AlphaFormat = 1019;
+THREE.RGBFormat = 1020;
+THREE.RGBAFormat = 1021;
+THREE.LuminanceFormat = 1022;
+THREE.LuminanceAlphaFormat = 1023;
+
+// Compressed texture formats
+
+THREE.RGB_S3TC_DXT1_Format = 2001;
+THREE.RGBA_S3TC_DXT1_Format = 2002;
+THREE.RGBA_S3TC_DXT3_Format = 2003;
+THREE.RGBA_S3TC_DXT5_Format = 2004;
+
+/*
+// Potential future PVRTC compressed texture formats
+THREE.RGB_PVRTC_4BPPV1_Format = 2100;
+THREE.RGB_PVRTC_2BPPV1_Format = 2101;
+THREE.RGBA_PVRTC_4BPPV1_Format = 2102;
+THREE.RGBA_PVRTC_2BPPV1_Format = 2103;
+*/
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

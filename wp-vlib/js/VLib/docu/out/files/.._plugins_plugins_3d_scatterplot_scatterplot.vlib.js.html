@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../plugins/plugins_3d/scatterplot/scatterplot.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../plugins/plugins_3d/scatterplot/scatterplot.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define(
+	[ &#x27;require&#x27;, &#x27;config&#x27;, &#x27;core/utils.vlib&#x27;,&#x27;jquery&#x27;, &#x27;three&#x27;,&#x27;three_buffer&#x27; ],
+	function(require, Config, UTILS, $,THREE) {
+		&#x27;use strict&#x27;;
+		/**
+		TODO&lt;br /&gt;
+		@class Plugin ScatterPlot
+		@constructor
+		@extends AbstractPlugin
+		**/
+		var Plugin = (function(state) {
+			/** ********************************** */
+			/** PRIVATE VARIABLES * */
+			/** ********************************** */
+			var particleSizeDefault = 10;
+			var opacityDefault = 1;
+			var blendingDefault = false;
+			var colorsDefault = true;
+			var transparentDefault = false;
+				var ambientDefault = &#x27;#ff0000&#x27;; // red
+				var xScaleDefault = 400;
+				var yScaleDefault = 400;
+				var zScaleDefault = 400;
+
+				var x_SCALE_MAX = 400;
+				var x_SCALE_MIN = 0;
+				var y_SCALE_MAX = 400;
+				var y_SCALE_MIN = 0;
+				var z_SCALE_MAX = 400;
+				var z_SCALE_MIN = 0;
+				if(state !== undefined){
+					/*x_MAX = state.x_MAX;
+					x_MIN = state.x_MIN;
+					y_MAX = state.y_MAX;
+					y_MIN = state.y_MIN;
+					z_MAX = state.z_MAX;
+					z_MIN = state.z_MIN;
+					x_SCALE_MAX = state.x_SCALE_MAX;
+					x_SCALE_MIN = state.x_SCALE_MIN;
+					y_SCALE_MAX = state.y_SCALE_MAX;
+					z_SCALE_MAX = state.z_SCALE_MAX;
+					z_SCALE_MIN = state.z_SCALE_MIN;*/
+				}
+				/** ********************************** */
+				/** PUBLIC VARIABLES * */
+				/** ********************************** */
+				this.context = Config.PLUGINTYPE.CONTEXT_3D;
+				this.type = Config.PLUGINTYPE.PLOT;
+				this.name = &#x27;scatterplot&#x27;;
+
+				this.accepts = {
+					predecessors : [ Config.PLUGINTYPE.CONTEXT_3D ],
+					successors : [ Config.PLUGINTYPE.DATA,
+					Config.PLUGINTYPE.AXES ]
+				};
+				/** path to plugin-template file * */
+				this.templates = Config.absPlugins + &#x27;/plugins_3d/scatterplot/templates.js&#x27;;
+				this.icon = Config.absPlugins + &#x27;/plugins_3d/scatterplot/icon.png&#x27;;
+				this.description = &#x27;Requires: [ &#x27;+this.accepts.predecessors.join(&#x27;, &#x27;)+&#x27; ] Accepts: [ &#x27;+this.accepts.successors.join(&#x27;, &#x27;)+&#x27; ]&#x27;;
+				/** ********************************** */
+				/** PUBLIC METHODS * */
+				/** ********************************** */
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format:
+				 *         {camera:{x:VALUE,y:VALUE,z:VALUE}}
+				 */
+				 this.deepCopy = function(){
+				 	var privates = {
+					/*x_MAX : x_MAX,
+					x_MIN : x_MIN,
+					y_MAX : y_MAX,
+					y_MAX : y_MAX,
+					y_MIN : y_MIN,
+					z_MAX : z_MAX,
+					z_MIN : z_MIN,
+					x_SCALE_MAX : x_SCALE_MAX,
+					x_SCALE_MIN : x_SCALE_MIN,
+					y_SCALE_MAX : y_SCALE_MAX,
+					y_SCALE_MIN : y_SCALE_MIN,
+					z_SCALE_MAX : z_SCALE_MAX,
+					z_SCALE_MIN : z_SCALE_MIN*/
+
+				};
+				return new Plugin(privates);
+			};
+			this.getConfigCallback = function(containerId) {
+
+				var particleSize = $(&#x27;#&#x27; + containerId + &#x27; #particleSize&#x27;)
+				.val();
+				var opacity = $(&#x27;#&#x27; + containerId + &#x27; #opacity&#x27;).val();
+				var image =  $(&#x27;#&#x27; + containerId + &#x27; #image&#x27;).val();
+				var blending = $(&#x27;#&#x27; + containerId + &#x27; #blending&#x27;).is(&#x27;:checked&#x27;);
+				var transparent = $(&#x27;#&#x27; + containerId + &#x27; #transparent&#x27;).is(&#x27;:checked&#x27;);
+				var colors = $(&#x27;#&#x27; + containerId + &#x27; #colors&#x27;).is(&#x27;:checked&#x27;);
+				var ambient = $(&#x27;#&#x27; + containerId + &#x27; #ambient&#x27;).val();
+
+				var xScale = $(&#x27;#&#x27; + containerId + &#x27; #xScale&#x27;).val();
+
+				var yScale = $(&#x27;#&#x27; + containerId + &#x27; #yScale&#x27;).val();
+
+				var zScale = $(&#x27;#&#x27; + containerId + &#x27; #zScale&#x27;).val();
+
+				var result = {
+					material : {
+						&#x27;particleSize&#x27; : particleSize === &#x27;&#x27; ? particleSizeDefault
+						: particleSize,
+						&#x27;opacity&#x27; : opacity === &#x27;&#x27; ? opacityDefault
+						: opacity,
+						&#x27;image&#x27; : image,
+						&#x27;blending&#x27; : blending === &#x27;&#x27; ? blendingDefault
+						: blending,
+						&#x27;transparent&#x27; : transparent === &#x27;&#x27; ? transparentDefault
+						: transparent,
+						&#x27;colors&#x27; : colors === &#x27;&#x27; ? colorsDefault : colors,
+						&#x27;ambient&#x27; : ambient === &#x27;&#x27; ? ambientDefault
+						: ambient
+					},
+					scale : {
+						&#x27;x&#x27; : xScale === &#x27;&#x27; ? xScaleDefault : xScale,
+						&#x27;y&#x27; : yScale === &#x27;&#x27; ? yScaleDefault : yScale,
+						&#x27;z&#x27; : zScale === &#x27;&#x27; ? zScaleDefault : zScale
+
+					}
+
+				};
+				return result;
+
+			};
+				/**
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+				 	console.log(&#x27;[ scatter ][setConfig] &#x27;);
+				 	if (config === &#x27;&#x27;) {
+				 		config = {};
+				 	}
+				 	if (config.material === undefined){
+				 		config.material = {};
+				 	}
+				 	if(config.material.particleSize === undefined){
+				 		config.material.particleSize = 10;
+				 	}
+				 	if(config.material.opacity === undefined){
+				 		config.material.opacity = 1;
+				 	}
+				 	if(config.material.colors === undefined){
+				 		config.material.colors = true;
+				 	}
+				 	if (config.scale === undefined){
+				 		config.scale = {};
+				 	}
+				 	if(config.scale.x === undefined){
+				 		config.scale.x = xScaleDefault;
+				 	}
+				 	if(config.scale.y === undefined){
+				 		config.scale.y = yScaleDefault;
+				 	}
+				 	if(config.scale.z === undefined){
+				 		config.scale.z = zScaleDefault;
+				 	}
+
+
+				 	if (config.material.particleSize !== undefined) {
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27;#particleSize&#x27;).val(
+				 			config.material.particleSize);
+				 	} else {
+
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27;#particleSize&#x27;).val(
+				 			particleSizeDefault);
+				 		config.material.particleSize = particleSizeDefault;
+				 	}
+				 	if (config.material.opacity !== undefined) {
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27;#opacity&#x27;).val(
+				 			config.material.opacity);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27;#opacity&#x27;).val(opacityDefault);
+				 		config.material.opacity = opacityDefault;
+				 	}
+				 	if (config.material.image !== undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #image&#x27;).val(
+				 			config.material.image);
+				 		$(&#x27;#&#x27; + containerId + &#x27; #iamgeSelect&#x27;).find(&#x27;option[value=&#x27;+config.material.image+&#x27;]&#x27;).attr(&#x27;selected&#x27;, &#x27;selected&#x27;);
+				 	}
+				 	if (config.material.blending !== undefined) {
+				 		if(config.material.blending === true){
+				 			$(&#x27;#&#x27; + containerId + &#x27; #blending&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}
+				 	if (config.material.transparent !== undefined) {
+				 		if(config.material.transparent === true){
+				 			$(&#x27;#&#x27; + containerId + &#x27; #transparent&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}
+				 	if (config.material.colors !== undefined) {
+				 		if(config.material.colors === true){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27;#colors&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}else{
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27;#colors&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 	}
+				 	if (config.material.ambient !== undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #ambient&#x27;).val(
+				 			config.material.ambient);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #ambient&#x27;).val(ambientDefault);
+				 	}
+				 	if (config.scale.x !== undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #xScale&#x27;).val(config.scale.x);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #xScale&#x27;).val(xScaleDefault);
+				 	}
+				 	if (config.scale.y !== undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #yScale&#x27;).val(config.scale.y);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #yScale&#x27;).val(yScaleDefault);
+				 	}
+				 	if (config.scale.z !== undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #zScale&#x27;).val(config.scale.z);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #zScale&#x27;).val(zScaleDefault);
+				 	}
+
+					// particleSizeSlider
+					$(&#x27;#&#x27; + containerId ).find(&#x27; #particleSizeSlider&#x27;).slider({
+						orientation: &#x27;horizontal&#x27;,
+						range: &#x27;min&#x27;,
+						min: 1,
+						max: 200,
+						value: config.material.particleSize,
+						slide: function (event, ui) {
+							$(&#x27;#&#x27; + containerId ).find(&#x27;#particleSize&#x27;).val(ui.value);
+						}
+					});
+				// opacitySlider
+				$(&#x27;#&#x27; + containerId ).find(&#x27; #opacitySlider&#x27;).slider({
+					orientation: &#x27;horizontal&#x27;,
+					range: &#x27;min&#x27;,
+					min: 0,
+					max: 100,
+					value: config.material.opacity*100,
+					slide: function (event, ui) {
+						$(&#x27;#&#x27; + containerId ).find(&#x27;#opacity&#x27;).val(ui.value/100);
+					}
+				});
+				$(&#x27;#&#x27; + containerId ).find(&#x27; #iamgeSelect&#x27;).change(function(){
+					var selected = $(this).find(&#x27;option:selected&#x27;);
+					$(&#x27;#&#x27; + containerId ).find(&#x27; #image&#x27;).val(selected.val());
+				});
+			};
+
+
+			this.exec = function(config, childs) {
+				console.log(&#x27;[ scatterplot ] \t\t EXEC&#x27;);
+				var result = [];
+				if (config === &#x27;&#x27;) {
+					config = {};
+				}
+				if (config.material === undefined){
+					config.material = {};
+				}
+				if(config.material.particleSize === undefined){
+					config.material.particleSize = 10;
+				}
+				if(config.material.opacity === undefined){
+					config.material.opacity = 1;
+				}
+				if(config.material.colors === undefined){
+					config.material.colors = true;
+				}
+					// set scaling
+					if (config.hasOwnProperty(&#x27;scale&#x27;)) {
+						x_SCALE_MAX = config.scale.x;
+						y_SCALE_MAX = config.scale.y;
+						z_SCALE_MAX = config.scale.z;
+					}
+					var borders = {
+						xMax : &#x27;auto&#x27;,
+						yMax : &#x27;auto&#x27;,
+						zMax : &#x27;auto&#x27;,
+						xMin : &#x27;auto&#x27;,
+						yMin : &#x27;auto&#x27;,
+						zMin : &#x27;auto&#x27;
+					};
+
+
+
+
+					/** *********************************** * */
+					/** HANDLE SUCCESSOR PLUGINGS * */
+					/** *********************************** * */
+					var data = [];
+					var colors = [];
+					var axesSet = false;
+					var heatmaps = [];
+					var axesCallback;
+					var axesContext;
+					var child;
+					for ( var i = 0; i &lt; childs.length; ++i) {
+						child = childs[i];
+						if(child !== undefined &amp;&amp; child.pType !== undefined){
+							if($.inArray(child.pType, this.accepts.successors) != -1){
+								switch(child.pType){
+									case Config.PLUGINTYPE.DATA:
+									var tmpData = child.response.data;
+									var tmpColor = child.response.colorArray;
+									if(child.response.heatmap !== undefined){
+										heatmaps.push(child.response.heatmap);
+									}
+									data = data.concat(tmpData);
+									colors = colors.concat(tmpColor);
+									break;
+									case Config.PLUGINTYPE.AXES:
+									axesCallback = child.response.callback;
+									axesContext = child.response.context;
+									borders.xMax = child.response.rangeX;
+									borders.yMax = child.response.rangeY;
+									borders.zMax = child.response.rangeZ;
+									axesSet = true;
+									break;
+								}
+							}
+						}else{
+							console.log(&#x27;pType of child plugin not set!&#x27;);
+						}
+					}
+					if(data.length === 0) return;
+
+					/** *********************************** */
+					/** GET MAX VALUES * */
+					/** CHECK RANGE - auto * */
+					var minMax = UTILS.C3D.getMinMax(data);
+					borders.xMax = borders.xMax  != &#x27;auto&#x27; ? borders.xMax : minMax.xMax;
+					borders.yMax = borders.yMax  != &#x27;auto&#x27; ? borders.yMax : minMax.yMax;
+					borders.zMax = borders.zMax  != &#x27;auto&#x27; ? borders.zMax : minMax.zMax;
+					borders.xMin = borders.xMin  != &#x27;auto&#x27; ? borders.xMin : minMax.xMin;
+					borders.yMin = borders.yMin  != &#x27;auto&#x27; ? borders.yMin : minMax.yMin;
+					borders.zMin = borders.zMin  != &#x27;auto&#x27; ? borders.zMin : minMax.zMin;
+
+					/** *********************************** */
+					/** handle data * */
+					var scaled_data = scale(data,borders);
+
+
+//TODO: refactor to bufferd geometry
+//view-source:http://threejs.org/examples/webgl_buffergeometry_particles.html
+//http://stackoverflow.com/questions/20069633/how-can-i-declare-buffergeometryutils-js-to-three-d-ts
+					// var geometry = new THREE.Geometry();
+					// var threeColors = [];
+					// var intersectionObjects = [];
+					// for ( var index = 0; index &lt; scaled_data.length; index++) {
+					// 	var tmp = scaled_data[index];
+					// 	// add node
+					// 	 console.log(&#x27;data node= &#x27;+tmp.x+&#x27; &#x27;+tmp.y+&#x27; &#x27;+tmp.z+ &#x27; #&#x27;+colors[index]);
+					// 	 var obj = new THREE.Vector3(tmp.x, tmp.y, tmp.z);
+					// 	 geometry.vertices.push(obj);
+					// 	// add node color
+					// 	threeColors[index] = new THREE.Color(&#x27;#&#x27; + colors[index]);
+					// 	//threeColors[index].setHSL( 0.6, 1.0, Math.max( 0, ( 200 - tmp.x ) / 400 ) * 0.5 + 0.5 );
+
+					// }
+
+
+					var geometry = new THREE.BufferGeometry();
+					geometry.addAttribute( &#x27;position&#x27;, Float32Array, scaled_data.length, 3 );
+					geometry.addAttribute( &#x27;color&#x27;, Float32Array, scaled_data.length, 3 );
+					var gPositions = geometry.attributes.position.array;
+					var gColors = geometry.attributes.color.array;
+					var gColor = new THREE.Color();
+					for ( var i = 0, dataIndex = 0; i &lt; gPositions.length,dataIndex &lt; scaled_data.length; i += 3, dataIndex++ ) {
+						// positions
+						var coord = scaled_data[dataIndex];
+						gPositions[ i ] = coord.x;
+						gPositions[ i + 1 ] = coord.y;
+						gPositions[ i + 2 ] = coord.z;
+						// colors
+						//console.log(coord.x+&#x27;,&#x27;+coord.y+&#x27;,&#x27;+coord.z+&quot; =&gt; vc: &quot;+colors[dataIndex]);
+						gColor.setStyle(&#x27;#&#x27;+colors[dataIndex]);
+						gColors[ i ] = gColor.r;
+						gColors[ i + 1 ] = gColor.g;
+						gColors[ i + 2 ] = gColor.b;
+					}
+					geometry.computeBoundingSphere();
+
+
+					/** *********************************** */
+					/** handle axes * */
+					if (axesSet) {
+						var axes = axesCallback.apply(axesContext, [ data, scaled_data,colors,
+							x_SCALE_MAX, y_SCALE_MAX, z_SCALE_MAX, borders, minMax, heatmaps ]);
+						for ( var index = 0; index &lt; axes.length; ++index) {
+							// add axes to scene
+							result.push(axes[index]);
+						}
+					}
+					/** *********************************** */
+					/** handle config &amp;&amp; plot * */
+					// set color array
+					// geometry.colors = threeColors;
+					// geometry.mergeVertices();
+
+
+					var materialConfig = {};
+					materialConfig.color = 0xFFFFFF;
+					materialConfig.vertexColors = config.material.colors;
+					materialConfig.opacity = config.material.opacity;
+					materialConfig.size = config.material.particleSize;
+					materialConfig.transparent = config.material.transparent === &#x27;&#x27; ? false
+					: config.material.transparent;
+					materialConfig.ambient = config.material.ambient === undefined ? &#x27;#808080&#x27;
+					: &#x27;#&#x27; + config.material.ambient;
+
+
+					if (config.material.blending !== undefined &amp;&amp; config.material.blending === true) {
+						console.log(&#x27;[ scatterplot ] blending is deactivated!&#x27;);
+				//materialConfig.blending = THREE.AdditiveBlending;
+			}
+
+
+			if (config.material.image !== undefined &amp;&amp; config.material.image.length &gt; 0) {
+				materialConfig.map = THREE.ImageUtils
+				.loadTexture(Config.baseData+&#x27;/&#x27;+config.material.image);
+			}
+			var material = new THREE.ParticleBasicMaterial(
+				materialConfig);
+
+
+			var particleSystem = new THREE.ParticleSystem(geometry,
+				material);
+			particleSystem.sortParticles = true;
+
+
+			result.push(particleSystem);
+
+		// intersectionObjects.push(particleSystem);
+		return {
+			pType : this.type,
+			response : result
+		};
+
+	};
+
+	/** ********************************** */
+	/** PRIVATE METHODS * */
+	/** ********************************** */
+
+	var scale = function(data,borders) {
+
+		var b2 = {
+			&#x27;x_MAX&#x27;:borders.xMax,
+			&#x27;y_MAX&#x27;:borders.yMax,
+			&#x27;z_MAX&#x27;:borders.zMax,
+			&#x27;x_MIN&#x27;:borders.xMin,
+			&#x27;y_MIN&#x27;:borders.yMin,
+			&#x27;z_MIN&#x27;:borders.zMin,
+			&#x27;x_SCALE_MIN&#x27; : x_SCALE_MIN,
+			&#x27;y_SCALE_MIN&#x27; : y_SCALE_MIN,
+			&#x27;z_SCALE_MIN&#x27; : z_SCALE_MIN,
+			&#x27;x_SCALE_MAX&#x27; : x_SCALE_MAX,
+			&#x27;y_SCALE_MAX&#x27; : y_SCALE_MAX,
+			&#x27;z_SCALE_MAX&#x27; : z_SCALE_MAX,
+		};
+		return UTILS.C3D.scaleLinearToRange(data,b2);
+	};
+});
+
+return Plugin;
+
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<script type="text/html" class="pluginConfigForm" id="cameraControl">
+
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<label class="control-label" for="cc-pos">Camera Position</label><br />
+			<button type="button" class="btn btn-success" style="width:100%;" id="cc-pos">
+				<span>Remember current camera position</span>
+				<span class="glyphicon glyphicon-ok" aria-hidden="true" style="display: none;" id="remember-camera-position"></span>
+			</button>
+			<input type="text" id="camera-pos-rot-up" style="display:none;"/>
+		</li>
+		<li class="list-group-item">
+			<label class="control-label" for="pivot">Camera Look At</label>
+			<div class="controls" id="pivot">
+				<div class="input-group">
+					<span class="input-group-addon">x</span>
+					<input id="lookAt-x" type="text" class="form-control" placeholder="">
+					<span class="input-group-addon">y</span>
+					<input id="lookAt-y" type="text" class="form-control" placeholder="">
+					<span class="input-group-addon">z</span>
+					<input id="lookAt-z" type="text" class="form-control" placeholder="">
+				</div>
+			</div>
+		</li>
+
+		<li class="list-group-item">
+			<label class="control-label" for="pivot">Camera UP Vector</label>
+			<div class="row">
+				<div class="col-md-4">
+					<button type="button" class="btn btn-default" id="cc-upX" >Up X</button>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-default" id="cc-upY" >Up Y</button>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-default" id="cc-upZ" >Up Z</button>
+				</div>
+			</div>
+
+
+		</li>
+		<li class="list-group-item">
+			<div class="input-group">
+				<span class="input-group-addon"><input type="checkbox" id="use-mouse-controller"></span>
+				<span class="form-control" >Use Mouse-Controller </span>
+			</div>
+		</li>
+		<li class="list-group-item" id="cc-container" style="display: none">
+			<label class="control-label" for="controlTypeSelect">ControlType</label>
+			<div class="controls">
+				<input class="form-control" type="text" id="controlType" style="display:none;">
+				<select id="controlTypeSelect" class="form-control">
+					<option value="orbit">Orbit</option>
+					<option value="trackball">Trackball</option>
+					<option value="firstPerson">First Person</option>
+				</select>
+			</div>
+		</li>
+
+	</ul>
+
+</script>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/src/objects/MorphAnimMesh.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/src/objects/MorphAnimMesh.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @author alteredq / http://alteredqualia.com/
+ */
+
+THREE.MorphAnimMesh = function ( geometry, material ) {
+
+	THREE.Mesh.call( this, geometry, material );
+
+	// API
+
+	this.duration = 1000; // milliseconds
+	this.mirroredLoop = false;
+	this.time = 0;
+
+	// internals
+
+	this.lastKeyframe = 0;
+	this.currentKeyframe = 0;
+
+	this.direction = 1;
+	this.directionBackwards = false;
+
+	this.setFrameRange( 0, this.geometry.morphTargets.length - 1 );
+
+};
+
+THREE.MorphAnimMesh.prototype = Object.create( THREE.Mesh.prototype );
+
+THREE.MorphAnimMesh.prototype.setFrameRange = function ( start, end ) {
+
+	this.startKeyframe = start;
+	this.endKeyframe = end;
+
+	this.length = this.endKeyframe - this.startKeyframe + 1;
+
+};
+
+THREE.MorphAnimMesh.prototype.setDirectionForward = function () {
+
+	this.direction = 1;
+	this.directionBackwards = false;
+
+};
+
+THREE.MorphAnimMesh.prototype.setDirectionBackward = function () {
+
+	this.direction = -1;
+	this.directionBackwards = true;
+
+};
+
+THREE.MorphAnimMesh.prototype.parseAnimations = function () {
+
+	var geometry = this.geometry;
+
+	if ( ! geometry.animations ) geometry.animations = {};
+
+	var firstAnimation, animations = geometry.animations;
+
+	var pattern = /([a-z]+)(\d+)/;
+
+	for ( var i = 0, il = geometry.morphTargets.length; i &lt; il; i ++ ) {
+
+		var morph = geometry.morphTargets[ i ];
+		var parts = morph.name.match( pattern );
+
+		if ( parts &amp;&amp; parts.length &gt; 1 ) {
+
+			var label = parts[ 1 ];
+			var num = parts[ 2 ];
+
+			if ( ! animations[ label ] ) animations[ label ] = { start: Infinity, end: -Infinity };
+
+			var animation = animations[ label ];
+
+			if ( i &lt; animation.start ) animation.start = i;
+			if ( i &gt; animation.end ) animation.end = i;
+
+			if ( ! firstAnimation ) firstAnimation = label;
+
+		}
+
+	}
+
+	geometry.firstAnimation = firstAnimation;
+
+};
+
+THREE.MorphAnimMesh.prototype.setAnimationLabel = function ( label, start, end ) {
+
+	if ( ! this.geometry.animations ) this.geometry.animations = {};
+
+	this.geometry.animations[ label ] = { start: start, end: end };
+
+};
+
+THREE.MorphAnimMesh.prototype.playAnimation = function ( label, fps ) {
+
+	var animation = this.geometry.animations[ label ];
+
+	if ( animation ) {
+
+		this.setFrameRange( animation.start, animation.end );
+		this.duration = 1000 * ( ( animation.end - animation.start ) / fps );
+		this.time = 0;
+
+	} else {
+
+		console.warn( &quot;animation[&quot; + label + &quot;] undefined&quot; );
+
+	}
+
+};
+
+THREE.MorphAnimMesh.prototype.updateAnimation = function ( delta ) {
+
+	var frameTime = this.duration / this.length;
+
+	this.time += this.direction * delta;
+
+	if ( this.mirroredLoop ) {
+
+		if ( this.time &gt; this.duration || this.time &lt; 0 ) {
+
+			this.direction *= -1;
+
+			if ( this.time &gt; this.duration ) {
+
+				this.time = this.duration;
+				this.directionBackwards = true;
+
+			}
+
+			if ( this.time &lt; 0 ) {
+
+				this.time = 0;
+				this.directionBackwards = false;
+
+			}
+
+		}
+
+	} else {
+
+		this.time = this.time % this.duration;
+
+		if ( this.time &lt; 0 ) this.time += this.duration;
+
+	}
+
+	var keyframe = this.startKeyframe + THREE.Math.clamp( Math.floor( this.time / frameTime ), 0, this.length - 1 );
+
+	if ( keyframe !== this.currentKeyframe ) {
+
+		this.morphTargetInfluences[ this.lastKeyframe ] = 0;
+		this.morphTargetInfluences[ this.currentKeyframe ] = 1;
+
+		this.morphTargetInfluences[ keyframe ] = 0;
+
+		this.lastKeyframe = this.currentKeyframe;
+		this.currentKeyframe = keyframe;
+
+	}
+
+	var mix = ( this.time % frameTime ) / frameTime;
+
+	if ( this.directionBackwards ) {
+
+		mix = 1 - mix;
+
+	}
+
+	this.morphTargetInfluences[ this.currentKeyframe ] = mix;
+	this.morphTargetInfluences[ this.lastKeyframe ] = 1 - mix;
+
+};
+
+THREE.MorphAnimMesh.prototype.clone = function ( object ) {
+
+	if ( object === undefined ) object = new THREE.MorphAnimMesh( this.geometry, this.material );
+
+	object.duration = this.duration;
+	object.mirroredLoop = this.mirroredLoop;
+	object.time = this.time;
+
+	object.lastKeyframe = this.lastKeyframe;
+	object.currentKeyframe = this.currentKeyframe;
+
+	object.direction = this.direction;
+	object.directionBackwards = this.directionBackwards;
+
+	THREE.Mesh.prototype.clone.call( this, object );
+
+	return object;
+
+};
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

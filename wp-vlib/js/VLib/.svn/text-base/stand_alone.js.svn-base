@@ -1,0 +1,127 @@
+requirejs.config({
+
+	paths : {
+		'vlib' : 'core/Vlib',
+		'config' : 'config.vlib',
+		'pluginLoader' : 'pluginLoader',
+		'jquery_ui' : 'libs/jquery-ui/js/jquery-ui-1.10.3.custom.min',
+		'jquery' : 'libs/jquery/jquery.min',
+		'underscore' : 'libs/underscore/underscore.min',
+		'three' : 'libs/three/build/three.min',
+		'three_trackball_controls' : 'libs/three/controls/TrackballControls',
+		'three_orbit_controls' : 'libs/three/controls/OrbitAndPanControls',
+		'orgChart' : 'libs/jOrgChart/jquery.jOrgChart',
+		'bootstrap':'libs/bootstrap/bootstrap.min',
+		'd3':'libs/novus/lib/d3.v3',
+		'nv':'libs/novus/nv.d3'
+
+	},
+	shim : {
+		'underscore' : {
+			exports : '_'
+		},
+
+		'three' : {
+			exports : 'THREE'
+		},
+
+		'three_trackball_controls' : {
+			exports : 'THREE',
+			'deps' : ['three']
+		},
+		'three_orbit_controls' : {
+			exports : 'THREE',
+			'deps' : ['three']
+		},
+		'jquery_ui' : {
+			exports : '$',
+			'deps' : ['jquery']
+		},
+		'orgChart' : {
+			exports : '$',
+			'deps' : ['jquery']
+		},
+		'bootstrap' : {
+			'deps' : ['jquery']
+		},
+		'd3':{
+			exports: 'd3'
+		},
+		'nv':{
+			'deps' : ['d3'],
+			exports: 'd3'
+		}
+
+	}
+});
+
+/**
+ * MAIN EDIT-MODE
+ */
+ define(function(require) {
+
+ 	require(
+ 		[ 'jquery', 'config',
+ 		'core/modules/plot/plot.vlib'],
+ 		function($,Config,PlotModule) {
+
+ 			var VLibController = function(vLib,plotModule){
+ 				var vlib = vLib;
+ 				var plotModule = plotModule;
+ 				var plotList = {};
+ 				return {
+ 					init : function(container){
+ 						if(plotList.hasOwnProperty(container))
+ 							return;
+ 						plotList[container] = new plotModule();
+ 						vlib.registerModule(plotList[container]);
+ 						plotList[container].init(container);
+ 					},
+ 					load : function(template,container){
+ 					}
+ 				}
+ 			};
+	 	// ************************************************************************
+		// INIT LIB
+		// ************************************************************************
+		var VLib = require('vlib');
+		var v = new VLib();
+		console.log("VLib version " + v.version);
+
+		var PlotModule = require('core/modules/plot/plot.vlib');
+		var vLibController = new VLibController(v,PlotModule);
+		window.vLib = vLibController;
+		$(document).ready(function() {
+			$(window).trigger('vLibLoaded');
+			alert("done");
+		});
+		addEventListener
+		var test1 = require('templates/smiley.tmpl.vlib');
+		var test2 = require('templates/all_kv_1.tmpl.vlib');
+		var template1 = {
+			sceneGraph	: test1,
+			name		: 'test1',
+			description	: 'Demo 1. Surfaceplot + Scatterplot. Dataset = allkv.dat'
+		};
+		var template2 = {
+			sceneGraph	: test2,
+			name		: 'test2',
+			description	: 'description to test2'
+		};
+
+		console.log('#######################################');
+		console.log('[ main ][channels in use ] '
+			+ Object.keys(v.getChannels));
+		console.log('[ main ][plugins in use ] '
+			+ Object.keys(v.getPlugins));
+
+		console.log("#########################################");
+				//v.load(template2);
+			});
+
+
+
+
+
+
+	});

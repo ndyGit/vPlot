@@ -1,0 +1,317 @@
+define(
+	[ 'require', 'config', 'jquery', 'underscore', 'bootstrap' ],
+	function(require, Config, $, _) {
+			/**
+			TODO<br />
+			@module Controls
+			@class Controls
+	 		**/
+	 		var module = (function() {
+	 			var _name = 'controls';
+				// TODO: REFACTOR
+				var _templates = Config.absModules+'/controls/templates.js';
+				var container;
+				var currentTemplate = undefined;
+				var files = [];
+
+				var isRegisterd = function() {
+					return (typeof module.subscribe === 'function')
+					&& (typeof module.publish === 'function');
+				}
+				var _init = function(container) {
+					if (isRegisterd()) {
+						module.container = $(container);
+
+						// inject templates
+						module.publish(Config.CHANNEL_INJECT_SCRIPTTEMPLATE,{url : _templates});
+
+
+						/** *************************************** */
+						/* CALL YOUR FUNCTIONS HERER */
+						/** *************************************** */
+						updateGui();
+						addListener();
+
+						module.publish(Config.CHANNEL_REQUEST_SAVETEMPLATECALLBACK);
+						module.publish(Config.CHANNEL_REQUEST_DELETETEMPLATECALLBACK);
+						module.publish(Config.CHANNEL_REQUEST_UPLOADDATACALLBACK);
+						module.publish(Config.CHANNEL_REQUEST_DELETEDATACALLBACK);
+						module.publish(Config.CHANNEL_REQUEST_FILEUPLOADURL);
+						module.publish(Config.CHANNEL_REQUEST_FILES);
+						/** *************************************** */
+					} else {
+						throw 'Module [ '
+						+ this.name
+						+ ' ] not registered! Use VLib.registerModule(obj) first.';
+					}
+
+				};
+				/** *************************************** */
+				/* ADD LISTENERS HERE */
+				/** *************************************** */
+				var addListener = function() {
+					console.log("[ " + module.name + " ] add listener ");
+
+					attachSaveTemplateListener();
+					attachUploadDataListener();
+					attachDeleteDataListener();
+					attachResetListener();
+					attachRefreshListener();
+
+					module.subscribe(Config.CHANNEL_SCENEGRAPH_UPDATE, templateHandle);
+					module.subscribe(Config.CHANNEL_TEMPLATES_TEMPLATE_SELECTED, templateHandle);
+
+					module.subscribe(Config.CHANNEL_RESPOND_SAVETEMPLATECALLBACK, saveTemplateCBHandle);
+					module.subscribe(Config.CHANNEL_RESPOND_UPLOADDATACALLBACK, setUploadDataCBHandle);
+					module.subscribe(Config.CHANNEL_RESPOND_DELETEDATACALLBACK, deleteDataCBHandle);
+
+					module.subscribe(Config.CHANNEL_RESPOND_FILEUPLOADURL,respondFileUploadUrlHandle);
+					module.subscribe(Config.CHANNEL_RESPOND_FILES, respondFileshandle);
+					module.subscribe(Config.CHANNEL_ERROR, showErrorMsg);
+					module.subscribe(Config.CHANNEL_WARNING, showWarningMsg);
+					module.subscribe(Config.CHANNEL_SUCCESS, showSuccessMsg);
+					module.subscribe(Config.CHANNEL_INFO, showInfoMsg);
+					module.subscribe(Config.CHANNEL_REFRESH, refreshHandle);
+				}
+
+				/* ******************************** */
+				/* LISTENERS */
+				/*
+				* Handles message from CHANNEL_RESPOND_FILES
+				* module.subscribe(Config.CHANNEL_RESPOND_FILES, respondFileshandle);
+				*/
+
+				var refreshHandle = function(){
+					module.publish(Config.CHANNEL_RESQUEST_FILES);
+					module.publish(Config.CHANNEL_RESQUEST_TEMPLATES);
+				}
+
+				var respondFileshandle = function(obj){
+					files = obj;
+				}
+				/*
+				* Handles message from CHANNEL_RESPOND_FILEUPLOADURL
+				* module.subscribe(Config.CHANNEL_RESPOND_FILEUPLOADURL,respondFileUploadUrlHandle);
+				*/
+				var respondFileUploadUrlHandle = function(url){
+					fileUploadUrl = url;
+				}
+				/*
+				* Handles messages from
+				*	CHANNEL_SCENEGRAPH_UPDATE and
+				*	CHANNEL_TEMPLATES_TEMPLATE_SELECTED
+				* module.subscribe(Config.CHANNEL_SCENEGRAPH_UPDATE, templateHandle);
+				* module.subscribe(Config.CHANNEL_TEMPLATES_TEMPLATE_SELECTED, templateHandle);
+				*/
+				var templateHandle = function(obj){
+					currentTemplate = obj;
+				}
+				/*
+				* Handles message from CHANNEL_RESPOND_UPLOADDATACALLBACK
+				* module.subscribe(Config.CHANNEL_RESPOND_UPLOADDATACALLBACK, setUploadDataCBHandle);
+				*/
+				var setUploadDataCBHandle = function(callback){
+					if(typeof(callback) !== 'function'){
+						showErrorMsg('uploadDataCallback is NOT a function!');
+						return;
+					}
+					uploadDataCallback = callback;
+
+				}
+				/*
+				* Handles message from CHANNEL_RESPOND_DELETEDATACALLBACK
+				* module.subscribe(Config.CHANNEL_RESPOND_DELETEDATACALLBACK, setDeleteDataCBHandle);
+				*/
+				var setDeleteDataCBHandle = function(callback){
+					if(typeof(callback) !== 'function'){
+						showErrorMsg('deleteDataCallback is NOT a function!');
+						return;
+					}
+					deleteDataCallback = callback;
+
+				}
+
+				/*
+				* Handles message from CHANNEL_RESPOND_SAVETEMPLATECALLBACK
+				* module.subscribe(Config.CHANNEL_RESPOND_SAVETEMPLATECALLBACK, saveTemplateCBHandle);
+				*/
+				var saveTemplateCBHandle = function(callback){
+					if(typeof(callback) !== 'function'){
+						showErrorMsg('saveTemplateCallback is NOT a function!');
+						return;
+					}
+					saveTemplateCallback = callback;
+				}
+
+				var deleteDataCBHandle = function(callback){
+					if(typeof(callback) !== 'function'){
+						showErrorMsg('deleteDataCallback is NOT a function!');
+						return;
+					}
+					deleteDataCallback = callback;
+				}
+				var attachRefreshListener = function(){
+					$('#'+module.container.attr('id')).find('#refresh-template').bind('click',function(){
+						module.publish(Config.CHANNEL_REFRESH);
+					});
+				}
+				var attachResetListener = function(){
+					$('#'+module.container.attr('id')).find('#reset-template').bind('click',function(){
+						module.publish(Config.CHANNEL_RESET);
+					});
+
+				}
+				var selectedFiles = [];
+				var attachDeleteDataListener = function(){
+
+					$('#'+module.container.attr('id')).find('#delete-data').bind('click',function(){
+						$('#deleteDataModal').modal('show');
+						$('#file-cnt').html(files.length);
+						var c = $('#' + module.container.attr('id')).find('#deleteDataTableContainer');
+						c.html('')
+						$.each(files,function(i,o){
+							var row = $('<tr/>');
+							row.append($('<td/>').html('<input id="file-delete-checkbox-'+i+'" type="checkbox" class="file-delete-checkbox">'));
+							row.append($('<td/>').html(o.name));
+							row.attr('class','file');
+							row.attr('title',o.description);
+							//ID hinzuf.
+							row.attr('id',o.id);
+							c.append(row);
+
+						});
+
+
+						$('#' + module.container.attr('id')).find('.file-delete-checkbox').change(function(){
+
+							var toDelete = $('#'+module.container.attr('id')).find('.file-delete-checkbox:checked');
+							$('#file-delete-cnt').html(toDelete.length);
+
+
+							var index;
+							selectedFiles = [];
+							for (index = 0; index < toDelete.length; ++index) {
+								//console.log($("#"+toDelete[index].id).closest('.file').attr('id'));
+								selectedFiles.push($("#"+toDelete[index].id).closest('.file').attr('id'));
+							}
+							// TODO: GET INDEX FROM SELECTED FILES
+							// GET FILES BY INDEX AND FILL selectedFIles
+							/*
+								selectedFiles = [];
+								forEach index as i:
+									selectedFiles.push(files[index]);
+									*/
+								});
+					});
+$('#'+module.container.attr('id')).find('#deleteFile').bind('click',function(){
+	deleteDataCallback(selectedFiles);
+	$('#deleteDataModal').modal('hide');
+
+});
+
+
+}
+var attachSaveTemplateListener = function(){
+	$('#'+module.container.attr('id')).find('#save-template').bind('click',function(){
+		if(currentTemplate !== undefined && currentTemplate.sceneGraph !== false){
+			$('#t-name').val(currentTemplate.name);
+			$('#t-description').val(currentTemplate.description);
+			$('#saveTemplateModal').modal('show');
+		}
+	});
+	$('#'+module.container.attr('id')).find('#saveTemplate').bind('click',function(){
+
+		var name = $('#'+module.container.attr('id')).find('#t-name').val();
+		var description = $('#'+module.container.attr('id')).find('#t-description').val();
+
+		currentTemplate.template.name = name;
+		currentTemplate.template.description = description;
+		saveTemplateCallback(currentTemplate);
+		$('#saveTemplateModal').modal('hide');
+		$('#t-name').val('');
+		$('#t-description').val('');
+	})
+}
+var attachUploadDataListener = function(){
+	$('#'+module.container.attr('id')).find('#upload-data').bind('click',function(){
+		$('#uploadDataModal').modal('show');
+	});
+	$('#'+module.container.attr('id')).find('#uploadFile').bind('click',function(){
+		uploadDataCallback('#fileUploadForm');
+		$('#uploadDataModal').modal('hide');
+		refreshHandle();
+
+	});
+}
+var progressHandlingFunction = function(e){
+	if(e.lengthComputable){
+		$('progress').attr({value:e.loaded,max:e.total});
+	}
+}
+/* ******************************** */
+/* CALLBACK  SKELETONS*/
+var saveTemplateCallback = function(){
+	showErrorMsg('controler.saveTemplateCallback not set!');
+}
+var uploadDataCallback = function(){
+	showErrorMsg('controler.uploadDataCallback not set!');
+}
+var deleteDataCallback = function(){
+	showErrorMsg('controler.deleteDataCallback not set!');
+}
+/* ******************************** */
+/* MESSAGE TYPES */
+var showErrorMsg = function(text){
+	var msg = '<strong>ERROR</strong> '+text;
+	showMsg('alert-danger',msg);
+}
+var showWarningMsg = function(text){
+	var msg = '<strong>Warning</strong> '+text;
+	showMsg('alert-warning',msg);
+}
+var showInfoMsg = function(text){
+	var msg = '<strong>Info</strong> '+text;
+	showMsg('alert-info',msg);
+}
+var showSuccessMsg = function(text){
+	var msg = '<strong>Success</strong> '+text;
+	showMsg('alert-success',msg);
+}
+var showMsg = function(type,text){
+	var msg = $('<div />');
+	msg.attr('class','alert alert-dismissable '+type);
+	msg.append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
+	msg.append(text);
+	$('#'+module.container.attr('id')).find('#messageContainer').append(msg);
+}
+
+				/*
+				* inject templet to module container
+				*/
+				var updateGui = function() {
+
+					_.templateSettings.variable = "rc";
+					// get template code
+					var templateData = {
+
+					}
+
+					var template = _.template($("script.controlsContainer")
+						.html());
+
+					// add templates to container
+					module.container.html(template(templateData));
+				}
+
+
+				/* public */
+				return {
+					name : _name,
+					container: container,
+					init : _init
+
+				}
+			})();
+
+			return module;
+		});

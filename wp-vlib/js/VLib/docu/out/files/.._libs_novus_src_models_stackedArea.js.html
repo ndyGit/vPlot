@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/novus/src/models/stackedArea.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/novus/src/models/stackedArea.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+
+nv.models.stackedArea = function() {
+  &quot;use strict&quot;;
+  //============================================================
+  // Public Variables with Default Settings
+  //------------------------------------------------------------
+
+  var margin = {top: 0, right: 0, bottom: 0, left: 0}
+    , width = 960
+    , height = 500
+    , color = nv.utils.defaultColor() // a function that computes the color
+    , id = Math.floor(Math.random() * 100000) //Create semi-unique ID incase user doesn&#x27;t selet one
+    , getX = function(d) { return d.x } // accessor to get the x value from a data point
+    , getY = function(d) { return d.y } // accessor to get the y value from a data point
+    , style = &#x27;stack&#x27;
+    , offset = &#x27;zero&#x27;
+    , order = &#x27;default&#x27;
+    , interpolate = &#x27;linear&#x27;  // controls the line interpolation
+    , clipEdge = false // if true, masks lines within x and y scale
+    , x //can be accessed via chart.xScale()
+    , y //can be accessed via chart.yScale()
+    , scatter = nv.models.scatter()
+    , dispatch =  d3.dispatch(&#x27;tooltipShow&#x27;, &#x27;tooltipHide&#x27;, &#x27;areaClick&#x27;, &#x27;areaMouseover&#x27;, &#x27;areaMouseout&#x27;)
+    ;
+
+  scatter
+    .size(2.2) // default size
+    .sizeDomain([2.2,2.2]) // all the same size by default
+    ;
+
+  /************************************
+   * offset:
+   *   &#x27;wiggle&#x27; (stream)
+   *   &#x27;zero&#x27; (stacked)
+   *   &#x27;expand&#x27; (normalize to 100%)
+   *   &#x27;silhouette&#x27; (simple centered)
+   *
+   * order:
+   *   &#x27;inside-out&#x27; (stream)
+   *   &#x27;default&#x27; (input order)
+   ************************************/
+
+  //============================================================
+
+
+  function chart(selection) {
+    selection.each(function(data) {
+      var availableWidth = width - margin.left - margin.right,
+          availableHeight = height - margin.top - margin.bottom,
+          container = d3.select(this);
+
+      //------------------------------------------------------------
+      // Setup Scales
+
+      x = scatter.xScale();
+      y = scatter.yScale();
+
+      //------------------------------------------------------------
+
+      var dataRaw = data;
+      // Injecting point index into each point because d3.layout.stack().out does not give index
+      data.forEach(function(aseries, i) {
+        aseries.seriesIndex = i;
+        aseries.values = aseries.values.map(function(d, j) {
+          d.index = j;
+          d.seriesIndex = i;
+          return d;
+        });
+      });
+
+      var dataFiltered = data.filter(function(series) {
+            return !series.disabled;
+      });
+
+      data = d3.layout.stack()
+               .order(order)
+               .offset(offset)
+               .values(function(d) { return d.values })  //TODO: make values customizeable in EVERY model in this fashion
+               .x(getX)
+               .y(getY)
+               .out(function(d, y0, y) {
+                    var yHeight = (getY(d) === 0) ? 0 : y;
+                    d.display = {
+                      y: yHeight,
+                     y0: y0
+                    };
+                })
+              (dataFiltered);
+
+
+      //------------------------------------------------------------
+      // Setup containers and skeleton of chart
+
+      var wrap = container.selectAll(&#x27;g.nv-wrap.nv-stackedarea&#x27;).data([data]);
+      var wrapEnter = wrap.enter().append(&#x27;g&#x27;).attr(&#x27;class&#x27;, &#x27;nvd3 nv-wrap nv-stackedarea&#x27;);
+      var defsEnter = wrapEnter.append(&#x27;defs&#x27;);
+      var gEnter = wrapEnter.append(&#x27;g&#x27;);
+      var g = wrap.select(&#x27;g&#x27;);
+
+      gEnter.append(&#x27;g&#x27;).attr(&#x27;class&#x27;, &#x27;nv-areaWrap&#x27;);
+      gEnter.append(&#x27;g&#x27;).attr(&#x27;class&#x27;, &#x27;nv-scatterWrap&#x27;);
+
+      wrap.attr(&#x27;transform&#x27;, &#x27;translate(&#x27; + margin.left + &#x27;,&#x27; + margin.top + &#x27;)&#x27;);
+
+      //------------------------------------------------------------
+
+
+      scatter
+        .width(availableWidth)
+        .height(availableHeight)
+        .x(getX)
+        .y(function(d) { return d.display.y + d.display.y0 })
+        .forceY([0])
+        .color(data.map(function(d,i) {
+          return d.color || color(d, d.seriesIndex);
+        }));
+
+
+      var scatterWrap = g.select(&#x27;.nv-scatterWrap&#x27;)
+          .datum(data);
+
+      scatterWrap.call(scatter);
+
+      defsEnter.append(&#x27;clipPath&#x27;)
+          .attr(&#x27;id&#x27;, &#x27;nv-edge-clip-&#x27; + id)
+        .append(&#x27;rect&#x27;);
+
+      wrap.select(&#x27;#nv-edge-clip-&#x27; + id + &#x27; rect&#x27;)
+          .attr(&#x27;width&#x27;, availableWidth)
+          .attr(&#x27;height&#x27;, availableHeight);
+
+      g   .attr(&#x27;clip-path&#x27;, clipEdge ? &#x27;url(#nv-edge-clip-&#x27; + id + &#x27;)&#x27; : &#x27;&#x27;);
+
+      var area = d3.svg.area()
+          .x(function(d,i)  { return x(getX(d,i)) })
+          .y0(function(d) {
+              return y(d.display.y0)
+          })
+          .y1(function(d) {
+              return y(d.display.y + d.display.y0)
+          })
+          .interpolate(interpolate);
+
+      var zeroArea = d3.svg.area()
+          .x(function(d,i)  { return x(getX(d,i)) })
+          .y0(function(d) { return y(d.display.y0) })
+          .y1(function(d) { return y(d.display.y0) });
+
+
+      var path = g.select(&#x27;.nv-areaWrap&#x27;).selectAll(&#x27;path.nv-area&#x27;)
+          .data(function(d) { return d });
+
+      path.enter().append(&#x27;path&#x27;).attr(&#x27;class&#x27;, function(d,i) { return &#x27;nv-area nv-area-&#x27; + i })
+          .attr(&#x27;d&#x27;, function(d,i){
+            return zeroArea(d.values, d.seriesIndex);
+          })
+          .on(&#x27;mouseover&#x27;, function(d,i) {
+            d3.select(this).classed(&#x27;hover&#x27;, true);
+            dispatch.areaMouseover({
+              point: d,
+              series: d.key,
+              pos: [d3.event.pageX, d3.event.pageY],
+              seriesIndex: d.seriesIndex
+            });
+          })
+          .on(&#x27;mouseout&#x27;, function(d,i) {
+            d3.select(this).classed(&#x27;hover&#x27;, false);
+            dispatch.areaMouseout({
+              point: d,
+              series: d.key,
+              pos: [d3.event.pageX, d3.event.pageY],
+              seriesIndex: d.seriesIndex
+            });
+          })
+          .on(&#x27;click&#x27;, function(d,i) {
+            d3.select(this).classed(&#x27;hover&#x27;, false);
+            dispatch.areaClick({
+              point: d,
+              series: d.key,
+              pos: [d3.event.pageX, d3.event.pageY],
+              seriesIndex: d.seriesIndex
+            });
+          })
+
+      path.exit().remove();
+
+      path
+          .style(&#x27;fill&#x27;, function(d,i){
+            return d.color || color(d, d.seriesIndex)
+          })
+          .style(&#x27;stroke&#x27;, function(d,i){ return d.color || color(d, d.seriesIndex) });
+      path.transition()
+          .attr(&#x27;d&#x27;, function(d,i) {
+            return area(d.values,i)
+          });
+
+
+
+      //============================================================
+      // Event Handling/Dispatching (in chart&#x27;s scope)
+      //------------------------------------------------------------
+
+      scatter.dispatch.on(&#x27;elementMouseover.area&#x27;, function(e) {
+        g.select(&#x27;.nv-chart-&#x27; + id + &#x27; .nv-area-&#x27; + e.seriesIndex).classed(&#x27;hover&#x27;, true);
+      });
+      scatter.dispatch.on(&#x27;elementMouseout.area&#x27;, function(e) {
+        g.select(&#x27;.nv-chart-&#x27; + id + &#x27; .nv-area-&#x27; + e.seriesIndex).classed(&#x27;hover&#x27;, false);
+      });
+
+      //============================================================
+      //Special offset functions
+      chart.d3_stackedOffset_stackPercent = function(stackData) {
+          var n = stackData.length,    //How many series
+          m = stackData[0].length,     //how many points per series
+          k = 1 / n,
+           i,
+           j,
+           o,
+           y0 = [];
+
+          for (j = 0; j &lt; m; ++j) { //Looping through all points
+            for (i = 0, o = 0; i &lt; dataRaw.length; i++)  //looping through series&#x27;
+                o += getY(dataRaw[i].values[j])   //total value of all points at a certian point in time.
+
+            if (o) for (i = 0; i &lt; n; i++)
+               stackData[i][j][1] /= o;
+            else
+              for (i = 0; i &lt; n; i++)
+               stackData[i][j][1] = k;
+          }
+          for (j = 0; j &lt; m; ++j) y0[j] = 0;
+          return y0;
+      };
+
+    });
+
+
+    return chart;
+  }
+
+
+  //============================================================
+  // Event Handling/Dispatching (out of chart&#x27;s scope)
+  //------------------------------------------------------------
+
+  scatter.dispatch.on(&#x27;elementClick.area&#x27;, function(e) {
+    dispatch.areaClick(e);
+  })
+  scatter.dispatch.on(&#x27;elementMouseover.tooltip&#x27;, function(e) {
+        e.pos = [e.pos[0] + margin.left, e.pos[1] + margin.top],
+        dispatch.tooltipShow(e);
+  });
+  scatter.dispatch.on(&#x27;elementMouseout.tooltip&#x27;, function(e) {
+        dispatch.tooltipHide(e);
+  });
+
+  //============================================================
+
+  //============================================================
+  // Global getters and setters
+  //------------------------------------------------------------
+
+  chart.dispatch = dispatch;
+  chart.scatter = scatter;
+
+  d3.rebind(chart, scatter, &#x27;interactive&#x27;, &#x27;size&#x27;, &#x27;xScale&#x27;, &#x27;yScale&#x27;, &#x27;zScale&#x27;, &#x27;xDomain&#x27;, &#x27;yDomain&#x27;, &#x27;xRange&#x27;, &#x27;yRange&#x27;,
+    &#x27;sizeDomain&#x27;, &#x27;forceX&#x27;, &#x27;forceY&#x27;, &#x27;forceSize&#x27;, &#x27;clipVoronoi&#x27;, &#x27;useVoronoi&#x27;,&#x27;clipRadius&#x27;,&#x27;highlightPoint&#x27;,&#x27;clearHighlights&#x27;);
+
+  chart.options = nv.utils.optionsFunc.bind(chart);
+
+  chart.x = function(_) {
+    if (!arguments.length) return getX;
+    getX = d3.functor(_);
+    return chart;
+  };
+
+  chart.y = function(_) {
+    if (!arguments.length) return getY;
+    getY = d3.functor(_);
+    return chart;
+  }
+
+  chart.margin = function(_) {
+    if (!arguments.length) return margin;
+    margin.top    = typeof _.top    != &#x27;undefined&#x27; ? _.top    : margin.top;
+    margin.right  = typeof _.right  != &#x27;undefined&#x27; ? _.right  : margin.right;
+    margin.bottom = typeof _.bottom != &#x27;undefined&#x27; ? _.bottom : margin.bottom;
+    margin.left   = typeof _.left   != &#x27;undefined&#x27; ? _.left   : margin.left;
+    return chart;
+  };
+
+  chart.width = function(_) {
+    if (!arguments.length) return width;
+    width = _;
+    return chart;
+  };
+
+  chart.height = function(_) {
+    if (!arguments.length) return height;
+    height = _;
+    return chart;
+  };
+
+  chart.clipEdge = function(_) {
+    if (!arguments.length) return clipEdge;
+    clipEdge = _;
+    return chart;
+  };
+
+  chart.color = function(_) {
+    if (!arguments.length) return color;
+    color = nv.utils.getColor(_);
+    return chart;
+  };
+
+  chart.offset = function(_) {
+    if (!arguments.length) return offset;
+    offset = _;
+    return chart;
+  };
+
+  chart.order = function(_) {
+    if (!arguments.length) return order;
+    order = _;
+    return chart;
+  };
+
+  //shortcut for offset + order
+  chart.style = function(_) {
+    if (!arguments.length) return style;
+    style = _;
+
+    switch (style) {
+      case &#x27;stack&#x27;:
+        chart.offset(&#x27;zero&#x27;);
+        chart.order(&#x27;default&#x27;);
+        break;
+      case &#x27;stream&#x27;:
+        chart.offset(&#x27;wiggle&#x27;);
+        chart.order(&#x27;inside-out&#x27;);
+        break;
+      case &#x27;stream-center&#x27;:
+          chart.offset(&#x27;silhouette&#x27;);
+          chart.order(&#x27;inside-out&#x27;);
+          break;
+      case &#x27;expand&#x27;:
+        chart.offset(&#x27;expand&#x27;);
+        chart.order(&#x27;default&#x27;);
+        break;
+      case &#x27;stack_percent&#x27;:
+        chart.offset(chart.d3_stackedOffset_stackPercent);
+        chart.order(&#x27;default&#x27;);
+        break;
+    }
+
+    return chart;
+  };
+
+  chart.interpolate = function(_) {
+	    if (!arguments.length) return interpolate;
+	    interpolate = _;
+	    return chart;
+  };
+  //============================================================
+
+
+  return chart;
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<html>
+<head>
+	<title>SurfacePlot tests</title>
+	<script src="../js/VLib/require.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="../css/custom-theme/jquery-ui-1.10.0.custom.css" />
+	<link rel="stylesheet" href="../css/pageStyle.css" />
+	<style>
+		H1, H2, H3, H4 {
+			margin: 0px;
+			text-align: center;
+			width: 100%;
+		}
+		.logContainer{
+			height:300px;
+			overflow: scroll;
+			color : #000000;
+		}
+		.seperator {
+			margin-bottom: 50px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>WorkerFactory.vlib</h1>
+	<h3>Takes a WorkerFactory.TASK and returns a WorkerFactory.WorkerWrapper object</h3>
+	<h4>WorkerWrapper holds either an instance of a WebWorker or a PseudoWorker</h4>
+	<div class="seperator"></div>
+
+	<div id="logList"></div>
+
+	<script type="text/javascript">
+		requirejs.config({
+			appDir: "../",
+			baseUrl: "../js/VLib",
+			paths : {
+				'jquery' : 'libs/jquery/jquery.min',
+				'config' : 'config.vlib',
+			}
+
+		});
+		require(['core/WorkerFactory_2.vlib','jquery'],function(WorkerFactory,$){
+
+			var addTest = function( id, cb, forcePseudoWorker ){
+				var c = '<div class="logContainer">';
+				c +=	'<div class="list-group" >'
+				c +=	'	<a href="#" class="list-group-item active" >';
+				c +=	'			<div id="log_'+id+'_title"></div>';
+				c +=	'		</a>';
+				c +=	'		<div id="log_'+id+'"></div>';
+				c +=	'	</div>';
+				c +=	'</div>';
+				$('#logList').append(c);
+				cb( id, forcePseudoWorker );
+			}
+			var title = function( container, msg ){
+				$( container ).html( msg );
+			};
+			var log = function( container, msg ){
+				var msg_ = '<div class="list-group-item">'+msg+'</div>';
+				$( container ).html( msg_ );
+			};
+			var scaleTask = function( id, forcePseudoWorker ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var wf = new WorkerFactory( forcePseudoWorker );
+				var task = wf.TASK.TASK_SCALE_OBJECTS_LIN;
+				var worker = wf.create( task );
+				worker.onmessage = function( e ){
+					var msg = e.data;
+					switch(msg.status){
+						case wf.STATUS.OK :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.ERROR :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.INFO :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.DONE :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						this.terminate();
+						break;
+					}
+				}
+				worker.onerror = function( e ){
+					console.log("WORKER ERROR");
+					console.dir( e );
+					console.log("############");
+				}
+				var domain = [0,2];
+				var range = [0,100];
+				var borders = {
+					x_SCALE_MIN : range[0],
+					y_SCALE_MIN : range[0],
+					z_SCALE_MIN : range[0],
+					x_SCALE_MAX : range[1],
+					y_SCALE_MAX : range[1],
+					z_SCALE_MAX : range[1],
+					x_MIN : domain[0],
+					y_MIN : domain[0],
+					z_MIN : domain[0],
+					x_MAX : domain[1],
+					y_MAX : domain[1],
+					z_MAX : domain[1]
+				};
+				var data = [];
+				for( var i = 0; i < 3; ++i){
+					data.push({x:i,y:i,z:i});
+				}
+				var post = { borders : borders, data : data };
+				log(logContainer, "post data: "+JSON.stringify( data ));
+				/* add log message */
+				title(titleContainer,"Task: Scale linear"
+					+"<br /> default package size = 1000"
+					+"<br />data.length="+data.length
+					+"<br />domain([ "+domain[ 0 ]+", "+domain[ 1 ]+" ])"
+					+"<br />range([ "+range[ 0 ]+", "+range[ 1 ]+" ])"
+					+"<br /> forcePseudoWorker="+forcePseudoWorker
+					);
+
+				/* run */
+				worker.postMessage( post );
+			}
+			var scaleTaskPackageSize = function( id, forcePseudoWorker ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var wf = new WorkerFactory( forcePseudoWorker );
+				var task = wf.TASK.TASK_SCALE_OBJECTS_LIN;
+				var worker = wf.create( task );
+				var packageCounter = 1;
+				worker.onmessage = function( e ){
+					var msg = e.data;
+					switch(msg.status){
+						case wf.STATUS.OK :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+"<br /> Package number = "+packageCounter);
+							packageCounter++;
+						break;
+						case wf.STATUS.ERROR :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.INFO :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.DONE :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						this.terminate();
+						break;
+					}
+				}
+				worker.onerror = function( e ){
+					console.log("WORKER ERROR");
+					console.dir( e );
+					console.log("############");
+				}
+				var domain = [0,10];
+				var range = [0,100];
+				var borders = {
+					x_SCALE_MIN : range[0],
+					y_SCALE_MIN : range[0],
+					z_SCALE_MIN : range[0],
+					x_SCALE_MAX : range[1],
+					y_SCALE_MAX : range[1],
+					z_SCALE_MAX : range[1],
+					x_MIN : domain[0],
+					y_MIN : domain[0],
+					z_MIN : domain[0],
+					x_MAX : domain[1],
+					y_MAX : domain[1],
+					z_MAX : domain[1]
+				};
+				var data = [];
+				for( var i = 0; i < 10000; ++i){
+					data.push({x:i,y:i,z:i});
+				}
+				var post = { borders : borders, data : data };
+				/* add log message */
+				title(titleContainer,"Task: Scale linear. <br />Expecting <b>10</b> STATUS.OK packages"
+					+"<br /> default package size = 1000"
+					+"<br />data.length="+data.length
+					+"<br /> forcePseudoWorker="+forcePseudoWorker
+					);
+
+				/* run */
+				worker.postMessage( post );
+			}
+			var scaleTaskBigData = function( id, forcePseudoWorker ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var wf = new WorkerFactory( forcePseudoWorker );
+				var task = wf.TASK.TASK_SCALE_OBJECTS_LIN;
+				var worker = wf.create( task );
+				var packageCounter = 1;
+				worker.onmessage = function( e ){
+					var msg = e.data;
+					switch(msg.status){
+						case wf.STATUS.OK :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+"<br /> Package number = "+packageCounter);
+							packageCounter++;
+						break;
+						case wf.STATUS.ERROR :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.INFO :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						break;
+						case wf.STATUS.DONE :
+						log(logContainer,"Worker response <br /> STATUS: "
+							+msg.status+" <br /> RESPONSE:"
+							+JSON.stringify(msg.response));
+						this.terminate();
+						break;
+					}
+				}
+				worker.onerror = function( e ){
+					console.log("WORKER ERROR");
+					console.dir( e );
+					console.log("############");
+				}
+				var domain = [0,10];
+				var range = [0,100];
+				var borders = {
+					x_SCALE_MIN : range[0],
+					y_SCALE_MIN : range[0],
+					z_SCALE_MIN : range[0],
+					x_SCALE_MAX : range[1],
+					y_SCALE_MAX : range[1],
+					z_SCALE_MAX : range[1],
+					x_MIN : domain[0],
+					y_MIN : domain[0],
+					z_MIN : domain[0],
+					x_MAX : domain[1],
+					y_MAX : domain[1],
+					z_MAX : domain[1]
+				};
+				var data = [];
+				for( var i = 0; i < 1000000; ++i){
+					data.push({x:i,y:i,z:i});
+				}
+				var post = { borders : borders, data : data };
+				/* add log message */
+				title(titleContainer,"Task: scaleTaskBigData."
+					+"<br /> default package size = 1000"
+					+"<br />data.length="+data.length
+					+"<br /> forcePseudoWorker="+forcePseudoWorker
+					);
+
+				/* run */
+				worker.postMessage( post );
+			}
+
+			addTest(1,scaleTask, false);
+			addTest(2,scaleTaskPackageSize, false);
+			addTest(3,scaleTaskBigData, false);
+			addTest(4,scaleTask, true);
+			addTest(5,scaleTaskPackageSize, true);
+			addTest(6,scaleTaskBigData, true);
+		});
+
+
+
+</script>
+</body>
+</html>

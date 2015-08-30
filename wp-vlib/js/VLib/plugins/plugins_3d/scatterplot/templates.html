@@ -1,0 +1,142 @@
+<script type="text/html" class="pluginConfigForm" id="scatterplot">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#config-tab" role="tab" data-toggle="tab">Config</a></li>
+		<li><a href="#scaling-tab" role="tab" data-toggle="tab">Scaling</a></li>
+	</ul>
+	<div class="tab-content" >
+		<div class="tab-pane active" id="config-tab">
+			<ul class="list-group">
+
+				<li class="list-group-item">
+					<h3>ScatterPlot</h3>
+				</li>
+				<li class="list-group-item">
+					<label class="control-label" for="name">Name</label>
+					<div class="controls">
+						<input class="form-control" type="text" id="name">
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label class="control-label" for="material">Material</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="material" style="display:none;">
+							<select id="materialSelect"class="form-control">
+								<option value="normal">Normal</option>
+								<option value="shader">Shader</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label class="control-label" for="particleSize">Particle size</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="particleSize">
+							<div id="particleSizeSlider"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="opacity">Opacity</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="opacity">
+							<div id="opacitySlider"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="image">Image</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="image" style="display:none;">
+							<select id="iamgeSelect"class="form-control">
+								<option value=""></option>
+								<option value="smiley.png">smiley</option>
+								<option value="square_border.png">square border</option>
+								<option value="triangle.png">triangle </option>
+								<option value="triangle_border.png">triangle border</option>
+								<option value="disc_shadow.png">disc with shadow</option>
+								<option value="disc_full.png">disc</option>
+								<option value="ring_small.png">ring small border</option>
+								<option value="ring_big.png">ring big border</option>
+								<option value="star.png">star</option>
+								<option value="star_border.png">star border</option>
+								<option value="diamond.png">diamond</option>
+								<option value="diamond_border.png">diamond border</option>
+								<option value="heart.png">heart</option>
+								<option value="heart_border.png">heart border</option>
+								<option value="hexagon.png">hexagon</option>
+								<option value="hexagon_border.png">hexagon border</option>
+								<option value="ball.png">ball</option>
+								<option value="questionmark.png">questionmark</option>
+								<option value="callsign.png">callsign</option>
+								<option value="girl.png">girl</option>
+								<option value="girl_border.png">girl border</option>
+								<option value="boy.png">boy</option>
+								<option value="boy_border.png">boy border</option>
+								<option value="flash.png">flash</option>
+								<option value="cloud.png">cloud</option>
+								<option value="umbrella.png">umbrella</option>
+
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="checkbox" id="blending"></span>
+							<span class="form-control" >Blending </span>
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="checkbox" id="transparent"></span>
+							<span class="form-control" >Transparent </span>
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="checkbox" id="colors"></span>
+							<span class="form-control" >Colors </span>
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><input type="checkbox" id="sizeAttenuation"></span>
+							<span class="form-control" >sizeAttenuation </span>
+						</div>
+					</div>
+
+				</li>
+			</ul>
+		</div>
+		<div class="tab-pane" id="scaling-tab">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<h3>Scale</h3>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label class="control-label" for="xScale">X scale</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="xScale">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="yScale">Y scale</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="yScale">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="zScale">Z scale</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="zScale">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</script>

@@ -1,0 +1,160 @@
+define([ 'require', 'config', 'core/AbstractPlugin.vlib','core/Utils.vlib', 'three', 'jquery' ],
+	function(require, Config, AbstractPlugin,UTILS,THREE, $) {
+	/**
+		TODO<br />
+		@class Plugin WireframeMaterial
+		@constructor
+		@extends AbstractPlugin
+	**/
+	var Plugin = (function() {
+		var name = 'wireframeMaterial';
+		Plugin.superClass.constuctor.call(this,name);
+		Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+		Plugin.superClass.setType.call(this,Config.PLUGINTYPE.MATERIAL);
+		/** path to plugin-template file * */
+		Plugin.superClass.setTemplates.call(this,Config.absPlugins+ '/plugins_3d/materials/wireframeMaterial/templates.js');
+		Plugin.superClass.setIcon.call(this,Config.absPlugins+ '/plugins_3d/default_plugin_icon.png');
+		Plugin.superClass.setAccepts.call(this,{
+			predecessors : [ Config.PLUGINTYPE.PLOT ],
+			successors : []
+		});
+		Plugin.superClass.setDescription.call(this,'Requires: [ '+this.accepts.predecessors.join(', ')+' ] Accepts: [ '+this.accepts.successors.join(', ')+' ]');
+		/** ********************************** */
+		/** PRIVATE VARIABLES * */
+		/** ********************************** */
+
+		/** ********************************** */
+		/** PUBLIC VARIABLES * */
+		/** ********************************** */
+
+		/** ********************************** */
+		/** PUBLIC METHODS * */
+		/** ********************************** */
+		/**
+		 * Takes inserted configuration from the plugin-template and returns the
+		 * parameters as JSON-config-file
+		 *
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 *
+		 * @return config file format: {camera:{x:VALUE,y:VALUE,z:VALUE}}
+		 */
+		 this.getConfigCallback = function(containerId) {
+		 	var lineWidth = $('#' + containerId + ' #lineWidth').val();
+		 	var opacity = $('#' + containerId + ' #opacity').val();
+		 	var transparent = $('#' + containerId + ' #transparent').is(':checked');
+
+		 	var result = {
+		 		opacity:opacity,
+		 		transparent:transparent,
+		 		lineWidth:lineWidth
+		 	}
+		 	console.log("[ wireframeMaterial ][getConfig] "
+		 		+ JSON.stringify(result));
+		 	return result;
+		 }
+		/**
+		 * Takes arguments from config and inserts them to the plugin-template
+		 *
+		 * @param config
+		 *            plugin config file
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 */
+		 this.setConfigCallback = function(config, containerId) {
+		 	console.log("[ wireframeMaterial ][setConfig] "
+		 		+ JSON.stringify(config));
+		 	if (config == ""){
+		 		config = {
+		 			opacity:0.9,
+		 			transparent:true,
+		 			lineWidth:3
+		 		};
+		 	}
+		 	if (config.opacity != undefined) {
+		 		$('#' + containerId + ' #opacity').val(
+		 			config.opacity);
+		 	} else {
+		 		$('#' + containerId + ' #opacity').val(0.9);
+		 		config.opacity = 0.9;
+		 	}
+		 	if (config.transparent != undefined) {
+		 		if(config.transparent === true){
+		 			$('#' + containerId + ' #transparent').attr('checked','checked');
+		 		}
+		 	}
+		 	if (config.lineWidth != undefined) {
+		 		$('#' + containerId + ' #lineWidth').val(config.lineWidth);
+		 	}else{
+		 		$('#' + containerId + ' #lineWidth').val(3);
+		 	}
+
+		 	// opacitySlider
+		 	$('#' + containerId ).find(' #opacitySlider').slider({
+		 		orientation: "horizontal",
+		 		range: "min",
+		 		min: 0,
+		 		max: 100,
+		 		value: config.opacity*100,
+		 		slide: function (event, ui) {
+		 			$('#' + containerId + ' #opacity').val(ui.value/100);
+		 		}
+		 	});
+		 	// lineWidth slider
+		 	$('#' + containerId ).find(' #lineWidthSlider').slider({
+		 		orientation: "horizontal",
+		 		range: "min",
+		 		min: 1,
+		 		max: 100,
+		 		value: config.lineWidth,
+		 		slide: function (event, ui) {
+		 			$('#' + containerId + ' #lineWidth').val(ui.value);
+		 		}
+		 	});
+
+
+		 }
+
+		 this.exec = function(config, childs) {
+		 	console.log("[ wireframeMaterial ] \t\t EXECUTE");
+		 	console.log("config= " + JSON.stringify(config));
+		 	if(config === undefined || config == ""){
+		 		config = {
+		 			opacity:0.9,
+		 			transparent:true
+		 		}
+		 	}
+
+		 	if(config.transparent === undefined ){
+		 		config.transparent = true;
+		 	}
+		 	if(config.opacity === undefined ){
+		 		config.opacity = 0.9;
+		 	}
+		 	if(config.lineWidth === undefined ){
+		 		config.lineWidth = 3;
+		 	}
+
+		 	var material = new THREE.MeshBasicMaterial({
+		 		color : 0x000000,
+		 		side : THREE.DoubleSide,
+		 		wireframe : true,
+		 		wireframeLinewidth: config.lineWidth,
+		 		transparent : config.transparent,
+		 		opacity: config.opacity
+		 	});
+
+		 	return {
+		 		pType : this.type,
+		 		response : {
+		 			type : 'wireframeMaterial',
+		 			material : material
+		 		}
+		 	};
+
+		 }
+
+		});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+});

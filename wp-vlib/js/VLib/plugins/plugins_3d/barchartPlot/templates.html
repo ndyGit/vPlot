@@ -1,0 +1,92 @@
+<script type="text/html" class="pluginConfigForm" id="barchartplot">
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#config-tab" role="tab">Config</a></li>
+		<li><a href="#scaling-tab" role="tab">Scaling</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="config-tab">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<h3>Barchart</h3>
+				</li>
+				<li class="list-group-item">
+					<label class="control-label" for="name">Name</label>
+
+					<div class="controls">
+						<input class="form-control" type="text" id="name">
+					</div>
+				</li>
+				<li class="list-group-item">
+					<b>Offset</b>
+
+					<div style="margin-top:10px;"/>
+					<div class="input-group">
+						<span class="input-group-addon">x</span>
+						<input class="form-control" type="text" id="offset-x"/>
+					</div>
+					<div id="offsetSliderX"></div>
+
+					<div class="input-group">
+						<span class="input-group-addon">y</span>
+						<input class="form-control" type="text" id="offset-y"/>
+					</div>
+					<div id="offsetSliderY"></div>
+				</li>
+				<li class="list-group-item">
+					<label class="control-label" for="name">Data interpretation</label>
+
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionDataInterpretation"
+							       value="x-value">
+							<b>x</b> is an index. <b>y</b> is a value.
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionDataInterpretation"
+							       value="x-y-value">
+							<b>x</b> and <b>y</b> are indices. <b>z</b> is a value.
+						</label>
+					</div>
+
+				</li>
+
+
+			</ul>
+		</div>
+		<div class="tab-pane" id="scaling-tab">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<h3>Scale</h3>
+				</li>
+				<li class="list-group-item">
+					<div class="form-group">
+						<label class="control-label" for="xScale">X scale</label>
+
+						<div class="controls">
+							<input class="form-control" type="text" id="xScale">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="yScale">Y scale</label>
+
+						<div class="controls">
+							<input class="form-control" type="text" id="yScale">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="zScale">Z scale</label>
+
+						<div class="controls">
+							<input class="form-control" type="text" id="zScale">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</script>
+

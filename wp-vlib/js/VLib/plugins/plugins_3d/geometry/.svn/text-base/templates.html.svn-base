@@ -1,0 +1,46 @@
+<script type="text/html" class="pluginConfigForm" id="plane">
+	<div id="planeContainer">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<div class="well">
+
+					<div class="controls">
+						<div class="input-group">
+							<span class="input-group-addon">xMin</span>
+							<input id="xMin" type="text" class="form-control" placeholder="">
+							<span class="input-group-addon">xMax</span>
+							<input id="xMax" type="text" class="form-control" placeholder="">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">yMin</span>
+							<input id="yMin" type="text" class="form-control" placeholder="">
+							<span class="input-group-addon">yMax</span>
+							<input id="yMax" type="text" class="form-control" placeholder="">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">zMin</span>
+							<input id="zMin" type="text" class="form-control" placeholder="">
+							<span class="input-group-addon">zMax</span>
+							<input id="zMax" type="text" class="form-control" placeholder="">
+						</div>
+					</div>
+					<br/>
+				</div>
+				<div class="well">
+
+					<div class="controls">
+						<div class="input-group">
+							<span class="input-group-addon">X Segments</span>
+							<input id="segmentsX" type="text" class="form-control" placeholder="">
+							<span class="input-group-addon">Y Segments</span>
+							<input id="segmentsY" type="text" class="form-control" placeholder="">
+						</div>
+
+					</div>
+					<br/>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</script>

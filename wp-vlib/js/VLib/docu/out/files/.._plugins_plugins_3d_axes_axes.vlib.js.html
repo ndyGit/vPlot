@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../plugins/plugins_3d/axes/axes.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../plugins/plugins_3d/axes/axes.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define(
+	[ &#x27;require&#x27;, &#x27;config&#x27;, &#x27;three&#x27;, &#x27;jquery&#x27;/*, &#x27;three_font_helveticer&#x27;*/ ],
+	function(require, Config, THREE, $) {
+		/**
+			TODO&lt;br /&gt;
+			@class Plugin Axes
+			@constructor
+			@extends AbstractPlugin
+			**/
+		var plugin = (function(state) {
+			/** ********************************** */
+			/** PRIVATE VARIABLES * */
+			/** ********************************** */
+			var xLabel = &#x27;x&#x27;;
+			var yLabel = &#x27;y&#x27;;
+			var zLabel = &#x27;z&#x27;;
+			var xRange = &#x27;auto&#x27;;
+			var yRange = &#x27;auto&#x27;;
+			var zRange = &#x27;auto&#x27;;
+			var granularityX = 2;
+			var granularityY = 2;
+			var granularityZ = 2;
+
+			var xRangeDefault = &#x27;auto&#x27;;
+			var yRangeDefault = &#x27;auto&#x27;;
+			var zRangeDefault = &#x27;auto&#x27;;
+			var fontSize = 20;
+			var decimalPlaces = 7;
+
+			/** ********************************** */
+			/** PUBLIC VARIABLES * */
+			/** ********************************** */
+			this.config = null;
+			this.labelColor = 0x373530;
+			this.numUnitsDefault = 2;
+
+			this.context = Config.PLUGINTYPE.CONTEXT_3D;
+			this.type = Config.PLUGINTYPE.AXES;
+			/** unique plugin name * */
+			this.name = &#x27;axes&#x27;;
+
+			/** path to plugin-template file * */
+			this.templates = Config.absPlugins
+			+ &#x27;/plugins_3d/axes/templates.js&#x27;;
+			this.icon = Config.absPlugins + &#x27;/plugins_3d/axes/icon.png&#x27;;
+			this.accepts = {
+				predecessors : [ Config.PLUGINTYPE.PLOT ],
+				successors : [Config.PLUGINTYPE.COLOR]
+			}
+			this.description = &#x27;Requires: [ &#x27;+this.accepts.predecessors.join(&#x27;, &#x27;)+&#x27; ] Accepts: [ &#x27;+this.accepts.successors.join(&#x27;, &#x27;)+&#x27; ]&#x27;;
+			if(state !== undefined){
+				xLabel = state.xLabel;
+				yLabel = state.yLabel;
+				zLabel = state.zLabel;
+				xRange = state.xRange;
+				yRange = state.yRange;
+				zRange = state.zRange;
+				this.config = state.config;
+				this.labelColor = state.labelColor;
+
+			}
+			/** ********************************** */
+			/** PUBLIC METHODS * */
+			/** ********************************** */
+			this.deepCopy = function(){
+				var privates = {
+					xLabel : xLabel,
+					yLabel : yLabel,
+					zLabel : zLabel,
+					xRange : xRange,
+					yRange : yRange,
+					zRange : zRange,
+					config : this.config,
+					labelColor : this.labelColor
+				};
+				return new plugin(privates);
+			}
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format:
+				 *         {camera:{x:VALUE,y:VALUE,z:VALUE}}
+				 */
+				 this.getConfigCallback = function(containerId) {
+				 	var x = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;)
+				 	.val();
+				 	var y = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;)
+				 	.val();
+				 	var z = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;)
+				 	.val();
+				 	var dataLabels = $(&#x27;#&#x27; + containerId + &#x27; #dataLabels&#x27;).is(&#x27;:checked&#x27;);
+				 	var showValueRange = $(&#x27;#&#x27; + containerId + &#x27; #showValueRange&#x27;).is(&#x27;:checked&#x27;);
+				 	var showHeatmapRange = $(&#x27;#&#x27; + containerId + &#x27; #showHeatmapRange&#x27;).is(&#x27;:checked&#x27;);
+
+				 	xRange = $(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val();
+
+				 	yRange = $(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val();
+
+				 	zRange = $(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val();
+
+				 	granularityX = $(&#x27;#&#x27; + containerId + &#x27; #granularity-x&#x27;).val();
+				 	granularityY = $(&#x27;#&#x27; + containerId + &#x27; #granularity-y&#x27;).val();
+				 	granularityZ = $(&#x27;#&#x27; + containerId + &#x27; #granularity-z&#x27;).val();
+
+				 	//RASTER
+				 	var rasterXY = $(&#x27;#&#x27; + containerId + &#x27; #xy-raster-show&#x27;).is(&#x27;:checked&#x27;);
+				 	var rasterXYOpacity =  $(&#x27;#&#x27; + containerId + &#x27; #raster-xy&#x27;).val();
+
+				 	var rasterXZ = $(&#x27;#&#x27; + containerId + &#x27; #xz-raster-show&#x27;).is(&#x27;:checked&#x27;);
+				 	var rasterXZOpacity =  $(&#x27;#&#x27; + containerId + &#x27; #raster-xz&#x27;).val();
+
+				 	var rasterYZ = $(&#x27;#&#x27; + containerId + &#x27; #yz-raster-show&#x27;).is(&#x27;:checked&#x27;);
+				 	var rasterYZOpacity =  $(&#x27;#&#x27; + containerId + &#x27; #raster-yz&#x27;).val();
+
+				 	var result = {
+				 		labels : {
+				 			&#x27;x&#x27; : x === &quot;&quot; ? xLabel : x,
+				 			&#x27;y&#x27; : y === &quot;&quot; ? yLabel : y,
+				 			&#x27;z&#x27; : z === &quot;&quot; ? zLabel : z,
+				 			&#x27;data&#x27; : dataLabels
+				 		},
+				 		range : {
+				 			&#x27;x&#x27; : xRange === &quot;&quot; ? &quot;auto&quot; : xRange,
+				 			&#x27;y&#x27; : yRange === &quot;&quot; ? &quot;auto&quot; : yRange,
+				 			&#x27;z&#x27; : zRange === &quot;&quot; ? &quot;auto&quot; : zRange
+				 		},
+				 		valueRange : showValueRange,
+				 		heatmapRange : showHeatmapRange,
+				 		numUnits : {
+				 			&#x27;x&#x27; : granularityX,
+				 			&#x27;y&#x27; : granularityY,
+				 			&#x27;z&#x27; : granularityZ,
+				 		},
+				 		raster : {
+				 			xy : {
+				 				show : rasterXY,
+				 				opacity : rasterXYOpacity
+				 			},
+				 			xz : {
+				 				show : rasterXZ,
+				 				opacity : rasterXZOpacity
+				 			},
+				 			yz : {
+				 				show : rasterYZ,
+				 				opacity : rasterYZOpacity
+				 			}
+				 		}
+				 	};
+				 	console
+				 	.log(&quot;[ axes ][getConfig] &quot;
+				 		+ JSON.stringify(result));
+				 	return result;
+				 }
+				/**
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+				 	console
+				 	.log(&quot;[ axes ][setConfig] &quot;
+				 		+ JSON.stringify(config));
+				 	if (config == &quot;&quot; || config === undefined){
+				 		config = {
+				 			labels : &#x27;&#x27;,
+				 			range : &#x27;&#x27;,
+				 			valueRange : false,
+				 			heatmapRange : false,
+				 			numUnits : {},
+				 			raster:{}
+				 		};
+				 	}
+				 	if (!config.hasOwnProperty(&#x27;labels&#x27;))
+				 		config.labels = &#x27;&#x27;;
+				 	if (!config.hasOwnProperty(&#x27;range&#x27;))
+				 		config.range = &#x27;&#x27;;
+				 	if (!config.hasOwnProperty(&#x27;numUnits&#x27;))
+				 		config.numUnits = {};
+				 	if (!config.hasOwnProperty(&#x27;raster&#x27;))
+				 		config.raster = {};
+
+				 	if (config.labels.x != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;).val(
+				 			config.labels.x);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;).val(
+				 			xLabel);
+				 	}
+				 	if (config.labels.y != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;).val(
+				 			config.labels.y);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;).val(
+				 			yLabel);
+				 	}
+				 	if (config.labels.z != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;).val(
+				 			config.labels.z);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;).val(
+				 			zLabel);
+				 	}
+				 	if (config.labels.data != undefined) {
+				 		if(config.labels.data === true){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #dataLabels&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}
+				 	if (config.valueRange != undefined) {
+				 		if(config.valueRange === true){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #showValueRange&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}
+				 	if (config.heatmapRange != undefined) {
+				 		if(config.heatmapRange === true){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #showHeatmapRange&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 		}
+				 	}
+
+				 	if (config.range.x != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val(config.range.x);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val(xRangeDefault);
+				 	}
+				 	if (config.range.y != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val(config.range.y);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val(yRangeDefault);
+				 	}
+				 	if (config.range.z != undefined) {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val(config.range.z);
+				 	} else {
+				 		$(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val(zRangeDefault);
+				 	}
+				 	if (config.numUnits !== undefined) {
+				 		if (config.numUnits.x !== undefined) {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-x&#x27;).val(config.numUnits.x);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-x&#x27;).val(this.numUnitsDefault);
+				 			config.numUnits.x = this.numUnitsDefault;
+				 		}
+				 		if (config.numUnits.y !== undefined) {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-y&#x27;).val(config.numUnits.y);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-y&#x27;).val(this.numUnitsDefault);
+				 			config.numUnits.y = this.numUnitsDefault;
+				 		}
+				 		if (config.numUnits.z !== undefined) {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-z&#x27;).val(config.numUnits.z);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-z&#x27;).val(this.numUnitsDefault);
+				 			config.numUnits.z = this.numUnitsDefault;
+				 		}
+				 	}else{
+				 		config.numUnits = {};
+				 		config.numUnits.x  = this.numUnitsDefault;
+				 		config.numUnits.y  = this.numUnitsDefault;
+				 		config.numUnits.z  = this.numUnitsDefault;
+
+				 	}
+				 	// RASTER
+				 	if(config.raster.xy !== undefined){
+				 		if(config.raster.xy.show !== undefined){
+				 			if(config.raster.xy.show === true){
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #xy-raster-show&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 			}
+				 		}else{
+				 			config.raster.xy.show = false;
+				 		}
+				 		if(config.raster.xy.opacity !== undefined &amp;&amp; config.raster.xy.opacity !== &quot;&quot;){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xy&#x27;).val(config.raster.xy.opacity);
+				 		}else{
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xy&#x27;).val(0.06);
+				 		}
+				 	}else{
+				 		config.raster.xy = {};
+				 		config.raster.xy.show = false;
+				 		config.raster.xy.opacity = 0.06;
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xy&#x27;).val(0.06);
+				 	}
+				 	if(config.raster.xz !== undefined){
+				 		if(config.raster.xz.show !== undefined){
+				 			if(config.raster.xz.show === true){
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #xz-raster-show&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 			}
+				 		}else{
+				 			config.raster.xz.show = false;
+				 		}
+				 		if(config.raster.xz.opacity !== undefined &amp;&amp; config.raster.xz.opacity !== &quot;&quot;){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xz&#x27;).val(config.raster.xz.opacity);
+				 		}else{
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xz&#x27;).val(0.06);
+				 		}
+				 	}else{
+				 		config.raster.xz = {};
+				 		config.raster.xz.show = false;
+				 		config.raster.xz.opacity = 0.06;
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xz&#x27;).val(0.06);
+				 	}
+				 	if(config.raster.yz !== undefined){
+				 		if(config.raster.yz.show !== undefined){
+				 			if(config.raster.yz.show === true){
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #yz-raster-show&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+				 			}
+				 		}else{
+				 			config.raster.yz.show = false;
+				 		}
+				 		if(config.raster.yz.opacity !== undefined &amp;&amp; config.raster.yz.opacity !== &quot;&quot;){
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-yz&#x27;).val(config.raster.yz.opacity);
+				 		}else{
+				 			$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-yz&#x27;).val(0.06);
+				 		}
+				 	}else{
+				 		config.raster.yz = {};
+				 		config.raster.yz.show = false;
+				 		config.raster.yz.opacity = 0.06;
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-yz&#x27;).val(0.06);
+				 	}
+
+
+				 		// slider
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderX&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.x,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-x&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderY&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.y,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-y&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderZ&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.z,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-z&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xy-slider&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 1,
+				 			step: 0.01,
+				 			value: config.raster.xy.opacity,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #raster-xy&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-xz-slider&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 1,
+				 			step: 0.01,
+				 			value: config.raster.xz.opacity,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #raster-xz&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #raster-yz-slider&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 1,
+				 			step: 0.01,
+				 			value: config.raster.yz.opacity,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #raster-yz&#x27;).val(ui.value);
+				 			}
+				 		});
+				 	}
+
+				 	this.exec = function(config, childs) {
+				 		console.log(&quot;[ plugin ][ axes ] \t\t EXECUTE&quot;);
+				 		this.config = config;
+				 		/*
+					 * HANDLE CONFIG
+					 */
+					 if(this.config == &#x27;&#x27; || this.config === null || this.config === undefined){
+					 	this.config = {
+					 		labels:{x:&#x27;x&#x27;,y:&#x27;y&#x27;,z:&#x27;z&#x27;},
+					 		range:{x:xRangeDefault,y:yRangeDefault,z:zRangeDefault},
+					 		raster:{
+					 			xy:{show:false,opacity:0.2},
+					 			xz:{show:false,opacity:0.2},
+					 			yz:{show:false,opacity:0.2}
+					 		}
+					 	};
+					 }
+					 if (this.config.numUnits === null
+					 	|| this.config.numUnits === undefined) {
+					 	this.config.numUnits = {x:this.numUnitsDefault,y:this.numUnitsDefault,z:this.numUnitsDefault};
+					}
+					if(this.config.numUnits.x === undefined){
+						this.config.numUnits.x = this.numUnitsDefault;
+					}
+					if(this.config.numUnits.y === undefined){
+						this.config.numUnits.y = this.numUnitsDefault;
+					}
+					if(this.config.numUnits.z === undefined){
+						this.config.numUnits.z = this.numUnitsDefault;
+					}
+
+					// set labels
+					if (config.labels !== undefined) {
+						xLabel = config.labels.x === undefined ? &#x27;x&#x27;
+						: config.labels.x;
+						yLabel = config.labels.y === undefined ? &#x27;y&#x27;
+						: config.labels.y;
+						zLabel = config.labels.z === undefined ? &#x27;z&#x27;
+						: config.labels.z;
+					}
+					// set range
+					if (config.range !== undefined) {
+						xRange = config.range.x === undefined ? xRangeDefault
+						: config.range.x;
+						yRange = config.range.y === undefined ? yRangeDefault
+						: config.range.y;
+						zRange = config.range.z === undefined ? zRangeDefault
+						: config.range.z;
+					}
+					if(config.raster === undefined){
+						this.config.raster = {
+							xy:{show:false},
+							xz:{show:false},
+							yz:{show:false}
+						};
+					}
+					if(config.valueRange === undefined){
+						this.config.valueRange = false;
+					}
+					if(config.heatmapRange === undefined){
+						this.config.heatmapRange = false;
+					}
+
+					/** *********************************** * */
+					/** HANDLE SUCCESSOR PLUGINGS * */
+					/** *********************************** * */
+					var child = undefined;
+					for ( var i = 0; i &lt; childs.length; ++i) {
+						child = childs[i];
+						if(child !== undefined &amp;&amp; child.pType !== undefined){
+							if($.inArray(child.pType, this.accepts.successors) != -1){
+								switch(child.pType){
+
+									case Config.PLUGINTYPE.COLOR:
+									this.labelColor = &#x27;#&#x27;+child.response.color;
+
+									break;
+								}
+							}
+						}else{
+							console.log(&quot;pType of child plugin not set!&quot;);
+						}
+					}
+
+
+					return {
+						pType : this.type,
+						response : {
+							// callback
+							&#x27;callback&#x27; : getAxes,
+							&#x27;context&#x27; : this,
+							&#x27;rangeX&#x27; : xRange,
+							&#x27;rangeY&#x27; : yRange,
+							&#x27;rangeZ&#x27; : zRange
+						}
+					};
+
+				}
+
+				/** ********************************** */
+				/** PRIVATE METHODS * */
+				/** ********************************** */
+				/*
+				* @param b
+					borders set by user
+				* @param db
+					calculated data-borders
+					*/
+					var getAxes = function(dataArray, dataPositionArray,colorArray, x, y, z,
+						b,db, heatmaps) {
+
+						var result = [];
+						/* make shure that we calculate with floats*/
+						var borders = {
+							xMax : Math.max(parseFloat(b.xMax),parseFloat(b.xMin)),
+							yMax : Math.max(parseFloat(b.yMax),parseFloat(b.yMin)),
+							zMax : Math.max(parseFloat(b.zMax),parseFloat(b.zMin)),
+							xMin : parseFloat(b.xMin),
+							yMin : parseFloat(b.yMin),
+							zMin : parseFloat(b.zMin),
+						}
+						var dataBorders = {
+							xMax : Math.max(parseFloat(db.xMax),parseFloat(db.xMin)),
+							yMax : Math.max(parseFloat(db.yMax),parseFloat(db.yMin)),
+							zMax : Math.max(parseFloat(db.zMax),parseFloat(db.zMin)),
+							xMin : parseFloat(db.xMin),
+							yMin : parseFloat(db.yMin),
+							zMin : parseFloat(db.zMin),
+						}
+
+						/* take borders into account during position calculation */
+						var xr = borders.xMax;
+						var xPos = x*(Math.abs(borders.xMax)/xr);
+						var xNeg = x*(Math.abs(borders.xMin)/xr);
+						if(borders.xMin &lt; 0) xNeg *= -1;
+
+						var yr = borders.yMax;
+						var yPos = y*(Math.abs(borders.yMax)/yr);
+						var yNeg = y*(Math.abs(borders.yMin)/yr);
+						if(borders.yMin &lt; 0) yNeg *= -1;
+
+						var zr = borders.zMax;
+						var zPos = z*(Math.abs(borders.zMax)/zr);
+						var zNeg = z*(Math.abs(borders.zMin)/zr);
+						if(borders.zMin &lt; 0) zNeg *= -1;
+
+
+						var dzr = dataBorders.zMax;
+
+						var dataXPos = x*(Math.abs(dataBorders.xMax)/xr);
+						var dataXNeg = x*(Math.abs(dataBorders.xMin)/xr);
+						if(dataBorders.xMin &lt; 0) dataXNeg *= -1;
+						var dataYPos = y*(Math.abs(dataBorders.yMax)/yr);
+						var dataYNeg = y*(Math.abs(dataBorders.yMin)/yr);
+						if(dataBorders.yMin &lt; 0) dataYNeg *= -1;
+						var dataZPos = z*(Math.abs(dataBorders.zMax)/zr);
+						var dataZNeg = z*(Math.abs(dataBorders.zMin)/zr);
+						if(dataBorders.zMin &lt; 0) dataZNeg *= -1;
+
+
+					/*
+					 * add axes plot dimension x,y,z
+					 */
+					 var lineX = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(x, 0, 0));
+					 var lineY = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, y, 0));
+					 var lineZ = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, 0, z));
+
+					 var lineXNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(-x, 0, 0));
+					 var lineYNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, -y, 0));
+					 var lineZNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, 0, -z));
+
+
+					/*
+					 * add axes - range
+					 */
+					 var lineDimX = getDashedLine(
+					 	new THREE.Vector3(dataXPos, 0, 0),
+					 	new THREE.Vector3(dataXNeg, 0, 0),
+					 	2,this.labelColor);
+
+
+					 var lineDimY = getDashedLine(
+					 	new THREE.Vector3(0, dataYPos, 0),
+					 	new THREE.Vector3(0, dataYNeg, 0),2,this.labelColor);
+
+					 var lineDimZ = getDashedLine(
+					 	new THREE.Vector3(0, 0, dataZPos),
+					 	new THREE.Vector3(0, 0, dataZNeg),
+					 	2,this.labelColor);
+
+					 var lineDimXStart = getLine(
+					 	new THREE.Vector3(dataXPos, 0, -6),
+					 	new THREE.Vector3(dataXPos, 0, 6),
+					 	2,this.labelColor);
+					 var lineDimXEnd = getLine(
+					 	new THREE.Vector3(dataXNeg, 0, -6),
+					 	new THREE.Vector3(dataXNeg, 0, 6),
+					 	2,this.labelColor);
+					 var lineDimYStart = getLine(
+					 	new THREE.Vector3(0, dataYPos, -6),
+					 	new THREE.Vector3(0, dataYPos, 6),
+					 	2,this.labelColor);
+					 var lineDimYEnd = getLine(
+					 	new THREE.Vector3(0, dataYNeg, -6),
+					 	new THREE.Vector3(0, dataYNeg, 6),
+					 	2,this.labelColor);
+					 var lineDimZStart = getLine(
+					 	new THREE.Vector3(-6, 0, dataZPos),
+					 	new THREE.Vector3(6, 0, dataZPos),
+					 	2,this.labelColor);
+					 var lineDimZEnd = getLine(
+					 	new THREE.Vector3(-6, 0, dataZNeg),
+					 	new THREE.Vector3(6, 0, dataZNeg),
+					 	2,this.labelColor);
+
+
+					 if(this.config.heatmapRange !== undefined &amp;&amp;
+					 	this.config.heatmapRange === true){
+					 	if(heatmaps.length &gt; 0){
+
+					 		var heatmap;
+					 		for(var i = 0; i &lt; heatmaps.length; ++i){
+					 			heatmap = heatmaps[i];
+
+					 			if(heatmap.numberRange !== undefined &amp;&amp; heatmap.spectrum !== undefined){
+					 				var from = z*(Math.abs(parseFloat(heatmap.numberRange.from))/zr);
+					 				var to = z*(Math.abs(parseFloat(heatmap.numberRange.to))/zr);
+					 				if(parseFloat(heatmap.numberRange.from) &lt; 0){
+					 					from *= -1;
+					 				}
+					 				var hmLine = getHeatmapLine(
+					 					new THREE.Vector3(0,0,from),
+					 					new THREE.Vector3(0,0,to),
+					 					heatmap.spectrum.from,
+					 					heatmap.spectrum.to
+					 					,4);
+					 				hmStarter = getLine(
+					 					new THREE.Vector3(-10, 0, from),
+					 					new THREE.Vector3(10, 0, from),
+					 					3,&#x27;#&#x27;+heatmap.spectrum.from
+					 					);
+					 				hmEnd = getLine(
+					 					new THREE.Vector3(-10, 0, to),
+					 					new THREE.Vector3(10, 0, to),
+					 					3,&#x27;#&#x27;+heatmap.spectrum.to
+					 					);
+					 				result.push(hmStarter);
+					 				result.push(hmLine);
+					 				result.push(hmEnd);
+					 			}
+
+					 		}
+					 	}
+					 }
+
+					 if(this.config.valueRange !== undefined &amp;&amp;
+					 	this.config.valueRange === true){
+					 	result.push(lineDimX);
+					 result.push(lineDimY);
+					 result.push(lineDimZ);
+					 result.push(lineDimXStart);
+					 result.push(lineDimXEnd);
+					 result.push(lineDimYStart);
+					 result.push(lineDimYEnd);
+					}
+
+					result.push(lineX);
+					result.push(lineY);
+					result.push(lineZ);
+					result.push(lineXNeg);
+					result.push(lineYNeg);
+					result.push(lineZNeg);
+
+
+					/*
+					 * add description
+					 */
+					 var w, h;
+					 w = (xLabel.length) * (fontSize / 2);
+					 h = fontSize + 5;
+					 var labelX = getLabel(xLabel, x, -h, 0, w, h);
+					 w = (yLabel.length) * (fontSize / 2);
+					 var labelY = getLabel(yLabel, 0, y+h, 0, w, h);
+					 w = (zLabel.length) * (fontSize / 2);
+					 var labelZ = getLabel(zLabel, -h / 2, -h, z, w, h);
+
+					 result.push(labelX);
+					 result.push(labelY);
+					 result.push(labelZ);
+
+
+					/***********************************************************
+					 * LABELING
+					 */
+					// -2 due to seperate push of &quot;0&quot; and &quot;max&quot; labels
+					var numIntermedateUnitsX = parseInt(this.config.numUnits.x -2);
+					var numIntermedateUnitsY = parseInt(this.config.numUnits.y -2);
+					var numIntermedateUnitsZ = parseInt(this.config.numUnits.z -2);
+
+
+					/***************************
+					 * add range values to x
+					 */
+
+					// add zero value
+					if(this.config.numUnits.x &gt; 0 || this.config.numUnits.y &gt; 0 || this.config.numUnits.z &gt; 0){
+						var wx = &quot;0&quot;.toString().length * (fontSize / 2);
+						result.push(getLabel(0, 0, -h / 2, 0, wx, h));
+					}
+					// add max value
+					if(this.config.numUnits.x &gt;=2){
+
+						var dx = borders.xMax;
+						var wx = dx.toString().length * (fontSize / 2);
+						result.push(getLabel(dx, xPos + wx, -h / 2, 0, wx, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(xPos, -6, 0),
+							new THREE.Vector3(xPos, 6, 0)));
+
+					}
+					// add min value
+					if(this.config.numUnits.x &gt;=2){
+						var dx = -1*borders.xMax;
+						var wx = dx.toString().length * (fontSize / 2);
+
+						result.push(getLabel(dx, -1*xPos, -h / 2, 0, wx, h));
+					// push guideline
+					result.push(getLine(
+						new THREE.Vector3(xNeg, -6, 0),
+						new THREE.Vector3(xNeg, 6, 0)));
+				}
+					// add intermediate positive values
+					if(this.config.numUnits.x &gt;2){
+						var stepValue = parseFloat((borders.xMax / (numIntermedateUnitsX + 1)).toFixed(2));
+
+						var stepRange = xPos / (numIntermedateUnitsX + 1);
+						var dx = 0;
+						var xp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsX; ++i) {
+							// push value
+							dx += stepValue;
+							dx = parseFloat(dx.toFixed(decimalPlaces));
+							var wx = dx.toString().length * (fontSize / 2);
+							xp += stepRange;
+
+							var label = getLabel(dx, xp, -h / 2, 0, wx, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(xp, -6, 0),
+								new THREE.Vector3(xp, 6, 0)));
+						}
+						// add intermediate negative values
+						var dx = 0;
+						var xp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsX; ++i) {
+							// push value
+							dx -= stepValue;
+							dx = parseFloat(dx.toFixed(decimalPlaces));
+							var wx = dx.toString().length * (fontSize / 2);
+							xp -= stepRange;
+
+							var label = getLabel(dx, xp, -h / 2, 0, wx, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(xp, -6, 0),
+								new THREE.Vector3(xp, 6, 0)));
+						}
+					}
+					/***************************
+					 * add range values to y
+					 */
+
+					// add max value
+					if(this.config.numUnits.y &gt;= 2){
+						var dy = borders.yMax;
+						var wy = dy.toString().length * (fontSize / 2);
+						result.push(getLabel(dy,-h / 2, yPos, 0, wy, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(-6, yPos, 0),
+							new THREE.Vector3(6, yPos, 0)));
+					}
+					// add min value
+					if(this.config.numUnits.y &gt;= 2){
+						var dy = -1*borders.yMax;
+						var wy = dy.toString().length * (fontSize / 2);
+						result.push(getLabel(dy, -h / 2, -1*yPos, 0, wy, h));
+						result.push(getLine(
+							new THREE.Vector3(-6, -1*yPos, 0),
+							new THREE.Vector3(6, -1*yPos, 0)));
+					}
+
+					// add intermediate positive values
+					if(this.config.numUnits.y &gt; 2){
+						var stepValue = parseFloat((borders.yMax / (numIntermedateUnitsY + 1))
+							.toFixed(2));
+
+						var stepRange = yPos / (numIntermedateUnitsY + 1);
+						var dy = 0;
+						var yp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsY; ++i) {
+							dy += stepValue;
+							dy = parseFloat(dy.toFixed(decimalPlaces));
+							var wy = dy.toString().length * (fontSize / 2);
+							yp += stepRange;
+
+							var label = getLabel(dy, -h / 2, yp, 0, wy, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(-6, yp, 0),
+								new THREE.Vector3(6, yp, 0)));
+						}
+						// add intermediate negative values
+
+						var dy = 0;
+						var yp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsY; ++i) {
+							dy -= stepValue;
+							dy = parseFloat(dy.toFixed(decimalPlaces));
+							var wy = dy.toString().length * (fontSize / 2);
+							yp -= stepRange;
+							var label = getLabel(dy, -h / 2, yp, 0, wy, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(-6, yp, 0),
+								new THREE.Vector3(6, yp, 0)));
+						}
+					}
+					/***************************
+					 * add range values to z
+					 */
+
+					// add max value
+					if(this.config.numUnits.z &gt;= 2){
+						var dz = borders.zMax;
+						var wz = dz.toString().length * (fontSize / 2);
+						result.push(getLabel(dz,-h / 2, 0,zPos, wz, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(-6, 0, zPos),
+							new THREE.Vector3(6, 0, zPos)));
+					}
+					// add min value
+					if(this.config.numUnits.z &gt;= 2){
+						var dz = -1*borders.zMax;
+						var wz = dz.toString().length * (fontSize / 2);
+						result.push(getLabel(dz, -h / 2, 0, -1*zPos, wz, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(-6, 0, zNeg),
+							new THREE.Vector3(6, 0, zNeg)));
+					}
+					// add intermediate positive values
+					if(this.config.numUnits.z &gt; 2){
+						var stepValue = parseFloat((borders.zMax / (numIntermedateUnitsZ + 1))
+							.toFixed(2));
+
+						var stepRange = zPos / (numIntermedateUnitsZ + 1);
+						var dz = 0;
+						var zp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsZ; ++i) {
+							dz += stepValue;
+							dz = parseFloat(dz.toFixed(decimalPlaces));
+							var wz = dz.toString().length * (fontSize / 2);
+							zp += stepRange;
+
+							var label = getLabel(dz, -h / 2, 0, zp, wz, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(-6, 0, zp),
+								new THREE.Vector3(6, 0, zp)));
+						}
+						// add intermediate negative values
+						var dz = 0;
+						var zp = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsZ; ++i) {
+							dz -= stepValue;
+							dz = parseFloat(dz.toFixed(decimalPlaces));
+							var wz = dz.toString().length * (fontSize / 2);
+							zp -= stepRange;
+
+							var label = getLabel(dz, -h / 2, 0, zp, wz, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(-6, 0, zp),
+								new THREE.Vector3(6, 0, zp)));
+						}
+					}
+					// RASTER XY
+					if(this.config.raster.xy.show === true){
+						var floorTexture = new THREE.ImageUtils.loadTexture( Config.absPlugins+&#x27;/plugins_3d/3d/checkerboard.jpg&#x27; );
+						floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+						floorTexture.repeat.set( (this.config.numUnits.x-1)/2, (this.config.numUnits.z-1)/2 );
+						var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide,
+							transparent : true,
+							opacity: this.config.raster.xy.opacity,
+							depthWrite: false, depthTest: false } );
+						var floorGeometry = new THREE.PlaneGeometry(2*xPos, 2*yPos, 8, 8);
+						var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+						floor.position.y = 0;
+						result.push(floor);
+					}
+					// RASTER XZ
+					if(this.config.raster.xz.show === true){
+						var floorTexture = new THREE.ImageUtils.loadTexture( Config.absPlugins+&#x27;/plugins_3d/3d/checkerboard.jpg&#x27; );
+						floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+						floorTexture.repeat.set( (this.config.numUnits.x-1)/2, (this.config.numUnits.z-1)/2 );
+						var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide,
+							transparent : true,
+							opacity: this.config.raster.xz.opacity,
+							depthWrite: false, depthTest: false } );
+						var floorGeometry = new THREE.PlaneGeometry(2*xPos, 2*zPos, 8, 8);
+						var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+						floor.position.y = 0;
+						floor.rotation.x = Math.PI / 2;
+						result.push(floor);
+					}
+					// RASTER YZ
+					if(this.config.raster.yz.show === true){
+						var floorTexture = new THREE.ImageUtils.loadTexture( Config.absPlugins+&#x27;/plugins_3d/3d/checkerboard.jpg&#x27; );
+						floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+						floorTexture.repeat.set( (this.config.numUnits.y-1)/2, (this.config.numUnits.z-1)/2 );
+						var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide,
+							transparent : true,
+							opacity: this.config.raster.yz.opacity,
+							depthWrite: false, depthTest: false } );
+						var floorGeometry = new THREE.PlaneGeometry(2*yPos, 2*zPos, 8, 8);
+						var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+						floor.position.y = 0;
+						floor.rotation.y = Math.PI / 2;
+						floor.rotation.x = Math.PI / 2;
+						result.push(floor);
+					}
+					/***************************
+					 * add data values
+					 */
+					 if(this.config.labels.data === true){
+					 	var offset = h;
+					 	for(var i = 0; i &lt; dataPositionArray.length; ++i){
+					 		var dx = &#x27;( &#x27;+dataArray[i].x+&#x27;, &#x27;+dataArray[i].y+&#x27;, &#x27;+dataArray[i].z+&#x27; )&#x27;;
+					 		var wx = dx.toString().length * (fontSize/2);
+
+					 		var xPos = dataPositionArray[i].x ;
+					 		var yPos = dataPositionArray[i].y ;
+					 		var zPos = dataPositionArray[i].z ;
+					 		xPos = xPos &gt; 0 ? xPos+offset : xPos-offset;
+					 		yPos = yPos &gt; 0 ? yPos+offset : yPos-offset;
+					//zPos = zPos &gt; 0 ? zPos+offset : zPos-offset;
+					var label = getLabel(dx,xPos,yPos,zPos,wx,h,this.labelColor);
+					result.push(label);
+
+				}
+			}
+
+			return result;
+		}
+		var getLabel = function(text, x, y, z, w, h,color) {
+			var c = color === undefined ? &quot;rgba(0, 0, 0, 0.5)&quot; : color;
+					/*
+					 * var label = new THREE.TextGeometry( text, { size: 10,
+					 * height: 10, curveSegments: 2, font: &quot;helvetiker&quot; });
+					 *
+					 */
+					// create a canvas element
+					var canvas1 = document.createElement(&#x27;canvas&#x27;);
+					var context1 = canvas1.getContext(&#x27;2d&#x27;);
+					var padding = 10;
+					canvas1.width = w + padding;
+					canvas1.height = h + padding;
+					// context1.fillStyle = &quot;#CC5422&quot;;
+					// context1.fillRect(0,0,w,h);
+					context1.font = fontSize + &quot;px Arial&quot;;
+					context1.fillStyle = c;
+					context1.fillText(text, 0, fontSize);
+
+					// canvas contents will be used for a texture
+					var texture1 = new THREE.Texture(canvas1)
+					texture1.needsUpdate = true;
+					var material1 = new THREE.MeshBasicMaterial({
+						map : texture1,
+						side : THREE.DoubleSide
+					});
+					material1.transparent = true;
+					var textMesh = new THREE.Mesh(new THREE.PlaneGeometry(
+						canvas1.width, canvas1.height), material1);
+					textMesh.position.set(x, y, z);
+
+
+					return textMesh;
+				}
+				var getHeatmapLine = function(from, to, color1, color2, lineWidth) {
+					var c1 = color1,c2 = color2;
+					if(c1 === undefined){
+						c1 = &#x27;ffffff&#x27;;
+					}
+					if(c2 === undefined){
+						c2 = &#x27;000000&#x27;
+					}
+
+					var geometry = new THREE.Geometry();
+					// heatmap range-line
+					var threeColors = [new THREE.Color(&#x27;#&#x27;+c1),new THREE.Color(&#x27;#&#x27;+c2)];
+
+					geometry.vertices.push( from,to );
+					geometry.colors = threeColors;
+
+					var heatMapLine = new THREE.Line( geometry,
+						new THREE.LineBasicMaterial( {
+							linewidth: lineWidth === undefined ? 3 : lineWidth,
+							vertexColors: THREE.VertexColors
+
+						} )
+						);
+					return heatMapLine;
+				}
+
+				/*
+				 * @param from THREE.Vector3(x, y, z) @param to THREE.Vector3(x,
+				 * y, z) @return THREE.Line
+				 *
+				 */
+				 var getLine = function(from, to, lineWidth,c) {
+
+				 	var geometry = new THREE.Geometry();
+				 	geometry.vertices.push(from, to);
+
+				 	return new THREE.Line(geometry, new THREE.LineBasicMaterial( {
+				 		color: c === undefined ? 0x505050 : c,
+				 		dashSize: 10,
+				 		gapSize: 10,
+				 		linewidth: lineWidth === undefined ? 1 : lineWidth,
+				 	} ), THREE.LinePieces );
+
+				 }
+				 /*
+				 * @param from THREE.Vector3(x, y, z) @param to THREE.Vector3(x,
+				 * y, z) @return THREE.Line
+				 *
+				 */
+				 var getDashedLine = function(from, to, lineWidth,c) {
+
+				 	var geometry = new THREE.Geometry();
+				 	geometry.vertices.push(from, to);
+				 	geometry.computeLineDistances();
+
+				 	return new THREE.Line(geometry, new THREE.LineDashedMaterial( {
+				 		color: c === undefined ? 0x505050 : c,
+				 		dashSize: 8,
+				 		gapSize: 5,
+				 		linewidth: lineWidth === undefined ? 1 : lineWidth,
+				 	} ), THREE.LinePieces );
+
+				 }
+
+				});
+
+return plugin;
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

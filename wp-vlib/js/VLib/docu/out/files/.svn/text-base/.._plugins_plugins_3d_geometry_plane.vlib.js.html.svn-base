@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../plugins/plugins_3d/geometry/plane.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../plugins/plugins_3d/geometry/plane.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([ &#x27;require&#x27;, &#x27;config&#x27;, &#x27;jquery&#x27;,&#x27;three&#x27;,&#x27;../dataset/dataset.vlib&#x27; ], function(require, Config, $,THREE, Dataset) {
+
+	/**
+	 * @return object dataset object.data == dataset object.color ==
+	 *         collorCallback(data)
+	 *
+	 */
+	 /**
+		TODO&lt;br /&gt;
+		@class Plugin Plane
+		@constructor
+		@extends AbstractPlugin
+	**/
+	 var plugin = (function() {
+	 	/** ********************************** */
+	 	/** PUBLIC VARIABLES * */
+	 	/** ********************************** */
+	 	var id = Math.ceil(Math.random()*100);
+	 	this.context = Config.PLUGINTYPE.CONTEXT_3D;
+	 	this.type = Config.PLUGINTYPE.DATA;
+	 	this.name = &#x27;plane&#x27;;
+	 	this.accepts = {
+	 		predecessors : [ Config.PLUGINTYPE.PLOT ],
+	 		successors : [ Config.PLUGINTYPE.COLOR, Config.PLUGINTYPE.FUNCTION ]
+	 	}
+		// default color
+		this.color = &#x27;000000&#x27;;
+
+		/** path to plugin-template file * */
+		this.templates = Config.absPlugins + &#x27;/plugins_3d/geometry/templates.js&#x27;;
+		this.icon = Config.absPlugins + &#x27;/plugins_3d/geometry/plane.png&#x27;;
+		this.description = &#x27;Requires: [ &#x27;+this.accepts.predecessors.join(&#x27;, &#x27;)+&#x27; ] Accepts: [ &#x27;+this.accepts.successors.join(&#x27;, &#x27;)+&#x27; ]&#x27;;
+
+		/** ********************************** */
+		/** PUBLIC VARIABLES * */
+		/** ********************************** */
+		var dataset = new Dataset();
+		var customContainer = &#x27;planeContainer&#x27;;
+		/** ********************************** */
+		/** PUBLIC METHODS * */
+		/** ********************************** */
+		/**
+		 * Takes inserted configuration from the plugin-template and returns the
+		 * parameters as JSON-config-file
+		 *
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 *
+		 * @return config file format: { data:VALUE}
+		 */
+		 this.getConfigCallback = function(containerId) {
+		 	var xSegments = $(&#x27;#&#x27; + containerId + &#x27; #segmentsX&#x27;).val();
+		 	var ySegments = $(&#x27;#&#x27; + containerId + &#x27; #segmentsY&#x27;).val();
+
+		 	var xMin = $(&#x27;#&#x27; + containerId + &#x27; #xMin&#x27;).val();
+		 	var yMin = $(&#x27;#&#x27; + containerId + &#x27; #yMin&#x27;).val();
+		 	var zMin = $(&#x27;#&#x27; + containerId + &#x27; #zMin&#x27;).val();
+
+		 	var xMax = $(&#x27;#&#x27; + containerId + &#x27; #xMax&#x27;).val();
+		 	var yMax = $(&#x27;#&#x27; + containerId + &#x27; #yMax&#x27;).val();
+		 	var zMax = $(&#x27;#&#x27; + containerId + &#x27; #zMax&#x27;).val();
+		 	return{
+		 		segmentsX : xSegments,
+		 		segmentsY : ySegments,
+		 		xMin : xMin,
+		 		yMin : yMin,
+		 		zMin : zMin,
+		 		xMax : xMax,
+		 		yMax : yMax,
+		 		zMax : zMax
+		 	}
+		 }
+		/**
+		 * Takes arguments from config and inserts them to the plugin-template
+		 *
+		 * @param config
+		 *            plugin config file
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 */
+		 this.setConfigCallback = function(config, containerId) {
+		 	if (config === &quot;&quot; || config === undefined) {
+		 		config = {
+		 			segmentsX : 20,
+		 			segmentsY : 20,
+		 			xMin : 0,
+		 			yMin : 0,
+		 			zMin : 0,
+		 			xMax : 10,
+		 			yMax : 10,
+		 			zMax : 10
+		 		};
+		 	}
+		 	if(config.segmentsX !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #segmentsX&#x27;).val(config.segmentsX);
+		 	}
+		 	if(config.segmentsY !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #segmentsY&#x27;).val(config.segmentsY);
+		 	}
+		 	if(config.xMin !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #xMin&#x27;).val(config.xMin);
+		 	}
+		 	if(config.yMin !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #yMin&#x27;).val(config.yMin);
+		 	}
+		 	if(config.zMin !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #zMin&#x27;).val(config.zMin);
+		 	}
+		 	if(config.xMax !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #xMax&#x27;).val(config.xMax);
+		 	}
+		 	if(config.yMax !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #yMax&#x27;).val(config.yMax);
+		 	}
+		 	if(config.zMax !== undefined){
+		 		$(&#x27;#&#x27; + containerId + &#x27; #zMax&#x27;).val(config.zMax);
+		 	}
+		 }
+		 var initialized = false;
+		 this.exec = function(config, childs) {
+		 	console.log(id+&quot;[ plane ] \t\t EXEC&quot; + JSON.stringify(config));
+
+
+		 	var segments = 20,segmentsX = 20,segmentsY = 20,
+		 	x_MIN = 0, x_MAX = 10,
+		 	y_MIN = 0, y_MAX = 10,
+		 	z_MIN = 0, z_MAX = 10;
+
+		 	if(config != &quot;&quot; &amp;&amp; config !== undefined){
+
+		 		if( config.segmentsX !== undefined){
+		 			segmentsX = isNaN(parseInt(config.segmentsX)) ? segments : parseInt(config.segmentsX);
+		 		}
+		 		if(config.segmentsY !== undefined){
+		 			segmentsY = isNaN(parseInt(config.segmentsY)) ? segments : parseInt(config.segmentsY);
+		 		}
+		 		if( config.xMin !== undefined){
+		 			x_MIN = isNaN(parseFloat(config.xMin)) ? x_MIN : parseFloat(config.xMin);
+		 		}
+		 		if(config.yMin !== undefined){
+		 			y_MIN = isNaN(parseFloat(config.yMin)) ? y_MIN : parseFloat(config.yMin);
+		 		}
+		 		if(config.zMin !== undefined){
+		 			z_MIN = isNaN(parseFloat(config.zMin)) ? z_MIN : parseFloat(config.zMin);
+		 		}
+		 		if(config.xMax !== undefined){
+		 			x_MAX = isNaN(parseFloat(config.xMax)) ? x_MAX : parseFloat(config.xMax);
+		 		}
+		 		if(config.yMax !== undefined){
+		 			y_MAX = isNaN(parseFloat(config.yMax)) ? y_MAX : parseFloat(config.yMax);
+		 		}
+		 		if( config.xMax !== undefined){
+		 			z_MAX = isNaN(parseFloat(config.zMax)) ? z_MAX : parseFloat(config.zMax);
+		 		}
+		 	}
+
+		 	var data = [];
+		 	var xRange = x_MAX - x_MIN;
+		 	var yRange = y_MAX - y_MIN;
+		 	var zRange = z_MAX - z_MIN;
+		 	meshFunction = function(x, y)
+		 	{
+		 		x = xRange * x + x_MIN;
+		 		y = yRange * y + y_MIN;
+		 		var z = 0;
+		 		return new THREE.Vector3(x, y, z);
+		 	};
+
+		 	var geometry = new THREE.ParametricGeometry( meshFunction, segmentsX, segmentsY, true );
+
+
+		 	for ( var i = 0; i &lt; geometry.vertices.length; i++ )
+		 	{
+		 		point = geometry.vertices[ i ];
+		 		data.push({x:point.x,y:point.y,z:point.z});
+		 	}
+		 	var borders = {
+		 		xMax : x_MAX,
+		 		yMax : y_MAX,
+		 		zMax : z_MAX,
+		 		xMin : x_MIN,
+		 		yMin : y_MIN,
+		 		zMin : z_MIN
+		 	}
+		 	var dc = {
+		 		data : data
+		 	}
+		 	var result = dataset.exec(dc,childs);
+
+		 	return {
+		 		pType : this.type,
+		 		response :{
+		 			data : result.response.data,
+		 			color : result.response.color,
+		 			colorArray : result.response.colorArray,
+		 			heatmap : result.response.heatmap,
+		 			borders:borders
+		 		}
+		 	};
+		 }
+
+
+
+		 /** ********************************** */
+		 /** PRIVATE METHODS * */
+		 /** ********************************** */
+
+
+		});
+
+return plugin;
+
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

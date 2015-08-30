@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../plugins/plugins_2d/axes/axes.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../plugins/plugins_2d/axes/axes.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define(
+	[ &#x27;require&#x27;, &#x27;config&#x27;, &#x27;three&#x27;, &#x27;jquery&#x27;/*, &#x27;three_font_helveticer&#x27;*/ ],
+	function(require, Config, THREE, $) {
+
+		var plugin = (function(state) {
+			/** ********************************** */
+			/** PRIVATE VARIABLES * */
+			/** ********************************** */
+			var xLabel = &#x27;x&#x27;;
+			var yLabel = &#x27;y&#x27;;
+			var zLabel = &#x27;z&#x27;;
+			var xRange = &#x27;auto&#x27;;
+			var yRange = &#x27;auto&#x27;;
+			var zRange = &#x27;auto&#x27;;
+			var granularityX = 2;
+			var granularityY = 2;
+			var granularityZ = 2;
+
+			var xRangeDefault = &#x27;auto&#x27;;
+			var yRangeDefault = &#x27;auto&#x27;;
+			var zRangeDefault = &#x27;auto&#x27;;
+			var fontSize = 20;
+			var decimalPlaces = 7;
+
+			/** ********************************** */
+			/** PUBLIC VARIABLES * */
+			/** ********************************** */
+			this.config = null;
+			this.labelColor = null;
+			this.numUnitsDefault = 2;
+
+			this.context = Config.PLUGINTYPE.CONTEXT_3D;
+			this.type = Config.PLUGINTYPE.AXES;
+			/** unique plugin name * */
+			this.name = &#x27;axes&#x27;;
+
+			/** path to plugin-template file * */
+			this.templates = Config.absPlugins
+			+ &#x27;/plugins_3d/axes/templates.js&#x27;;
+			this.icon = Config.absPlugins + &#x27;/plugins_3d/axes/icon.png&#x27;;
+			this.accepts = {
+				predecessors : [ Config.PLUGINTYPE.PLOT ],
+				successors : [Config.PLUGINTYPE.COLOR]
+			}
+			this.description = &#x27;Requires: [ &#x27;+this.accepts.predecessors.join(&#x27;, &#x27;)+&#x27; ] Accepts: [ &#x27;+this.accepts.successors.join(&#x27;, &#x27;)+&#x27; ]&#x27;;
+			if(state !== undefined){
+				xLabel = state.xLabel;
+				yLabel = state.yLabel;
+				zLabel = state.zLabel;
+				xRange = state.xRange;
+				yRange = state.yRange;
+				zRange = state.zRange;
+				this.config = state.config;
+				this.labelColor = state.labelColor;
+
+			}
+			/** ********************************** */
+			/** PUBLIC METHODS * */
+			/** ********************************** */
+			this.deepCopy = function(){
+				var privates = {
+					xLabel : xLabel,
+					yLabel : yLabel,
+					zLabel : zLabel,
+					xRange : xRange,
+					yRange : yRange,
+					zRange : zRange,
+					config : this.config,
+					labelColor : this.labelColor
+				};
+				return new plugin(privates);
+			}
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format:
+				 *         {camera:{x:VALUE,y:VALUE,z:VALUE}}
+				 */
+				 this.getConfigCallback = function(containerId) {
+				 	var x = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;)
+				 	.val();
+				 	var y = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;)
+				 	.val();
+				 	var z = $(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;)
+				 	.val();
+
+				 	xRange = $(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val();
+
+				 	yRange = $(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val();
+
+				 	zRange = $(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val();
+
+				 	granularityX = $(&#x27;#&#x27; + containerId + &#x27; #granularity-x&#x27;).val();
+				 	granularityY = $(&#x27;#&#x27; + containerId + &#x27; #granularity-y&#x27;).val();
+				 	granularityZ = $(&#x27;#&#x27; + containerId + &#x27; #granularity-z&#x27;).val();
+
+				 	var result = {
+				 		labels : {
+				 			&#x27;x&#x27; : x === &quot;&quot; ? xLabel : x,
+				 			&#x27;y&#x27; : y === &quot;&quot; ? yLabel : y,
+				 			&#x27;z&#x27; : z === &quot;&quot; ? zLabel : z
+				 		},
+				 		range : {
+				 			&#x27;x&#x27; : xRange === &quot;&quot; ? &quot;auto&quot; : xRange,
+				 			&#x27;y&#x27; : yRange === &quot;&quot; ? &quot;auto&quot; : yRange,
+				 			&#x27;z&#x27; : zRange === &quot;&quot; ? &quot;auto&quot; : zRange
+				 		},
+				 		numUnits : {
+				 			&#x27;x&#x27; : granularityX,
+				 			&#x27;y&#x27; : granularityY,
+				 			&#x27;z&#x27; : granularityZ,
+				 		}
+				 	};
+				 	console
+				 	.log(&quot;[ axes ][getConfig] &quot;
+				 		+ JSON.stringify(result));
+				 	return result;
+				 }
+				/**
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+				 	console
+				 	.log(&quot;[ axes ][setConfig] &quot;
+				 		+ JSON.stringify(config));
+				 	if (config == &quot;&quot; || config === undefined)
+				 		config = {
+				 			labels : &#x27;&#x27;,
+				 			range : &#x27;&#x27;,
+				 			numUnits : {}
+				 		};
+				 		if (!config.hasOwnProperty(&#x27;labels&#x27;))
+				 			config.labels = &#x27;&#x27;;
+				 		if (!config.hasOwnProperty(&#x27;range&#x27;))
+				 			config.range = &#x27;&#x27;;
+
+				 		if (config.labels.x != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;).val(
+				 				config.labels.x);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=xLabel]&#x27;).val(
+				 				xLabel);
+				 		}
+				 		if (config.labels.y != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;).val(
+				 				config.labels.y);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=yLabel]&#x27;).val(
+				 				yLabel);
+				 		}
+				 		if (config.labels.z != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;).val(
+				 				config.labels.z);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; &gt; form input[id=zLabel]&#x27;).val(
+				 				zLabel);
+				 		}
+				 		if (config.range.x != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val(config.range.x);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #xRange&#x27;).val(xRangeDefault);
+				 		}
+				 		if (config.range.y != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val(config.range.y);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #yRange&#x27;).val(yRangeDefault);
+				 		}
+				 		if (config.range.z != undefined) {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val(config.range.z);
+				 		} else {
+				 			$(&#x27;#&#x27; + containerId + &#x27; #zRange&#x27;).val(zRangeDefault);
+				 		}
+				 		if (config.numUnits !== undefined) {
+				 			if (config.numUnits.x !== undefined) {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-x&#x27;).val(config.numUnits.x);
+				 			} else {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-x&#x27;).val(this.numUnitsDefault);
+				 				config.numUnits.x = this.numUnitsDefault;
+				 			}
+				 			if (config.numUnits.y !== undefined) {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-y&#x27;).val(config.numUnits.y);
+				 			} else {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-y&#x27;).val(this.numUnitsDefault);
+				 				config.numUnits.y = this.numUnitsDefault;
+				 			}
+				 			if (config.numUnits.z !== undefined) {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-z&#x27;).val(config.numUnits.z);
+				 			} else {
+				 				$(&#x27;#&#x27; + containerId ).find(&#x27; #granularity-z&#x27;).val(this.numUnitsDefault);
+				 				config.numUnits.z = this.numUnitsDefault;
+				 			}
+				 		}else{
+				 			config.numUnits = {};
+				 			config.numUnits.x  = this.numUnitsDefault;
+				 			config.numUnits.y  = this.numUnitsDefault;
+				 			config.numUnits.z  = this.numUnitsDefault;
+
+				 		}
+
+				 		// slider
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderX&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.x,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-x&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderY&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.y,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-y&#x27;).val(ui.value);
+				 			}
+				 		});
+				 		$(&#x27;#&#x27; + containerId ).find(&#x27; #granularitySliderZ&#x27;).slider({
+				 			orientation: &quot;horizontal&quot;,
+				 			range: &quot;min&quot;,
+				 			min: 0,
+				 			max: 13,
+				 			value: config.numUnits.z,
+				 			slide: function (event, ui) {
+				 				$(&#x27;#&#x27; + containerId + &#x27; #granularity-z&#x27;).val(ui.value);
+				 			}
+				 		});
+				 	}
+
+				 	this.exec = function(config, childs) {
+				 		console.log(&quot;[ plugin ][ axes ] \t\t EXECUTE&quot;);
+				 		this.config = config;
+				 		if(this.config == &#x27;&#x27; || this.config === null || this.config === undefined){
+				 			this.config = {
+				 				labels:{x:&#x27;x&#x27;,y:&#x27;y&#x27;,z:&#x27;z&#x27;},
+				 				range:{x:xRangeDefault,y:yRangeDefault,z:zRangeDefault}
+				 			};
+				 		}
+				 		if (this.config.numUnits === null
+				 			|| this.config.numUnits === undefined) {
+				 			this.config.numUnits = {x:this.numUnitsDefault,y:this.numUnitsDefault,z:this.numUnitsDefault};
+				 	}
+				 	if(this.config.numUnits.x === undefined){
+				 		this.config.numUnits.x = this.numUnitsDefault;
+				 	}
+				 	if(this.config.numUnits.y === undefined){
+				 		this.config.numUnits.y = this.numUnitsDefault;
+				 	}
+				 	if(this.config.numUnits.z === undefined){
+				 		this.config.numUnits.z = this.numUnitsDefault;
+				 	}
+					/*
+					 * HANDLE CONFIG
+					 */
+					// set labels
+					if (config.labels !== undefined) {
+						xLabel = config.labels.x === undefined ? &#x27;x&#x27;
+						: config.labels.x;
+						yLabel = config.labels.y === undefined ? &#x27;y&#x27;
+						: config.labels.y;
+						zLabel = config.labels.z === undefined ? &#x27;z&#x27;
+						: config.labels.z;
+					}
+					// set range
+					if (config.range !== undefined) {
+						xRange = config.range.x === undefined ? xRangeDefault
+						: config.range.x;
+						yRange = config.range.y === undefined ? yRangeDefault
+						: config.range.y;
+						zRange = config.range.z === undefined ? zRangeDefault
+						: config.range.z;
+					}
+					/** *********************************** * */
+					/** HANDLE SUCCESSOR PLUGINGS * */
+					/** *********************************** * */
+					var child;
+					for ( var i = 0; i &lt; childs.length; ++i) {
+						child = childs[i];
+
+						if(child !== undefined &amp;&amp; child.pType !== undefined){
+							if($.inArray(child.pType, this.accepts.successors) != -1){
+								switch(child.pType){
+									case Config.PLUGINTYPE.COLOR:
+									colorCallback = child.response.callback;
+									colorContext = child.response.context;
+									if(child.response.heatmap !== undefined){
+										this.labelColor = &#x27;#&#x27;+child.response.color;
+									}
+									break;
+
+								}
+							}
+						}else{
+							console.log(&quot;pType of child plugin not set!&quot;);
+						}
+					}
+					// each child is the result of a successor plugin
+					// for ( var i = 0; i &lt; childs.length; ++i) {
+					// 	for ( var key in childs[i]) {
+					// 		// check if child is in successor list
+
+					// 		if ($.inArray(key, this.accepts.successors) != -1) {
+					// 			// handle color plugin
+					// 			if (( Config.PLUGINTYPE.COLOR ) === key) {
+					// 				this.labelColor = &#x27;#&#x27;+childs[i][key].color;
+					// 			}
+					// 		}
+					// 	}
+					// }
+					return {
+						pType : this.type,
+						response : {
+							// callback
+							&#x27;callback&#x27; : getAxes,
+							&#x27;context&#x27; : this,
+							&#x27;rangeX&#x27; : xRange,
+							&#x27;rangeY&#x27; : yRange,
+							&#x27;rangeZ&#x27; : zRange
+						}
+					};
+
+				}
+
+				/** ********************************** */
+				/** PRIVATE METHODS * */
+				/** ********************************** */
+				var getAxes = function(dataArray, dataPositionArray, x, y, z,
+					xRange, yRange, zRange) {
+					var result = [];
+					/*
+					 * add axes
+					 */
+					 var lineX = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(x, 0, 0));
+					 var lineY = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, y, 0));
+					 var lineZ = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, 0, z));
+
+					 var lineXNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(-x, 0, 0));
+					 var lineYNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, -y, 0));
+					 var lineZNeg = getLine(new THREE.Vector3(0, 0, 0),
+					 	new THREE.Vector3(0, 0, -z));
+
+					 result.push(lineX);
+					 result.push(lineY);
+					 result.push(lineZ);
+
+					 result.push(lineXNeg);
+					 result.push(lineYNeg);
+					 result.push(lineZNeg);
+
+					/*
+					 * add description
+					 */
+					 var w, h;
+					 w = (xLabel.length) * (fontSize / 2);
+					 h = fontSize + 5;
+					 var labelX = getLabel(xLabel, x, -h, 0, w, h,this.labelColor);
+					 w = (yLabel.length) * (fontSize / 2);
+					 var labelY = getLabel(yLabel, -h/2, y+fontSize, 0, w, h,this.labelColor);
+					 w = (zLabel.length) * (fontSize / 2);
+					 var labelZ = getLabel(zLabel, -h / 2, -h, z, w, h,this.labelColor);
+
+					 result.push(labelX);
+					 result.push(labelY);
+					 result.push(labelZ);
+
+
+
+					/***********************************************************
+					 * LABELING
+					 */
+					// -2 due to seperate push of &quot;0&quot; and &quot;max&quot; labels
+					var numIntermedateUnitsX = parseInt(this.config.numUnits.x -2);
+					var numIntermedateUnitsY = parseInt(this.config.numUnits.y -2);
+					var numIntermedateUnitsZ = parseInt(this.config.numUnits.z -2);
+
+
+					/***************************
+					 * add range values to x
+					 */
+
+					// add zero value
+					if(this.config.numUnits.x &gt; 0 || this.config.numUnits.y &gt; 0 || this.config.numUnits.z &gt; 0){
+						var wx = &quot;0&quot;.toString().length * (fontSize / 2);
+						result.push(getLabel(0, 0, -h / 2, 0, wx, h));
+					}
+					// add max value
+					if(this.config.numUnits.x &gt;=2){
+
+						var dx = xRange;
+						var wx = dx.toString().length * (fontSize / 2);
+						result.push(getLabel(dx, x, -h / 2, 0, wx, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(x, 0, 0),
+							new THREE.Vector3(x, 6, 0)));
+
+					}
+					// add min value
+					if(this.config.numUnits.x &gt;=2){
+						var dx = xRange * -1;
+						var wx = dx.toString().length * (fontSize / 2);
+						var posXMin = x * -1;
+						result.push(getLabel(dx, posXMin, -h / 2, 0, wx, h));
+					// push guideline
+					result.push(getLine(
+						new THREE.Vector3(posXMin, 0, 0),
+						new THREE.Vector3(posXMin, 6, 0)));
+				}
+					// add intermediate positive values
+					if(this.config.numUnits.x &gt;2){
+						var stepValue = parseFloat((xRange / (numIntermedateUnitsX + 1))
+							.toFixed(2));
+
+						var stepRange = x / (numIntermedateUnitsX + 1);
+						var dx = 0;
+						var xPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsX; ++i) {
+							// push value
+							dx += stepValue;
+							dx = parseFloat(dx.toFixed(decimalPlaces));
+							var wx = dx.toString().length * (fontSize / 2);
+							xPos += stepRange;
+
+							var label = getLabel(dx, xPos, -h / 2, 0, wx, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(xPos, 0, 0),
+								new THREE.Vector3(xPos, 6, 0)));
+						}
+						// add intermediate negative values
+						var stepValue = parseFloat((xRange / (numIntermedateUnitsX + 1))
+							.toFixed(2));
+
+						var stepRange = x / (numIntermedateUnitsX + 1);
+						var dx = 0;
+						var xPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsX; ++i) {
+							dx -= stepValue;
+							dx = parseFloat(dx.toFixed(decimalPlaces));
+							var wx = dx.toString().length * (fontSize / 2);
+							xPos -= stepRange;
+
+							var label = getLabel(dx, xPos, -h / 2, 0, wx, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(xPos, 0, 0),
+								new THREE.Vector3(xPos, 6, 0)));
+						}
+					}
+					/***************************
+					 * add range values to y
+					 */
+
+					// add max value
+					if(this.config.numUnits.y &gt;= 2){
+						var dy = yRange;
+						var wy = dy.toString().length * (fontSize / 2);
+						result.push(getLabel(dy,-h / 2, y, 0, wy, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(0, y, 0),
+							new THREE.Vector3(6, y, 0)));
+					}
+					// add min value
+					if(this.config.numUnits.y &gt;= 2){
+						var dy = yRange * -1;
+						var wy = dy.toString().length * (fontSize / 2);
+						result.push(getLabel(dy, -h / 2, y * -1, 0, wy, h));
+					}
+
+					// add intermediate positive values
+					if(this.config.numUnits.y &gt; 2){
+						var stepValue = parseFloat((yRange / (numIntermedateUnitsY + 1))
+							.toFixed(2));
+
+						var stepRange = y / (numIntermedateUnitsY + 1);
+						var dy = 0;
+						var yPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsY; ++i) {
+							dy += stepValue;
+							dy = parseFloat(dy.toFixed(decimalPlaces));
+							var wy = dy.toString().length * (fontSize / 2);
+							yPos += stepRange;
+
+							var label = getLabel(dy, -h / 2, yPos, 0, wy, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(0, yPos, 0),
+								new THREE.Vector3(6, yPos, 0)));
+						}
+						// add intermediate negative values
+						var stepValue = parseFloat((yRange / (numIntermedateUnitsY + 1))
+							.toFixed(2));
+
+						var stepRange = y / (numIntermedateUnitsY + 1);
+						var dy = 0;
+						var yPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsY; ++i) {
+							dy -= stepValue;
+							dy = parseFloat(dy.toFixed(decimalPlaces));
+							var wy = dy.toString().length * (fontSize / 2);
+							yPos -= stepRange;
+
+							var label = getLabel(dy, -h / 2, yPos, 0, wy, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(0, yPos, 0),
+								new THREE.Vector3(6, yPos, 0)));
+						}
+					}
+					/***************************
+					 * add range values to z
+					 */
+
+					// add max value
+					if(this.config.numUnits.z &gt;= 2){
+						var dz = zRange;
+						var wz = dz.toString().length * (fontSize / 2);
+						result.push(getLabel(dz,-h / 2, 0,z, wz, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(0, 0, z),
+							new THREE.Vector3(6, 0, z)));
+					}
+					// add min value
+					if(this.config.numUnits.z &gt;= 2){
+						var dz = zRange * -1;
+						var wz = dz.toString().length * (fontSize / 2);
+						result.push(getLabel(dz, -h / 2, 0, z*-1, wz, h));
+						// push guideline
+						result.push(getLine(
+							new THREE.Vector3(0, 0, z*-1),
+							new THREE.Vector3(6, 0, z*-1)));
+					}
+					// add intermediate positive values
+					if(this.config.numUnits.z &gt; 2){
+						var stepValue = parseFloat((zRange / (numIntermedateUnitsZ + 1))
+							.toFixed(2));
+
+						var stepRange = z / (numIntermedateUnitsZ + 1);
+						var dz = 0;
+						var zPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsZ; ++i) {
+							dz += stepValue;
+							dz = parseFloat(dz.toFixed(decimalPlaces));
+							var wz = dz.toString().length * (fontSize / 2);
+							zPos += stepRange;
+
+							var label = getLabel(dz, -h / 2, 0, zPos, wz, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(0, 0, zPos),
+								new THREE.Vector3(6, 0, zPos)));
+						}
+						// add intermediate negative values
+						var stepValue = parseFloat((zRange / (numIntermedateUnitsZ + 1))
+							.toFixed(2));
+
+						var stepRange = z / (numIntermedateUnitsZ + 1);
+						var dz = 0;
+						var zPos = 0;
+						for ( var i = 1; i &lt;= numIntermedateUnitsZ; ++i) {
+							dz -= stepValue;
+							dz = parseFloat(dz.toFixed(decimalPlaces));
+							var wz = dz.toString().length * (fontSize / 2);
+							zPos -= stepRange;
+
+							var label = getLabel(dz, -h / 2, 0, zPos, wz, h);
+							result.push(label);
+							// push guideline
+							result.push(getLine(
+								new THREE.Vector3(0, 0, zPos),
+								new THREE.Vector3(6, 0, zPos)));
+						}
+					}
+					/***************************
+					 * add data values
+					 */
+					// var offset = h;
+					// for(var i = 0; i &lt; dataPositionArray.length; ++i){
+					// var dx = dataArray[i].z;
+					// var wx = dx.toString().length * (fontSize/2);
+					//
+					// var xPos = dataPositionArray[i].x ;
+					// var yPos = dataPositionArray[i].y ;
+					// var zPos = dataPositionArray[i].z ;
+					// xPos = xPos &gt; 0 ? xPos+offset : xPos-offset;
+					// yPos = yPos &gt; 0 ? yPos+offset : yPos-offset;
+					// //zPos = zPos &gt; 0 ? zPos+offset : zPos-offset;
+					// var label = getLabel(dx,xPos,yPos,zPos,wx,h);
+					// result.push(label);
+					// }
+
+					return result;
+				}
+				var getLabel = function(text, x, y, z, w, h,color) {
+					var c = color === undefined ? &quot;rgba(0, 0, 0, 0.5)&quot; : color;
+					/*
+					 * var label = new THREE.TextGeometry( text, { size: 10,
+					 * height: 10, curveSegments: 2, font: &quot;helvetiker&quot; });
+					 *
+					 */
+					// create a canvas element
+					var canvas1 = document.createElement(&#x27;canvas&#x27;);
+					var context1 = canvas1.getContext(&#x27;2d&#x27;);
+					var padding = 10;
+					canvas1.width = w + padding;
+					canvas1.height = h + padding;
+					// context1.fillStyle = &quot;#CC5422&quot;;
+					// context1.fillRect(0,0,w,h);
+					context1.font = fontSize + &quot;px Arial&quot;;
+					context1.fillStyle = c;
+					context1.fillText(text, 0, fontSize);
+
+					// canvas contents will be used for a texture
+					var texture1 = new THREE.Texture(canvas1)
+					texture1.needsUpdate = true;
+					var material1 = new THREE.MeshBasicMaterial({
+						map : texture1,
+						side : THREE.DoubleSide
+					});
+					material1.transparent = true;
+					var textMesh = new THREE.Mesh(new THREE.PlaneGeometry(
+						canvas1.width, canvas1.height), material1);
+					textMesh.position.set(x, y, z);
+//					console.log(&quot;&gt;textMesh text=&quot; + text + &quot; px=&quot; + x + &quot; py=&quot;+ y + &quot; pz=&quot; + z);
+
+return textMesh;
+}
+				/*
+				 * @param from THREE.Vector3(x, y, z) @param to THREE.Vector3(x,
+				 * y, z) @return THREE.Line
+				 *
+				 */
+				 var getLine = function(from, to) {
+				 	var lineMat = new THREE.LineBasicMaterial({
+				 		color : 0x000000,
+				 		lineWidth : 1
+				 	});
+				 	var lineGeo = new THREE.Geometry();
+				 	lineGeo.vertices.push(from, to);
+
+				 	var line = new THREE.Line(lineGeo, lineMat);
+				 	line.type = THREE.Lines;
+
+				 	return line;
+				 }
+
+				});
+
+return plugin;
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

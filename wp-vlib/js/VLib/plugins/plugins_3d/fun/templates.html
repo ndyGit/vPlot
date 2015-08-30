@@ -1,0 +1,144 @@
+<script type="text/html" class="pluginConfigForm" id="function">
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#fun" role="tab" data-toggle="tab">Function</a></li>
+		<li><a href="#info" role="tab" data-toggle="tab">Info</a></li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="fun">
+			<div class="panel-group" id="accordion" role="tablist" >
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								x = f( x, y , z, size, tick, index  )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<textarea id="xFun" class="form-control" rows="1"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingTwo">
+						<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								y = f( x, y , z, size, tick, index  )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							<textarea id="yFun" class="form-control" rows="1"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingThree">
+						<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								z = f( x, y , z, size, tick, index  )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+						<div class="panel-body">
+							<textarea id="zFun" class="form-control" rows="1"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingFour">
+						<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+								size = f( x, y , z, tick, index )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+						<div class="panel-body">
+							<textarea id="sizeFun" class="form-control" rows="1"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingSix">
+						<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+								label = f( x, y , z, size, tick, index )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+						<div class="panel-body">
+							<textarea id="labelFun" class="form-control" rows="1" placeholder="e.g.: 'Label ( <b>'+x+'</b>, <b>'+y+'</b>, <b>'+z+'</b> )'">
+
+							</textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default collapse-container">
+					<div class="panel-heading" role="tab" id="headingFive">
+						<h4 class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+								tick = f( x, y , z, index )
+							</a>
+						</h4>
+					</div>
+					<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+						<div class="panel-body">
+							<textarea id="tickFun" class="form-control" rows="1"></textarea>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+		</div>
+		<div class="tab-pane" id="info">
+			<ul class="list-group">
+				<li class="list-group-item"><kbd>sin(x)</kbd> Sine of x (x is in radians)</li>
+				<li class="list-group-item"><kbd>cos(x) </kbd> Cosine of x (x is in radians)</li>
+				<li class="list-group-item"><kbd>tan(x) </kbd> Tangent of x</li>
+				<li class="list-group-item"><kbd>asin(x)</kbd> Arc sine of x (in radians)</li>
+				<li class="list-group-item"><kbd>acos(x)</kbd> Arc cosine of x (in radians)</li>
+				<li class="list-group-item"><kbd>atan(x)</kbd> Arc tangent of x (in radians)</li>
+				<li class="list-group-item"><kbd>sqrt(x)</kbd> Square root of x</li>
+				<li class="list-group-item"><kbd>log(x) </kbd> Natural logarithm of x</li>
+				<li class="list-group-item"><kbd>abs(x)</kbd> Absolute value (magnatude) of x</li>
+				<li class="list-group-item"><kbd>ceil(x)</kbd> Ceiling of x — the smallest integer that’s >= x</li>
+				<li class="list-group-item"><kbd>floor(x)</kbd> Floor of x — the largest integer that’s <= x</li>
+				<li class="list-group-item"><kbd>round(x)</kbd> X, rounded to the nearest integer</li>
+				<li class="list-group-item"><kbd>exp(x)</kbd> ex (exponential/antilogarithm function with base e)</li>
+				<li class="list-group-item"><kbd>random(n)</kbd> Get a random number in the range [0, n). If n is zero,
+					or not provided, it defaults to 1
+				</li>
+				<li class="list-group-item"><kbd>fac(n)</kbd> n!</li>
+				<li class="list-group-item"><kbd>min(a,b,…) </kbd> Get the smallest</li>
+				<li class="list-group-item"><kbd>max(a,b,…)</kbd> Get the largest</li>
+				<li class="list-group-item"><kbd>pyt(a, b) </kbd> Pythagorean function, i.e. the c in "c2 = a^2 + b2"
+				</li>
+				<li class="list-group-item"><kbd>pow(x, y) </kbd> xy</li>
+				<li class="list-group-item"><kbd>atan2(y, x)</kbd> arc tangent of x/y. i.e. the angle between (0, 0) and
+					(x, y) in radians
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+</script>

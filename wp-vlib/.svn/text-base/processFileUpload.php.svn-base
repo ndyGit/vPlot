@@ -1,0 +1,44 @@
+<?php
+require_once("../../../wp-config.php");
+
+require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+$table_name = $wpdb->prefix . "vlib_files";
+
+
+$fileName = $_POST['ul-name'];
+$fileDescription = $_POST['ul-description'];
+$fileCoordOne = $_POST['ul-tab-one'];
+$fileCoordTwo = $_POST['ul-tab-two'];
+$fileCoordThree = $_POST['ul-tab-three'];
+$file = $_FILES['ul-file'];
+
+$uploaddir = 'VLib/data/';
+$uploadfile = $uploaddir . basename($file['name']);
+
+if (move_uploaded_file($file['tmp_name'], $uploadfile)) {
+
+
+			$name=$fileName;
+			$descr=$fileDescription;
+			$path=plugin_dir_url( __FILE__ ).$uploadfile;
+
+			$insert = "INSERT INTO " . $table_name .
+						" (file_name, file_description, file_path, coord_one, coord_two, coord_three) " .
+						"VALUES ('$name','$descr','$path','$fileCoordOne','$fileCoordTwo','$fileCoordThree')";
+			$results = $wpdb->query( $insert );
+
+			if( $results == 1)
+				//print json_encode($results);
+				echo "Datei ist valide und wurde erfolgreich hochgeladen." . $path;
+			else
+				print "There has been an error saving the template";
+
+
+} else {
+    echo "Möglicherweise eine Dateiupload-Attacke!\n";
+}
+
+?>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/rgbcolors.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/rgbcolors.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * A class to parse color values
+ * @author Stoyan Stefanov &lt;sstoo@gmail.com&gt;
+ * @link   http://www.phpied.com/rgb-color-parser-in-javascript/
+ * @license Use it if you like it
+ */
+function RGBColor(color_string)
+{
+    this.ok = false;
+
+    // strip any leading #
+    if (color_string.charAt(0) == &#x27;#&#x27;) { // remove # if any
+        color_string = color_string.substr(1,6);
+    }
+
+    color_string = color_string.replace(/ /g,&#x27;&#x27;);
+    color_string = color_string.toLowerCase();
+
+    // before getting into regexps, try simple matches
+    // and overwrite the input
+    var simple_colors = {
+        aliceblue: &#x27;f0f8ff&#x27;,
+        antiquewhite: &#x27;faebd7&#x27;,
+        aqua: &#x27;00ffff&#x27;,
+        aquamarine: &#x27;7fffd4&#x27;,
+        azure: &#x27;f0ffff&#x27;,
+        beige: &#x27;f5f5dc&#x27;,
+        bisque: &#x27;ffe4c4&#x27;,
+        black: &#x27;000000&#x27;,
+        blanchedalmond: &#x27;ffebcd&#x27;,
+        blue: &#x27;0000ff&#x27;,
+        blueviolet: &#x27;8a2be2&#x27;,
+        brown: &#x27;a52a2a&#x27;,
+        burlywood: &#x27;deb887&#x27;,
+        cadetblue: &#x27;5f9ea0&#x27;,
+        chartreuse: &#x27;7fff00&#x27;,
+        chocolate: &#x27;d2691e&#x27;,
+        coral: &#x27;ff7f50&#x27;,
+        cornflowerblue: &#x27;6495ed&#x27;,
+        cornsilk: &#x27;fff8dc&#x27;,
+        crimson: &#x27;dc143c&#x27;,
+        cyan: &#x27;00ffff&#x27;,
+        darkblue: &#x27;00008b&#x27;,
+        darkcyan: &#x27;008b8b&#x27;,
+        darkgoldenrod: &#x27;b8860b&#x27;,
+        darkgray: &#x27;a9a9a9&#x27;,
+        darkgreen: &#x27;006400&#x27;,
+        darkkhaki: &#x27;bdb76b&#x27;,
+        darkmagenta: &#x27;8b008b&#x27;,
+        darkolivegreen: &#x27;556b2f&#x27;,
+        darkorange: &#x27;ff8c00&#x27;,
+        darkorchid: &#x27;9932cc&#x27;,
+        darkred: &#x27;8b0000&#x27;,
+        darksalmon: &#x27;e9967a&#x27;,
+        darkseagreen: &#x27;8fbc8f&#x27;,
+        darkslateblue: &#x27;483d8b&#x27;,
+        darkslategray: &#x27;2f4f4f&#x27;,
+        darkturquoise: &#x27;00ced1&#x27;,
+        darkviolet: &#x27;9400d3&#x27;,
+        deeppink: &#x27;ff1493&#x27;,
+        deepskyblue: &#x27;00bfff&#x27;,
+        dimgray: &#x27;696969&#x27;,
+        dodgerblue: &#x27;1e90ff&#x27;,
+        feldspar: &#x27;d19275&#x27;,
+        firebrick: &#x27;b22222&#x27;,
+        floralwhite: &#x27;fffaf0&#x27;,
+        forestgreen: &#x27;228b22&#x27;,
+        fuchsia: &#x27;ff00ff&#x27;,
+        gainsboro: &#x27;dcdcdc&#x27;,
+        ghostwhite: &#x27;f8f8ff&#x27;,
+        gold: &#x27;ffd700&#x27;,
+        goldenrod: &#x27;daa520&#x27;,
+        gray: &#x27;808080&#x27;,
+        green: &#x27;008000&#x27;,
+        greenyellow: &#x27;adff2f&#x27;,
+        honeydew: &#x27;f0fff0&#x27;,
+        hotpink: &#x27;ff69b4&#x27;,
+        indianred : &#x27;cd5c5c&#x27;,
+        indigo : &#x27;4b0082&#x27;,
+        ivory: &#x27;fffff0&#x27;,
+        khaki: &#x27;f0e68c&#x27;,
+        lavender: &#x27;e6e6fa&#x27;,
+        lavenderblush: &#x27;fff0f5&#x27;,
+        lawngreen: &#x27;7cfc00&#x27;,
+        lemonchiffon: &#x27;fffacd&#x27;,
+        lightblue: &#x27;add8e6&#x27;,
+        lightcoral: &#x27;f08080&#x27;,
+        lightcyan: &#x27;e0ffff&#x27;,
+        lightgoldenrodyellow: &#x27;fafad2&#x27;,
+        lightgrey: &#x27;d3d3d3&#x27;,
+        lightgreen: &#x27;90ee90&#x27;,
+        lightpink: &#x27;ffb6c1&#x27;,
+        lightsalmon: &#x27;ffa07a&#x27;,
+        lightseagreen: &#x27;20b2aa&#x27;,
+        lightskyblue: &#x27;87cefa&#x27;,
+        lightslateblue: &#x27;8470ff&#x27;,
+        lightslategray: &#x27;778899&#x27;,
+        lightsteelblue: &#x27;b0c4de&#x27;,
+        lightyellow: &#x27;ffffe0&#x27;,
+        lime: &#x27;00ff00&#x27;,
+        limegreen: &#x27;32cd32&#x27;,
+        linen: &#x27;faf0e6&#x27;,
+        magenta: &#x27;ff00ff&#x27;,
+        maroon: &#x27;800000&#x27;,
+        mediumaquamarine: &#x27;66cdaa&#x27;,
+        mediumblue: &#x27;0000cd&#x27;,
+        mediumorchid: &#x27;ba55d3&#x27;,
+        mediumpurple: &#x27;9370d8&#x27;,
+        mediumseagreen: &#x27;3cb371&#x27;,
+        mediumslateblue: &#x27;7b68ee&#x27;,
+        mediumspringgreen: &#x27;00fa9a&#x27;,
+        mediumturquoise: &#x27;48d1cc&#x27;,
+        mediumvioletred: &#x27;c71585&#x27;,
+        midnightblue: &#x27;191970&#x27;,
+        mintcream: &#x27;f5fffa&#x27;,
+        mistyrose: &#x27;ffe4e1&#x27;,
+        moccasin: &#x27;ffe4b5&#x27;,
+        navajowhite: &#x27;ffdead&#x27;,
+        navy: &#x27;000080&#x27;,
+        oldlace: &#x27;fdf5e6&#x27;,
+        olive: &#x27;808000&#x27;,
+        olivedrab: &#x27;6b8e23&#x27;,
+        orange: &#x27;ffa500&#x27;,
+        orangered: &#x27;ff4500&#x27;,
+        orchid: &#x27;da70d6&#x27;,
+        palegoldenrod: &#x27;eee8aa&#x27;,
+        palegreen: &#x27;98fb98&#x27;,
+        paleturquoise: &#x27;afeeee&#x27;,
+        palevioletred: &#x27;d87093&#x27;,
+        papayawhip: &#x27;ffefd5&#x27;,
+        peachpuff: &#x27;ffdab9&#x27;,
+        peru: &#x27;cd853f&#x27;,
+        pink: &#x27;ffc0cb&#x27;,
+        plum: &#x27;dda0dd&#x27;,
+        powderblue: &#x27;b0e0e6&#x27;,
+        purple: &#x27;800080&#x27;,
+        red: &#x27;ff0000&#x27;,
+        rosybrown: &#x27;bc8f8f&#x27;,
+        royalblue: &#x27;4169e1&#x27;,
+        saddlebrown: &#x27;8b4513&#x27;,
+        salmon: &#x27;fa8072&#x27;,
+        sandybrown: &#x27;f4a460&#x27;,
+        seagreen: &#x27;2e8b57&#x27;,
+        seashell: &#x27;fff5ee&#x27;,
+        sienna: &#x27;a0522d&#x27;,
+        silver: &#x27;c0c0c0&#x27;,
+        skyblue: &#x27;87ceeb&#x27;,
+        slateblue: &#x27;6a5acd&#x27;,
+        slategray: &#x27;708090&#x27;,
+        snow: &#x27;fffafa&#x27;,
+        springgreen: &#x27;00ff7f&#x27;,
+        steelblue: &#x27;4682b4&#x27;,
+        tan: &#x27;d2b48c&#x27;,
+        teal: &#x27;008080&#x27;,
+        thistle: &#x27;d8bfd8&#x27;,
+        tomato: &#x27;ff6347&#x27;,
+        turquoise: &#x27;40e0d0&#x27;,
+        violet: &#x27;ee82ee&#x27;,
+        violetred: &#x27;d02090&#x27;,
+        wheat: &#x27;f5deb3&#x27;,
+        white: &#x27;ffffff&#x27;,
+        whitesmoke: &#x27;f5f5f5&#x27;,
+        yellow: &#x27;ffff00&#x27;,
+        yellowgreen: &#x27;9acd32&#x27;
+    };
+    for (var key in simple_colors) {
+        if (color_string == key) {
+            color_string = simple_colors[key];
+        }
+    }
+    // emd of simple type-in colors
+
+    // array of color definition objects
+    var color_defs = [
+        {
+            re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
+            example: [&#x27;rgb(123, 234, 45)&#x27;, &#x27;rgb(255,234,245)&#x27;],
+            process: function (bits){
+                return [
+                    parseInt(bits[1]),
+                    parseInt(bits[2]),
+                    parseInt(bits[3])
+                ];
+            }
+        },
+        {
+            re: /^(\w{2})(\w{2})(\w{2})$/,
+            example: [&#x27;#00ff00&#x27;, &#x27;336699&#x27;],
+            process: function (bits){
+                return [
+                    parseInt(bits[1], 16),
+                    parseInt(bits[2], 16),
+                    parseInt(bits[3], 16)
+                ];
+            }
+        },
+        {
+            re: /^(\w{1})(\w{1})(\w{1})$/,
+            example: [&#x27;#fb0&#x27;, &#x27;f0f&#x27;],
+            process: function (bits){
+                return [
+                    parseInt(bits[1] + bits[1], 16),
+                    parseInt(bits[2] + bits[2], 16),
+                    parseInt(bits[3] + bits[3], 16)
+                ];
+            }
+        }
+    ];
+
+    // search through the definitions to find a match
+    for (var i = 0; i &lt; color_defs.length; i++) {
+        var re = color_defs[i].re;
+        var processor = color_defs[i].process;
+        var bits = re.exec(color_string);
+        if (bits) {
+            channels = processor(bits);
+            this.r = channels[0];
+            this.g = channels[1];
+            this.b = channels[2];
+            this.ok = true;
+        }
+
+    }
+
+    // validate/cleanup values
+    this.r = (this.r &lt; 0 || isNaN(this.r)) ? 0 : ((this.r &gt; 255) ? 255 : this.r);
+    this.g = (this.g &lt; 0 || isNaN(this.g)) ? 0 : ((this.g &gt; 255) ? 255 : this.g);
+    this.b = (this.b &lt; 0 || isNaN(this.b)) ? 0 : ((this.b &gt; 255) ? 255 : this.b);
+
+    // some getters
+    this.toRGB = function () {
+        return &#x27;rgb(&#x27; + this.r + &#x27;, &#x27; + this.g + &#x27;, &#x27; + this.b + &#x27;)&#x27;;
+    }
+    this.toHex = function () {
+        var r = this.r.toString(16);
+        var g = this.g.toString(16);
+        var b = this.b.toString(16);
+        if (r.length == 1) r = &#x27;0&#x27; + r;
+        if (g.length == 1) g = &#x27;0&#x27; + g;
+        if (b.length == 1) b = &#x27;0&#x27; + b;
+        return &#x27;#&#x27; + r + g + b;
+    }
+
+    // help
+    this.getHelpXML = function () {
+
+        var examples = new Array();
+        // add regexps
+        for (var i = 0; i &lt; color_defs.length; i++) {
+            var example = color_defs[i].example;
+            for (var j = 0; j &lt; example.length; j++) {
+                examples[examples.length] = example[j];
+            }
+        }
+        // add type-in colors
+        for (var sc in simple_colors) {
+            examples[examples.length] = sc;
+        }
+
+        var xml = document.createElement(&#x27;ul&#x27;);
+        xml.setAttribute(&#x27;id&#x27;, &#x27;rgbcolor-examples&#x27;);
+        for (var i = 0; i &lt; examples.length; i++) {
+            try {
+                var list_item = document.createElement(&#x27;li&#x27;);
+                var list_color = new RGBColor(examples[i]);
+                var example_div = document.createElement(&#x27;div&#x27;);
+                example_div.style.cssText =
+                        &#x27;margin: 3px; &#x27;
+                        + &#x27;border: 1px solid black; &#x27;
+                        + &#x27;background:&#x27; + list_color.toHex() + &#x27;; &#x27;
+                        + &#x27;color:&#x27; + list_color.toHex()
+                ;
+                example_div.appendChild(document.createTextNode(&#x27;test&#x27;));
+                var list_item_value = document.createTextNode(
+                    &#x27; &#x27; + examples[i] + &#x27; -&gt; &#x27; + list_color.toRGB() + &#x27; -&gt; &#x27; + list_color.toHex()
+                );
+                list_item.appendChild(example_div);
+                list_item.appendChild(list_item_value);
+                xml.appendChild(list_item);
+
+            } catch(e){}
+        }
+        return xml;
+
+    }
+
+}
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

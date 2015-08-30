@@ -1,0 +1,95 @@
+<script type="text/html" class="pluginConfigForm" id="dataset">
+
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="active"><a href="#mapping-tab" role="tab" data-toggle="tab">Mapping</a></li>
+		<li><a href="#data-tab" role="tab" data-toggle="tab">Data</a></li>
+		<li><a href="#geometries-tab" role="tab" data-toggle="tab">Geometries</a></li>
+		<li><a href="#info-tab" role="tab" data-toggle="tab">Info</a></li>
+	</ul>
+	<br/>
+	<div class="tab-content">
+		<div class="tab-pane active" id="mapping-tab">
+			<div id="file-mapping" class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Mapping</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th>Column</th>
+							<th>Key</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tfoot>
+						<tr>
+							<td colspan=4>
+								<button style="width:100%;" type="button" class="btn btn-primary" id="mapping-add">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</td>
+						</tr>
+						</tfoot>
+						<tbody id="mapping-table">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane" id="data-tab">
+			<div class="panel panel-default dataset-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Data</h3>
+				</div>
+				<div class="panel-body">
+					<div class="well">
+						<label class="control-label" for="data"></label>
+
+						<div class="controls">
+							<input class="form-control" type="text" id="data" style="display:none;"/>
+							<div id="dataset-add-data"></div>
+
+						</div>
+						<br/>
+						<button id="addDataset" type="button" class="btn btn-default btn-lg btn-block">Add</button>
+					</div>
+					<div class="well">
+						<table class="table table-hover">
+							<thead id="dataTableHeader"></thead>
+							<tbody id="dataTableContainer"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="geometries-tab">
+			<div class="panel panel-default dataset-geometries-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Geometries</h3>
+				</div>
+				<div class="panel-body">
+					<div class="center">
+						Geometry-Datasets: <span class="geometries-data-len badge badge-default"></span>
+					</div>
+					<div class="center">
+						<ul class="pagination"></ul>
+					</div>
+					<div class="well">
+						<table class="table table-hover">
+							<thead id="geometriesTableHeader"></thead>
+							<tbody id="geometriesTableContainer"></tbody>
+						</table>
+					</div>
+					<div class="center">
+						<ul class="pagination"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input id="data-mapping" type="text" value="" style="display:none;"/>
+
+
+</script>

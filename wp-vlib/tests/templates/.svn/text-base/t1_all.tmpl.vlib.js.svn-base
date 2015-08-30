@@ -1,0 +1,216 @@
+define(['require','core/Utils.vlib'],function(require,Utils) {
+    var template = (function() {
+
+        // TREE NODE STRUCTURE
+        var Tree = Utils.struct.treeNode;
+
+        var template = new Tree('3d');
+        template.config = {
+            antialias : true,
+            alpha : false,
+            scene : {
+                width : 'auto',
+                height : 'auto'
+            },
+            camera : {
+                x:0,
+                y:0,
+                z:1000
+            }
+        }
+        var control = new Tree('cameraControl');
+        control.config = {
+            controlType : 'tracball',
+                //controlType : 'orbit',
+                pos : {x:0,y:0,z:0}
+            };
+
+            var line = new Tree('lineplot');
+            var dsLine= new Tree('dataset');
+            dsLine.config = {
+                data : [ {
+                    x : 1,
+                    y : -1,
+                    z : 1
+                }, {
+                    x : 1000,
+                    y : -1,
+                    z : -2
+                }, {
+                    x : -4000,
+                    y : -3,
+                    z : -3
+                }]
+            };
+
+            var scatter = new Tree('scatterplot');
+            scatter.config = {
+                scale : {x:400,y:400,z:400},
+                material : {
+                    particleSize : 30,
+                    opacity : 1,
+                    image : './data/disc.png',
+                    transparent : true,
+                    colors : true
+                }
+            }
+            var surface2 = new Tree('surfaceplot');
+            surface2.config = {
+                scale : {x:400,y:400,z:400}
+            }
+
+            var plane = new Tree('plane');
+           plane.config = {
+                segmentsX : 40,
+                segmentsY : 40,
+                xMin : -4110,
+                yMin : 0,
+                zMin : 0,
+                xMax : 0,
+                yMax : 6.85,
+                zMax : 1
+           }
+
+            var data = new Tree('file');
+            data.config = {
+                path : './data/All_KL_Div.gnuplot.dat'
+            }
+             var data2 = new Tree('file');
+            data2.config = {
+                path : './data/All_KL_Div.gnuplot.dat'
+            }
+            var surface = new Tree('surfaceplot');
+            surface.config = {
+                scale : {x:400,y:400,z:200},
+            }
+            var mat1 = new Tree('basicMaterial');
+            mat1.config = {
+                opacity:0.9,
+                transparent:1
+            }
+            var mat2 = new Tree('wireframeMaterial');
+            mat2.config = {
+                opacity:0.8,
+                transparent:1,
+                lineWidth:2
+            }
+            var fun = new Tree('function');
+            fun.config = {
+                zFun : '-1*z'
+            }
+            var fun2 = new Tree('function');
+            fun2.config = {
+                zFun : 'cos(y)'
+            }
+
+            var axes = new Tree('axes');
+            axes.config = {
+                valueRange : true,
+                heatmapRange : true,
+                labels : {
+                    'x' : 'x',
+                    'y' : 'y',
+                    'z' : 'z',
+                    'data' : false
+                },
+                range : {
+                    'x' : 'auto',
+                    'y' : 'auto',
+                    'z' : 2
+                },
+                numUnits : {
+                    'x' : 2,
+                    'y' : 2,
+                    'z' : 13,
+                },
+                raster : {
+                    xy : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    xz : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    yz : {
+                        show : true,
+                        opacity : 0.1
+                    }
+                }
+            };
+            var axes2 = new Tree('axes');
+            axes2.config = {
+                valueRange : false,
+                heatmapRange : false,
+                labels : {
+                    'x' : '',
+                    'y' : '',
+                    'z' : '',
+                    'data' : false
+                },
+                range : {
+                    'x' : 'auto',
+                    'y' : 'auto',
+                    'z' : 2
+                },
+                numUnits : {
+                    'x' : 2,
+                    'y' : 2,
+                    'z' : 13,
+                },
+                raster : {
+                    xy : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    xz : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    yz : {
+                        show : false,
+                        opacity : 0.1
+                    }
+                }
+            };
+            var heatmap = new Tree('heatmapPoints');
+            heatmap.config = {
+                numberRange : {
+                    from : '-0.5',
+                    to : '1.5'
+                },
+                spectrum : {
+                    from : '008000',
+                    to : 'ff0000'
+                }
+            };
+
+
+            data.childs.push(heatmap);
+            data2.childs.push(heatmap);
+            data2.childs.push(fun);
+
+            scatter.childs.push(data2);
+            scatter.childs.push(axes);
+
+            plane.childs.push(fun2);
+            surface2.childs.push(axes2);
+            surface2.childs.push(plane);
+
+            surface.childs.push(data);
+            surface.childs.push(mat1);
+            surface.childs.push(mat2);
+
+            line.childs.push(dsLine);
+
+            template.childs.push(control);
+            template.childs.push(scatter);
+
+            template.childs.push(surface);
+            template.childs.push(surface2);
+
+            template.childs.push(line);
+            return template;
+        })();
+        return template;
+    })

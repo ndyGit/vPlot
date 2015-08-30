@@ -1,0 +1,418 @@
+define(
+	[ 'require', 'config', 'core/AbstractPlugin.vlib', 'core/Utils.vlib', 'three' ],
+	function(require, Config,AbstractPlugin, UTILS, THREE) {
+		/**
+		TODO<br />
+		@class Plugin SurfacePlot
+		@constructor
+		@extends AbstractPlugin
+		**/
+		var Plugin = (function(state) {
+			var name = 'surfaceplot';
+			Plugin.superClass.constuctor.call(this,name);
+			Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+			Plugin.superClass.setType.call(this,Config.PLUGINTYPE.PLOT);
+			/** path to plugin-template file * */
+			Plugin.superClass.setTemplates.call(this,Config.absPlugins+ '/plugins_3d/surfaceplot/templates.js');
+			Plugin.superClass.setIcon.call(this,Config.absPlugins+ '/plugins_3d/surfaceplot/icon.png');
+			Plugin.superClass.setAccepts.call(this,{
+				predecessors : [ Config.PLUGINTYPE.CONTEXT_3D ],
+				 successors : [ Config.PLUGINTYPE.DATA, Config.PLUGINTYPE.AXES, Config.PLUGINTYPE.MATERIAL ]
+			});
+			Plugin.superClass.setDescription.call(this,'Requires: [ '+this.accepts.predecessors.join(', ')+' ] Accepts: [ '+this.accepts.successors.join(', ')+' ]');
+			/** ********************************** */
+			/** PRIVATE VARIABLES * */
+			/** ********************************** */
+			var particleSizeDefault = 10;
+			var opacityDefault = 1;
+			var blendingDefault = false;
+			var colorsDefault = true;
+			var transparentDefault = false;
+			var ambientDefault = '#FFFFFF';
+			var xScaleDefault = 400;
+			var yScaleDefault = 400;
+			var zScaleDefault = 400;
+
+			var dimX = 'auto';
+			var dimY = 'auto';
+
+
+			var x_SCALE_MAX = 400;
+			var x_SCALE_MIN = 0;
+			var y_SCALE_MAX = 400;
+			var y_SCALE_MIN = 0;
+			var z_SCALE_MAX = 400;
+			var z_SCALE_MIN = 0;
+
+			if(state !== undefined){
+				// dimX = state.dimX;
+				// dimY = state.dimY;
+				// x_MAX = state.x_MAX;
+				// x_MIN = state.x_MIN;
+				// y_MAX = state.y_MAX;
+				// y_MIN = state.y_MIN;
+				// z_MAX = state.z_MAX;
+				// z_MIN = state.z_MIN;
+				// x_SCALE_MAX = state.x_SCALE_MAX;
+				// x_SCALE_MIN = state.x_SCALE_MIN;
+				// y_SCALE_MAX = state.y_SCALE_MAX;
+				// z_SCALE_MAX = state.z_SCALE_MAX;
+				// z_SCALE_MIN = state.z_SCALE_MIN;
+			}
+				/**
+				 * @return returns copy of this object
+				 * 			state of public and private variables will be set properly
+				 */
+				 this.deepCopy = function(){
+				 	var privates = {
+				 		// dimX : dimX,
+				 		// dimY : dimY,
+				 		// x_MAX : x_MAX,
+				 		// x_MIN : x_MIN,
+				 		// y_MAX : y_MAX,
+				 		// y_MAX : y_MAX,
+				 		// y_MIN : y_MIN,
+				 		// z_MAX : z_MAX,
+				 		// z_MIN : z_MIN,
+				 		// x_SCALE_MAX : x_SCALE_MAX,
+				 		// x_SCALE_MIN : x_SCALE_MIN,
+				 		// y_SCALE_MAX : y_SCALE_MAX,
+				 		// y_SCALE_MIN : y_SCALE_MIN,
+				 		// z_SCALE_MAX : z_SCALE_MAX,
+				 		// z_SCALE_MIN : z_SCALE_MIN
+
+				 	}
+				 	return new Plugin(undefined);
+				 }
+				 /** ********************************** */
+				 /** PUBLIC VARIABLES * */
+				 /** ********************************** */
+
+				/** ********************************** */
+				 /** PUBLIC METHODS * */
+				 /** ********************************** */
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format:
+				 *         {camera:{x:VALUE,y:VALUE,z:VALUE}}
+				 */
+				 this.getConfigCallback = function(containerId) {
+
+				 	var sortBy = $('#' + containerId + ' #selectSort').find(":selected").val();
+
+				 	var xDim = $('#' + containerId + ' #xDim').val();
+				 	var yDim = $('#' + containerId + ' #yDim').val();
+
+				 	var xScale = $('#' + containerId + ' #xScale').val();
+				 	var yScale = $('#' + containerId + ' #yScale').val();
+				 	var zScale = $('#' + containerId + ' #zScale').val();
+
+				 	var result = {
+				 		sortBy : sortBy,
+				 		scale : {
+				 			'x' : xScale === "" ? xScaleDefault : xScale,
+				 			'y' : yScale === "" ? yScaleDefault : yScale,
+				 			'z' : zScale === "" ? zScaleDefault : zScale
+
+				 		}
+				 	};
+				 	console.log("[ surface ][getConfig] ");
+				 	return result;
+
+				 }
+				/**
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+
+				 	console.log("[ surface ][setConfig] ");
+				 	if (config === "" || config === undefined) {
+				 		config = {
+				 			sortBy : '',
+				 			scale : {}
+				 		};
+				 	}
+
+				 	if(config.scale === undefined){
+				 		config.scale = {};
+				 	}
+
+				 	if (config.sortBy !== undefined) {
+
+				 		$('#' + containerId ).find(' #selectSort').val(config.sortBy);
+
+				 	}
+
+				 	if (config.scale.x !== undefined) {
+				 		$('#' + containerId + ' #xScale').val(config.scale.x);
+				 	} else {
+				 		$('#' + containerId + ' #xScale').val(xScaleDefault);
+				 	}
+				 	if (config.scale.y !== undefined) {
+				 		$('#' + containerId + ' #yScale').val(config.scale.y);
+				 	} else {
+				 		$('#' + containerId + ' #yScale').val(yScaleDefault);
+				 	}
+				 	if (config.scale.z !== undefined) {
+				 		$('#' + containerId + ' #zScale').val(config.scale.z);
+				 	} else {
+				 		$('#' + containerId + ' #zScale').val(zScaleDefault);
+				 	}
+
+
+				 }
+
+				 this.exec = function(config, childs) {
+
+				 	console.log("   EXEC surfaceplot "+JSON.stringify(config)+' c:'+childs.length);
+				 	var result = [];
+
+				 	if (config === '') {
+				 		config = {};
+				 	}
+					// set scaling
+					if (config.hasOwnProperty('scale')) {
+						x_SCALE_MAX = config.scale.x;
+						y_SCALE_MAX = config.scale.y;
+						z_SCALE_MAX = config.scale.z;
+					}
+					var borders = {
+						xMax : 'auto',
+						yMax : 'auto',
+						zMax : 'auto',
+						xMin : 'auto',
+						yMin : 'auto',
+						zMin : 'auto'
+					}
+
+					var data = [];
+					var colors = [];
+					var materials = [];
+					var axesSet = false;
+					var heatmaps = [];
+					/** *********************************** * */
+					/** HANDLE SUCCESSOR PLUGINGS * */
+					/** *********************************** * */
+					var child = undefined;
+					for ( var i = 0; i < childs.length; ++i) {
+						child = childs[i];
+						if(child !== undefined && child.pType !== undefined){
+							if($.inArray(child.pType, this.accepts.successors) != -1){
+								switch(child.pType){
+									case Config.PLUGINTYPE.DATA:
+									var tmpData = child.response.data;
+									var tmpColor = child.response.colorArray
+									if(child.response.heatmap !== undefined){
+										heatmaps.push(child.response.heatmap);
+									}
+									data = data.concat(tmpData);
+									colors = colors.concat(tmpColor);
+
+									break;
+									case Config.PLUGINTYPE.AXES:
+									var callback = child.response.callback;
+									var context = child.response.context;
+									borders.xMax = child.response.rangeX;
+									borders.yMax = child.response.rangeY;
+									borders.zMax = child.response.rangeZ;
+									axesSet = true;
+									break;
+									case Config.PLUGINTYPE.MATERIAL:
+										// sort materials. make sure that wireframe is on the last position
+										// otherwise all other materials will be overruled...
+										// CHECK FOR BETTER SOLUTION!
+										//materials.push(childs[i][key].material);
+										if(child.response.type == 'wireframeMaterial'){
+											materials.push(child.response.material);
+										}else{
+											materials.unshift(child.response.material);
+										}
+										break;
+									}
+								}
+							}else{
+								console.log("pType of child plugin not set!");
+							}
+						}
+						// no data... nothing todo...
+						if(data.length == 0) return;
+
+						/** *********************************** */
+						/** GET MAX VALUES * */
+						/** CHECK RANGE - auto * */
+
+						var minMax = UTILS.C3D.getMinMax(data);
+
+						borders.xMax = borders.xMax  !== 'auto' ? borders.xMax : minMax.xMax;
+						borders.yMax = borders.yMax  !== 'auto' ? borders.yMax : minMax.yMax;
+						borders.zMax = borders.zMax  !== 'auto' ? borders.zMax : minMax.zMax;
+						borders.xMin = borders.xMin  !== 'auto' ? borders.xMin : minMax.xMin;
+						borders.yMin = borders.yMin  !== 'auto' ? borders.yMin : minMax.yMin;
+						borders.zMin = borders.zMin  !== 'auto' ? borders.zMin : minMax.zMin;
+
+						/** *********************************** */
+
+						/** GET PLOT DIMENSION x-y * */
+						var dim = UTILS.C3D.getDimensions(data);
+						dimX = dim.d2;
+						dimY = dim.d1;
+						/** *********************************** */
+
+						/** *********************************** */
+
+						/** SORT DATA? * */
+						if(config.sortBy !== undefined && config.sortBy != ''){
+							data = UTILS.sortBy(data,config.sortBy);
+							var last = null;
+
+						}
+						/** SCALE DATA * */
+						var scaled_data = scale(data,borders);
+
+						/** *********************************** */
+						/** handle axes * */
+						if (axesSet) {
+							var axes = callback.apply(context, [ data, scaled_data,colors,
+								x_SCALE_MAX, y_SCALE_MAX, z_SCALE_MAX, borders, minMax, heatmaps ]);
+							for ( var index = 0; index < axes.length; ++index) {
+							// add axes to scene
+							result.push(axes[index]);
+						}
+					}
+					/** *********************************** */
+					/** APPLY GEOMETRY * */
+
+					var intersectionObjects = [];
+					/*
+					 * convert color array to THREE.COLOR array
+					 */
+					 var threeColors = [];
+					 for ( var index = 0; index < data.length; index++) {
+					 	threeColors[index] = new THREE.Color('#'
+					 		+ colors[index]);
+					 }
+
+
+
+					 var geometry = new THREE.PlaneGeometry(x_SCALE_MAX,
+					 	y_SCALE_MAX, dimX-1, dimY-1);
+
+
+					 geometry.dynamic = true;
+					 geometry.computeFaceNormals();
+					 geometry.computeVertexNormals();
+					 geometry.computeCentroids();
+
+					 for ( var i = 0; i < scaled_data.length; i++) {
+
+					 	geometry.vertices[i].x = scaled_data[i].x;
+					 	geometry.vertices[i].y = scaled_data[i].y;
+					 	geometry.vertices[i].z = scaled_data[i].z;
+
+					 }
+
+					// colorize face vertices
+					geometry.colors = threeColors;
+					// faces are indexed using characters
+					var faceIndices = [ 'a', 'b', 'c', 'd' ];
+					// copy the colors to corresponding positions
+					// in each face's vertexColors array.
+					for ( var i = 0; i < geometry.faces.length; i++) {
+						face = geometry.faces[i];
+						numberOfSides = (face instanceof THREE.Face3) ? 3 : 4;
+						for ( var j = 0; j < numberOfSides; j++) {
+							vertexIndex = face[faceIndices[j]];
+							face.vertexColors[j] = geometry.colors[vertexIndex];
+						}
+					}
+
+
+					var material = new THREE.MeshBasicMaterial({
+						color : 0x000000,
+						wireframe : true,
+						side : THREE.DoubleSide,
+						wireframeLinewidth: 2,
+						transparent : true,
+						opacity: 0.9
+					});
+
+					if(materials.length === 0){
+						materials.push(material);
+					}
+
+					// var bufferGeometry = THREE.BufferGeometryUtils.fromGeometry( geometry,{
+					// 	vertexColors : true
+					// } );
+					var mesh = new THREE.Mesh(geometry);
+					var multiMaterialObject = THREE.SceneUtils.createMultiMaterialObject(
+						mesh.geometry.clone(), materials);
+
+					mesh.castShadow = true;
+					mesh.receiveShadow = false;
+					mesh.geometry.colorsNeedUpdate = true;
+					mesh.position.set(0, 0, 0);
+					mesh.material.side = THREE.DoubleSide;
+					mesh.geometry.__dirtyVertices = true;
+					mesh.geometry.__dirtyNormals = true;
+
+					var intersectionObject = {
+						object		:	mesh,
+						data		:	data,
+						scaledData 	:	scaled_data
+					}
+
+					result.push(multiMaterialObject);
+					intersectionObjects.push(intersectionObject);
+
+					return {
+						pType : this.type,
+						response : result,
+						intersectionObjects	: intersectionObjects
+					};
+
+
+				}
+
+				/** ********************************** */
+				/** PRIVATE METHODS * */
+				/** ********************************** */
+				var scale = function(data,borders) {
+
+					var b2 = {
+						"x_MAX":borders.xMax,
+						"y_MAX":borders.yMax,
+						"z_MAX":borders.zMax,
+						"x_MIN":borders.xMin,
+						"y_MIN":borders.yMin,
+						"z_MIN":borders.zMin,
+						"x_SCALE_MIN" : x_SCALE_MIN,
+						"y_SCALE_MIN" : y_SCALE_MIN,
+						"z_SCALE_MIN" : z_SCALE_MIN,
+						"x_SCALE_MAX" : x_SCALE_MAX,
+						"y_SCALE_MAX" : y_SCALE_MAX,
+						"z_SCALE_MAX" : z_SCALE_MAX,
+					};
+					return UTILS.C3D.scaleLinearToRange(data,b2);
+				}
+
+
+
+
+			});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+
+});

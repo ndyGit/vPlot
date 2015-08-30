@@ -1,0 +1,42 @@
+<script type="text/html" class="pluginConfigForm" id="file">
+	<form class="form-horizontal" role="form">
+		<div class="well">
+			<div id="file-info"class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Selected file</h3>
+				</div>
+				<div class="panel-body">
+					<div>
+						<b>Name:</b><br /><span id="name"></span>
+					</div>
+					<div>
+						<b>Link:</b><br />
+						<a id="link" href="" target="_blank"></a>
+					</div>
+					<div>
+						<b>Coord-Mapping:</b><br /><span id="mapping"></span>
+					</div>
+					<div>
+						<b>Description:</b><br /><span id="description"></span>
+					</div>
+					<div id="path" style="display:none;"></div>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="well">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Files <span id="file-cnt" class="badge">0</span></th>
+					</tr>
+				</thead>
+				<tbody id="dataTableContainer">
+
+				</tbody>
+			</table>
+		</div>
+	</form>
+</script>

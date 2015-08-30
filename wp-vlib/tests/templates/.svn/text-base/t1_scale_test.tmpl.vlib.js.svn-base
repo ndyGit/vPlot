@@ -1,0 +1,183 @@
+define(['require','core/Utils.vlib'],function(require,Utils) {
+    var template = (function() {
+
+        // TREE NODE STRUCTURE
+        var Tree = Utils.struct.treeNode;
+
+        var template = new Tree('3d');
+        template.config = {
+            antialias : true,
+            alpha : false,
+            scene : {
+                width : 'auto',
+                height : 'auto'
+            },
+            camera : {
+                x:0,
+                y:0,
+                z:1000
+            }
+        }
+        var control = new Tree('cameraControl');
+        control.config = {
+            controlType : 'tracball',
+                //controlType : 'orbit',
+                pos : {x:0,y:0,z:0}
+            };
+
+            var scatter = new Tree('scatterplot');
+            scatter.config = {
+                scale : {x:400,y:400,z:400},
+                material : {
+                    particleSize : 50,
+                    opacity : 1,
+                    image : 'data/disc.png',
+                    transparent : true,
+                    colors : true
+                }
+            }
+            var scatter2 = new Tree('scatterplot');
+            scatter.config = {
+                scale : {x:400,y:400,z:400},
+                material : {
+                    particleSize : 50,
+                    opacity : 1,
+                    image : 'data/disc.png',
+                    transparent : true,
+                    colors : true
+                }
+            }
+            var surface = new Tree('surfaceplot');
+            surface.config = {
+                scale : {x:400,y:400,z:400}
+            }
+            var lineplot = new Tree('lineplot');
+            lineplot.config = {
+                lineWidth: 8,
+                opacity: 1,
+                scale : {
+                    'x' : 400,
+                    'y' : 400,
+                    'z' : 400
+                }
+            };
+             var dataset1= new Tree('dataset');
+            dataset1.config = {
+                data : [ {
+                    x : 0,
+                    y : 0,
+                    z : 0
+                }, {
+                    x : 1,
+                    y : 1,
+                    z : 0
+                }]
+            };
+            var dataset2= new Tree('dataset');
+            dataset2.config = {
+                data : [ {
+                    x : 1,
+                    y : 1,
+                    z : 0
+                }, {
+                    x : 2,
+                    y : 2,
+                    z : 0
+                }]
+            };
+            var plane = new Tree('plane');
+           plane.config = {
+                segmentsX : 1,
+                segmentsY : 1,
+                xMin : 0,
+                yMin : 0,
+                zMin : 0,
+                xMax : 1,
+                yMax : 1,
+                zMax : 1
+           }
+           var plane2 = new Tree('plane');
+           plane2.config = {
+                segmentsX : 1,
+                segmentsY : 1,
+                xMin : 0,
+                yMin : 0,
+                zMin : 0,
+                xMax : 1,
+                yMax : 1,
+                zMax : 1
+           }
+            var fun = new Tree('function');
+            fun.config = {
+                zFun : 'x'
+            }
+             var fun2 = new Tree('function');
+            fun2.config = {
+                zFun : 'x'
+            }
+            var fun3 = new Tree('function');
+            fun3.config = {
+                zFun : 'x'
+            }
+
+            var axes = new Tree('axes');
+            axes.config = {
+                valueRange : true,
+                heatmapRange : true,
+                labels : {
+                    'x' : 'x',
+                    'y' : 'y',
+                    'z' : 'z',
+                    'data' : false
+                },
+                range : {
+                    'x' : 'auto',
+                    'y' : 'auto',
+                    'z' : 'auto'
+                },
+                numUnits : {
+                    'x' : '',
+                    'y' : 2,
+                    'z' : 2,
+                },
+                raster : {
+                    xy : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    xz : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    yz : {
+                        show : true,
+                        opacity : 0.1
+                    }
+                }
+            };
+            var color = new Tree('color');
+            color.config = {
+                color : 'FF8C3C'
+            };
+
+
+            plane.childs.push(fun);
+            plane2.childs.push(fun2);
+            dataset1.childs.push(fun3);
+            dataset2.childs.push(color);
+
+            scatter.childs.push(plane);
+            scatter2.childs.push(dataset2);
+            surface.childs.push(plane2);
+            lineplot.childs.push(dataset1);
+
+            scatter2.childs.push(axes);
+            template.childs.push(control);
+            // template.childs.push(scatter);
+            template.childs.push(scatter2);
+            // template.childs.push(surface);
+            // template.childs.push(lineplot);
+            return template;
+        })();
+        return template;
+    })

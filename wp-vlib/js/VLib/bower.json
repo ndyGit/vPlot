@@ -1,0 +1,15 @@
+{
+	"name" : "vPlot",
+	"version" : "1.0.0",
+	"author" : "AG",
+	"description" : "An Interactive information Vizaulization Framework based on THREE.js",
+	"dependencies":{
+		"jquery" : "git://github.com/jquery/jquery.git",
+		"jquery-ui" : "git://github.com/components/jqueryui",
+		"requirejs" : "git://github.com/jrburke/requirejs-bower.git",
+		"bootstrap" : "git://github.com/twbs/bootstrap.git",
+		"underscore" : "git://github.com/jashkenas/underscore.git",
+		"threejs": "r68",
+		"text" : "git://github.com/requirejs/text.git"
+	}
+}

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib
+END
+main.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/main.js
+END
+pluginLoader.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/pluginLoader.js
+END
+main_tests.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/main_tests.js
+END
+stand_alone.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/stand_alone.js
+END
+main_edit_mode.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/main_edit_mode.js
+END
+require.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/require.min.js
+END
+main_edit_mode_tests.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/main_edit_mode_tests.js
+END
+.subl3f0.tmp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/.subl3f0.tmp
+END
+config.vlib.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/config.vlib.js
+END
+main_plot.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repo2/!svn/ver/18/branches/wp-vlib/VLib/js/VLib/main_plot.js
+END

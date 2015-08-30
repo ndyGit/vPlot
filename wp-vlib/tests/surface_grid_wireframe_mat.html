@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>SurfacePlot tests</title>
+	<script src="../js/VLib/require.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="../css/custom-theme/jquery-ui-1.10.0.custom.css" />
+	<link rel="stylesheet" href="../css/pageStyle.css" />
+	<style>
+		.pc{
+			width: 100%;
+
+		}
+		.plot{
+			position: relative;
+			border: 3px solid #EEEEEE;
+			float:left;
+			width:30%;
+			height:300px;
+			margin:15px;
+		}
+	</style>
+</head>
+<body>
+	<h1>SurfacePlot.vlib</h1>
+	<h3>Plugin SurfacePot with Wireframe material.</h3>
+	<h4>Additional plugins: Plane, Function(random), Color, Heatmap</h4>
+	<div class="pc">
+	</div>
+	<script type="text/javascript">
+
+		requirejs.config({
+			appDir: "../",
+			baseUrl: "../js/VLib"
+		});
+		require([
+			'vLib_base',
+			'libs/text!../../tests/templates/wire_o100_w1_surface.vlib',
+			'libs/text!../../tests/templates/wire_o100_w5_surface.vlib',
+			'libs/text!../../tests/templates/wire_o15_w10_surface.vlib',
+			'libs/text!../../tests/templates/wire_hm_o100_w1_surface.vlib',
+			'libs/text!../../tests/templates/wire_hm_o100_w5_surface.vlib',
+			'libs/text!../../tests/templates/wire_hm_o50_w10_surface.vlib',
+			],function(Wrapper
+				){
+				var VLib = Wrapper.vLib;
+				var Plot = Wrapper.vPlot;
+				var v = new VLib({
+					basePath : '../',
+					appPath : 'js/VLib',
+					dataPath : 'data/'
+				});
+
+				var setup = function(){
+					var container = arguments[0];
+					var templates = arguments[1];
+					var plotArray = [];
+					var cId,template;
+					for(var i = 0; i < templates.length ; ++i){
+						plotArray[i] = new Plot();
+						v.registerModule(plotArray[i]);
+
+						cId = 'plotContainer'+i;
+						$(container).append('<div class="plot" id="'+cId+'" ></div>');
+						plotArray[i].init('#'+cId);
+
+						template = JSON.parse(templates[i]);
+						v.load(template,plotArray[i]);
+					}
+				};
+				Array.prototype.shift.apply(arguments);
+				setup('.pc',arguments);
+
+			});
+</script>
+</body>
+</html>

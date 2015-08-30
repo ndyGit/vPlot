@@ -1,0 +1,27 @@
+<script type="text/html" class="groupEditPlot">
+	<div class="group-edit-plot" id="<%- rc.id %>">
+		<ul class="list-group">
+			<li class="list-group-item active">Name</li>
+			<li class="list-group-item">
+				<input id="group-node-name" type="text" class="form-control" placeholder="File" value="<%- rc.name %>">
+			</li>
+			<li class="list-group-item active">Description</li>
+			<li class="list-group-item">
+			<li class="list-group-item">
+				<textarea id="group-node-description" style="width:100%; resize:vertical;" class="form-control" rows="3" ><%- rc.description %></textarea>
+			</li>
+			</li>
+			<li class="list-group-item active">Select</li>
+			<li class="list-group-item">
+				<select class="form-control group-select" id="group-select">
+					<option id="-1" value="-1"></option>
+					<% _.each(rc.plots,function(plot, index){ %>
+					<option id="<%- plot.id %>" value="<%- plot.id %>-<%- index %>">
+						<%- plot.name %> [ <%- plot.pattern %> ]
+					</option>
+					<% }); %>
+				</select>
+			</li>
+		</ul>
+	</div>
+</script>

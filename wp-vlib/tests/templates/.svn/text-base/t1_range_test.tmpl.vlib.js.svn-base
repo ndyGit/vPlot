@@ -1,0 +1,141 @@
+define(['require','core/Utils.vlib'],function(require,Utils) {
+    var template = (function() {
+
+        // TREE NODE STRUCTURE
+        var Tree = Utils.struct.treeNode;
+
+        var template = new Tree('3d');
+        template.config = {
+            antialias : true,
+            alpha : false,
+            scene : {
+                width : 'auto',
+                height : 'auto'
+            },
+            camera : {
+                x:0,
+                y:0,
+                z:1000
+            }
+        }
+        var control = new Tree('cameraControl');
+        control.config = {
+            controlType : 'tracball',
+                //controlType : 'orbit',
+                pos : {x:0,y:0,z:0}
+            };
+
+            var scatter = new Tree('scatterplot');
+            scatter.config = {
+                scale : {x:400,y:400,z:400},
+                material : {
+                    particleSize : 50,
+                    opacity : 1,
+                    image : 'data/disc.png',
+                    transparent : true,
+                    colors : true
+                }
+            }
+            var surface = new Tree('surfaceplot');
+            surface.config = {
+                scale : {x:400,y:400,z:400}
+            }
+            var lineplot = new Tree('lineplot');
+            lineplot.config = {
+                lineWidth: 8,
+                opacity: 1,
+                scale : {
+                    'x' : 400,
+                    'y' : 400,
+                    'z' : 400
+                }
+            };
+             var dataset1= new Tree('dataset');
+            dataset1.config = {
+                data : [ {
+                    x : 0,
+                    y : 0,
+                    z : 0
+                }, {
+                    x : 10,
+                    y : 10,
+                    z : 0
+                }]
+            };
+            var plane = new Tree('plane');
+           plane.config = {
+                segmentsX : 1,
+                segmentsY : 1,
+                xMin : 0,
+                yMin : 0,
+                zMin : 0,
+                xMax : 10,
+                yMax : 10,
+                zMax : 1
+           }
+           var plane2 = new Tree('plane');
+           plane2.config = {
+                segmentsX : 1,
+                segmentsY : 1,
+                xMin : 0,
+                yMin : 0,
+                zMin : 0,
+                xMax : 10,
+                yMax : 10,
+                zMax : 1
+           }
+
+
+            var axes = new Tree('axes');
+            axes.config = {
+                valueRange : true,
+                heatmapRange : true,
+                labels : {
+                    'x' : 'x',
+                    'y' : 'y',
+                    'z' : 'z',
+                    'data' : false
+                },
+                range : {
+                    'x' : 'auto',
+                    'y' : 'auto',
+                    'z' : 'auto'
+                },
+                numUnits : {
+                    'x' : 2,
+                    'y' : 2,
+                    'z' : 2,
+                },
+                raster : {
+                    xy : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    xz : {
+                        show : false,
+                        opacity : 0.1
+                    },
+                    yz : {
+                        show : true,
+                        opacity : 0.1
+                    }
+                }
+            };
+
+
+
+
+
+            scatter.childs.push(plane);
+            surface.childs.push(plane2);
+            lineplot.childs.push(dataset1);
+
+            scatter.childs.push(axes);
+            template.childs.push(control);
+            template.childs.push(scatter);
+            template.childs.push(surface);
+            template.childs.push(lineplot);
+            return template;
+        })();
+        return template;
+    })

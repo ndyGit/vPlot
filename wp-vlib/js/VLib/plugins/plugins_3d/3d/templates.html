@@ -1,0 +1,55 @@
+<script type="text/html" class="pluginConfigForm" id="3d">
+	<ul class="list-group">
+		<form class="form-horizontal" role="form">
+
+			<li class="list-group-item">
+				<h3>Renderer Configuration</h3>
+			</li>
+			<li class="list-group-item">
+
+				<div class="input-group">
+					<span class="input-group-addon"><input type="checkbox" id="antialias"></span>
+					<span class="form-control">Antialias </span>
+				</div>
+				<br/>
+
+
+				<div class="input-group">
+					<span class="input-group-addon"><input type="checkbox" id="alpha"></span>
+					<span class="form-control">Transparent Background </span>
+				</div>
+				<label class="control-label" for="sceneWidth">Scene - width</label>
+				<span class="label label-info">default: auto</span>
+
+				<div class="controls">
+					<input class="form-control" type="text" id="sceneWidth">
+				</div>
+
+
+				<label class="control-label" for="sceneHeight">Scene - Height</label>
+				<span class="label label-info">default: auto</span>
+
+				<div class="controls">
+					<input class="form-control" id="sceneHeight" type="text">
+				</div>
+
+			</li>
+			<li class="list-group-item">
+				<h3>Sky</h3>
+			</li>
+			<li class="list-group-item">
+				<label class="control-label" for="envmapSelect">Environment mapping</label>
+				<div class="controls">
+					<select id="envmapSelect" class="form-control">
+						<option value="none"></option>
+						<option value="milkyway">Milkyway</option>
+						<option value="skybox">Sky</option>
+						<option value="park">Park</option>
+						<option value="parkmed">Park Med</option>
+						<option value="bricks">Bricks</option>
+					</select>
+				</div>
+			</li>
+
+	</ul>
+</script>

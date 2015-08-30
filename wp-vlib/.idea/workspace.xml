@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="125e1026-1990-4076-9c20-31fbda620700" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/groupEditor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/group" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/htmlTemplates" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/FirstPersonCC.vlib.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/plot/MessageController.vlib.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/group/group.vlib.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/htmlTemplates/groupEditFile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/htmlTemplates/groupEditFolder.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/groupEditor/groupEditor.vlib.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/VLib/core/modules/groupEditor/templates.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/wp-database-driver.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/templates.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/templates.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/color/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/color/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/basic/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/basic/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/icon.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/plane.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/plane.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/plane.png" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/plane.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/3d.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/3d.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/AbstractPlugin.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/AbstractPlugin.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/Animation.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/Animation.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/Buffer.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/Buffer.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/Utils.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/Utils.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/VLibMediator.js" afterPath="$PROJECT_DIR$/js/VLib/core/VLibMediator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/Vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/Vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/libs/animFrame.js" afterPath="$PROJECT_DIR$/js/VLib/libs/animFrame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/axes.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/axes.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/basic/basicMaterial.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/basic/basicMaterial.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/bootstrap/dist/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/css/bootstrap/dist/css/bootstrap-theme.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/css/bootstrap/dist/css/bootstrap-theme.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/cameraControl.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/cameraControl.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/bootstrap/js/carousel.js" afterPath="$PROJECT_DIR$/css/bootstrap/js/carousel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_2d/color/color.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_2d/color/color.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/color/color.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/color/color.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/config.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/config.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/controls/controls.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/controls/controls.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/dataset.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/dataset/dataset.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/file.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/file.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/fun.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/fun.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/heatmapPoints.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/heatmapPoints/heatmapPoints.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/libs/jOrgChart_AMD/jquery.jOrgChart.js" afterPath="$PROJECT_DIR$/js/VLib/libs/jOrgChart_AMD/jquery.jOrgChart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/light/light.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/light/light.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/lineplot.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/lineplot.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/makefiles/make_edit.js" afterPath="$PROJECT_DIR$/js/VLib/makefiles/make_edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/makefiles/make_main.js" afterPath="$PROJECT_DIR$/js/VLib/makefiles/make_main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/pageStyle.css" afterPath="$PROJECT_DIR$/css/pageStyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/libs/parser.js" afterPath="$PROJECT_DIR$/js/VLib/libs/parser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/plane.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry/plane.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/plane.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview/plane.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/plot/plot.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/plot/plot.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/pluginLoader.js" afterPath="$PROJECT_DIR$/js/VLib/pluginLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/process.php" afterPath="$PROJECT_DIR$/process.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processFileUpload.php" afterPath="$PROJECT_DIR$/processFileUpload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/libs/rainbow.js" afterPath="$PROJECT_DIR$/js/VLib/libs/rainbow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/makefiles/readme" afterPath="$PROJECT_DIR$/js/VLib/makefiles/readme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/require.min.js" afterPath="$PROJECT_DIR$/js/VLib/require.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/scatterplot.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/scatterplot.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/scenegraph/scenegraph.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/scenegraph/scenegraph.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/surfaceplot.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/surfaceplot.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/controls/templates.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/controls/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/plot/templates.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/plot/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/scenegraph/templates.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/scenegraph/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/toolbox/templates.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/toolbox/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axesCube/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axesCube/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/lineplot/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/templates.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/templates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/templates/templates.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/templates/templates.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/core/modules/toolbox/toolbox.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/core/modules/toolbox/toolbox.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/wireframeMaterial.vlib.js" afterPath="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/wireframeMaterial.vlib.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-vlib.php" afterPath="$PROJECT_DIR$/wp-vlib.php" />
+    </list>
+    <ignored path="wp-vlib.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="wp-vlib" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="vLib_full.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/VLib/vLib_full.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2577">
+              <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scenegraph.vlib.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/VLib/core/modules/scenegraph/scenegraph.vlib.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="9150">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/VLib/libs/vendor/bootstrap/js/modal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4950" max-vertical-offset="4995">
+              <caret line="336" column="3" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="make.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/VLib/makefiles/make.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="1830">
+              <caret line="38" column="37" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-editor.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/wp-editor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="3570">
+              <caret line="19" column="78" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-vlib.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-vlib.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="4845">
+              <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+              <folding>
+                <marker date="1440950593000" expanded="true" signature="7460:7751" placeholder="CREATE TABLE..." />
+                <marker date="1440950593000" expanded="true" signature="7936:8060" placeholder="CREATE TABLE..." />
+                <marker date="1440950593000" expanded="true" signature="8271:8378" placeholder="CREATE TABLE..." />
+                <marker date="1440950593000" expanded="true" signature="8551:8840" placeholder="CREATE TABLE..." />
+                <marker date="1440950593000" expanded="true" signature="9015:9237" placeholder="CREATE TABLE..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/VLib/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="255">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/templates.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/wireframeMaterial.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/basic/basicMaterial.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/getConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/cubemapMaterial.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/templates.html" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/templates.html" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/templates.html" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/getConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/FirstPersonCC.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/cameraControl.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/templates.html" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/3d.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl/getConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/templates.html" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/fun/fun.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/file/setConfig.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/modules/plot/plot.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/AbstractPlugin.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/Framework3D.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/Plot.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/F3DGeometryPlot.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/axes.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/barchartPlot/barchartplot.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/scatterplot.vlib.js" />
+        <option value="$PROJECT_DIR$/tests/plane.html" />
+        <option value="$PROJECT_DIR$/js/VLib/core/modules/groupEditor/groupEditor.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/modules/groupEditor/TreeHandler.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/utils/Utils.TreeHandler.vlib.js" />
+        <option value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/activity/label/LabelController.vlib.js" />
+        <option value="$PROJECT_DIR$/js/wp-group-editor.js" />
+        <option value="$PROJECT_DIR$/js/VLib/vLib_utils.js" />
+        <option value="$PROJECT_DIR$/js/VLib/.bowerrc" />
+        <option value="$PROJECT_DIR$/js/VLib/vLib_base.js" />
+        <option value="$PROJECT_DIR$/wp_vlib_plot_list.php" />
+        <option value="$PROJECT_DIR$/wp_vlib_group_list.php" />
+        <option value="$PROJECT_DIR$/wp_vlib_file_list.php" />
+        <option value="$PROJECT_DIR$/js/VLib/bower.json" />
+        <option value="$PROJECT_DIR$/wp_vlib_edit.php" />
+        <option value="$PROJECT_DIR$/js/VLib/libs/jOrgChart/jquery.jOrgChart.js" />
+        <option value="$PROJECT_DIR$/js/wp-editor.js" />
+        <option value="$PROJECT_DIR$/js/VLib/makefiles/make.js" />
+        <option value="$PROJECT_DIR$/js/VLib/libs/vendor/bootstrap/js/modal.js" />
+        <option value="$PROJECT_DIR$/js/VLib/core/modules/scenegraph/scenegraph.vlib.js" />
+        <option value="$PROJECT_DIR$/wp-vlib.php" />
+        <option value="$PROJECT_DIR$/js/VLib/vLib_full.js" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="2560" />
+    <option name="height" value="1360" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="vendor">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins_3d">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins_3d">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="surfaceplot">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins_3d">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="scatterplot">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins_3d">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="materials">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="wp-vlib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="VLib">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="plugins_3d">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="materials">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="cubemap">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-vlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="editor" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.40936375" />
+    <property name="options.searchVisible" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistory" value="Uti&#10;utils&#10;scenegr&#10;f3dgeo&#10;style&#10;data&#10;file&#10;color&#10;3d&#10;toolbox&#10;js/VLib/scatter" />
+    <property name="SearchEverywhereHistoryKey" value="scene&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/modules/scenegraph/scenegraph.vlib.js&#10;scenegraph&#9;null&#9;null&#10;3d&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/3d/3d.vlib.js&#10;libs/text&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/docs/api/extras/helpers/VertexTangentsHelper.html&#10;Scatter&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/scatterplot/scatterplot.vlib.js&#10;Plot&#9;null&#9;null&#10;Vlib&#9;null&#9;null&#10;Axes&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/axes/axes.vlib.js&#10;Bar&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/barchartPlot/barchartplot.vlib.js&#10;surface&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/surfaceplot/surfaceplot.vlib.js&#10;SurfacePlot&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/surfaceplot/surfaceplot.vlib.js&#10;Framework&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/Framework3D.vlib.js&#10;Wire&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/materials/wireframe/wireframeMaterial.vlib.js&#10;Bas&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/materials/basic/basicMaterial.vlib.js&#10;Lineplot&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/lineplot/lineplot.vlib.js&#10;Abstract&#9;null&#9;null&#10;plot&#9;null&#9;null&#10;camera&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/cameraControl/cameraControl.vlib.js&#10;ImageUt&#9;null&#9;null&#10;imageutils&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/extras/ImageUtils.js&#10;Shaderlib&#9;null&#9;null&#10;EdgesHelper&#9;null&#9;null&#10;box&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/extras/helpers/BoxHelper.js&#10;geome&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/core/Geometry.js&#10;mesh&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/objects/Mesh.js&#10;Geometry&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/core/Geometry.js&#10;Object3d&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/core/Object3D.js&#10;Mesh&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/objects/Mesh.js&#10;Three&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/THREEBufferGeometryPlot.vlib.js&#10;textge&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/extras/geometries/TextGeometry.js&#10;buffer&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/Buffer.vlib.js&#10;box3&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/math/Box3.js&#10;material&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/materials/Material.js&#10;geometry&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/core/Geometry.js&#10;THREE.Vector3&#9;null&#9;null&#10;vector3&#9;null&#9;null&#10;vec&#9;null&#9;null&#10;state&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/state/state.vlib.js&#10;Preview&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/modules/plot/PreviewController.vlib.js&#10;config&#9;null&#9;null&#10;utils&#9;null&#9;null&#10;axes&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/axes/axes.vlib.js&#10;legend&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/plugins/plugins_3d/legend/legend.vlib.js&#10;safeloo&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/utils/Utils.SafeLoop.vlib.js&#10;bufferma&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/BufferManager.vlib.js&#10;Config&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/config.vlib.js&#10;Mater&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/materials/Material.js&#10;THREE&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/libs/three/r68/src/Three.js&#10;Frame&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/Framework3D.vlib.js&#10;data&#9;FILE&#9;file:///Applications/MAMP/htdocs/wp-svn/wp-content/plugins/wp-vlib/js/VLib/core/Data.vlib.js" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="LayoutCode.rearrangeEntriesJavaScript" value="false" />
+    <property name="JavaScriptLanguageLevel" value="ES5" />
+    <property name="JavaScriptPreferStrict" value="true" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="LayoutCode.rearrangeEntriesJavaScript 1.5" value="false" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
+    <property name="LayoutCode.rearrangeEntriesCSS" value="false" />
+    <property name="LayoutCode.rearrangeEntriesPlain text" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/cameraControl" />
+      <recent name="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap" />
+      <recent name="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/activity" />
+      <recent name="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/geometry" />
+      <recent name="$PROJECT_DIR$/js/VLib/plugins/plugins_3d" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" engineId="firefox">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <envs />
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_CLASSES" />
+    <option name="SHOW_TOOLBAR" value="true" />
+  </component>
+  <component name="SvnConfiguration" myUseAcceleration="nothing" cleanupOnStartRun="true">
+    <configuration useDefault="false">$USER_HOME$/.subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/css" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/libs/jOrgChart_AMD" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axesCube" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/legend" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/tests/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/tests/templates" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/css" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/libs/jOrgChart_AMD" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axesCube" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/legend" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/js/VLib/plugins/plugins_3d/preview" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/tests/data" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$/tests/templates" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="125e1026-1990-4076-9c20-31fbda620700" name="Default" comment="" />
+      <created>1410850883697</created>
+      <option name="number" value="Default" />
+      <updated>1410850883697</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="2560" height="1360" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277405" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287858" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15329626" sideWeight="0.20787401" order="2" side_tool="true" content_ui="combo" x="3" y="625" width="296" height="731" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15329626" sideWeight="0.792126" order="0" side_tool="false" content_ui="combo" x="0" y="30" width="299" height="591" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19793072" sideWeight="0.501201" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="123" width="1696" height="782" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32677165" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905138" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3740458" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08967174" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="last" />
+    <option name="LAST_COMMIT_MESSAGE" value="last" />
+  </component>
+  <component name="WordPressConfiguration" doNotAskConfigAgain="true" enabled="true">
+    <wordpressPath>$PROJECT_DIR$/../../..</wordpressPath>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/wireframe/wireframeMaterial.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="2637">
+          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/AbstractPlugin.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4695" max-vertical-offset="7857">
+          <caret line="340" column="53" selection-start-line="340" selection-start-column="53" selection-end-line="340" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/surfaceplot/surfaceplot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21980676" vertical-offset="2922" max-vertical-offset="4962">
+          <caret line="213" column="16" selection-start-line="213" selection-start-column="16" selection-end-line="216" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/Plot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4311" max-vertical-offset="13347">
+          <caret line="315" column="23" selection-start-line="315" selection-start-column="23" selection-end-line="315" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/F3DGeometryPlot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4875" max-vertical-offset="10095">
+          <caret line="325" column="81" selection-start-line="325" selection-start-column="81" selection-end-line="325" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/wp-frontend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5742">
+          <caret line="133" column="32" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_2d/axes/templates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2202">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/setConfig.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.615385" vertical-offset="6915" max-vertical-offset="10441">
+          <caret line="495" column="45" selection-start-line="495" selection-start-column="45" selection-end-line="495" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/getConfig.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1864" max-vertical-offset="4407">
+          <caret line="153" column="38" selection-start-line="153" selection-start-column="26" selection-end-line="153" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/F3DAxes.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="13077">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/axes/axes.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34539473" vertical-offset="7920" max-vertical-offset="10906">
+          <caret line="556" column="134" selection-start-line="556" selection-start-column="134" selection-end-line="556" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/barchartPlot/barchartplot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4995" max-vertical-offset="8082">
+          <caret line="333" column="0" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/Vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024154589" vertical-offset="0" max-vertical-offset="9552">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/modules/plot/plot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060386475" vertical-offset="0" max-vertical-offset="9762">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/vertex.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1527">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/Animation.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2172">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/getConfig.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2172">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/setConfig.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3687">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/materials/cubemap/cubemapMaterial.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3372">
+          <caret line="0" column="148" selection-start-line="0" selection-start-column="142" selection-end-line="0" selection-end-column="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/plane.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7845579" vertical-offset="0" max-vertical-offset="1958">
+          <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/scatterplot/scatterplot.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6287">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/bootstrap/assets/js/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="844">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/modules/groupEditor/groupEditor.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3662">
+          <caret line="0" column="77" selection-start-line="0" selection-start-column="77" selection-end-line="0" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/modules/groupEditor/TreeHandler.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8807">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/utils/Utils.TreeHandler.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8432">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/activity/label/LabelController.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5517">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/wp-database-driver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9567">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/vLib_utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1962">
+          <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/Utils.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.6811595" vertical-offset="0" max-vertical-offset="6747">
+          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/config.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8637">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/wp-group-editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2562">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_shortcode_plot.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1467">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_shortcode_group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1707">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.012077294" vertical-offset="0" max-vertical-offset="1332">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_plot_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27966806" vertical-offset="4658" max-vertical-offset="6440">
+          <caret line="333" column="54" selection-start-line="333" selection-start-column="54" selection-end-line="333" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2412">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_group_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48630705" vertical-offset="4184" max-vertical-offset="6230">
+          <caret line="318" column="23" selection-start-line="318" selection-start-column="23" selection-end-line="318" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_group_editor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2412">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_file_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2614108" vertical-offset="5025" max-vertical-offset="6800">
+          <caret line="356" column="28" selection-start-line="356" selection-start-column="28" selection-end-line="356" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/plugins/plugins_3d/3d/3d.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12284">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/makefiles/make_edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2922">
+          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/vLib_base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13285024" vertical-offset="0" max-vertical-offset="2352">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp_vlib_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3817734" vertical-offset="0" max-vertical-offset="1758">
+          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="255">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/wp-editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4767">
+          <caret line="19" column="78" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/makefiles/make.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="3027">
+          <caret line="38" column="37" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/libs/vendor/bootstrap/js/modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4320" max-vertical-offset="6192">
+          <caret line="336" column="3" selection-start-line="336" selection-start-column="3" selection-end-line="336" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/core/modules/scenegraph/scenegraph.vlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="9150">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-vlib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="4845">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+          <folding>
+            <marker date="1440950593000" expanded="true" signature="7460:7751" placeholder="CREATE TABLE..." />
+            <marker date="1440950593000" expanded="true" signature="7936:8060" placeholder="CREATE TABLE..." />
+            <marker date="1440950593000" expanded="true" signature="8271:8378" placeholder="CREATE TABLE..." />
+            <marker date="1440950593000" expanded="true" signature="8551:8840" placeholder="CREATE TABLE..." />
+            <marker date="1440950593000" expanded="true" signature="9015:9237" placeholder="CREATE TABLE..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/VLib/vLib_full.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2577">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

@@ -1,0 +1,171 @@
+define(
+	[ 'require', 'config', 'jquery', 'underscore', 'jquery_ui' ],
+	function(require, Config, $, _) {
+		/**
+			TODO<br />
+			@module Toolbox
+			@class Toolbox
+			**/
+			var module = (function() {
+				var _name = 'toolbox';
+				// TODO: REFACTOR
+				var _templates = Config.absModules+'/toolbox/templates.js';
+				var _plugins = null;
+
+				var isRegisterd = function() {
+					return (typeof module.subscribe === 'function')
+					&& (typeof module.publish === 'function');
+				}
+				var _init = function(container) {
+					if (isRegisterd()) {
+						this.container = $(container);
+						// inject templates
+						module.publish(Config.CHANNEL_INJECT_SCRIPTTEMPLATE,{url : _templates});
+
+						/** *************************************** */
+						/* CALL YOUR FUNCTIONS HERER */
+						/** *************************************** */
+						addListener();
+
+						// get plugins from core
+						//console.log('[ toolbox ][ requesting plugins ]');
+						module.publish(Config.CHANNEL_REQUEST_PLUGINS,
+						{
+							src : _name
+						});
+						module.publish(Config.CHANNEL_INFO,'<i>DRAG</i> plugins from Toolbox and <i>DROP</i> them into the SceneGraph.');
+						// module.publish('drop',{x:10,y:20});
+						/** *************************************** */
+					} else {
+						throw 'Module [ '
+						+ this.name
+						+ ' ] not registered! Use VLib.registerModule(obj) first.';
+					}
+
+				};
+				/** *************************************** */
+				/* ADD LISTENERS HERE */
+				/** *************************************** */
+				var addListener = function() {
+					//console.log("[ " + module.name + " ] add listener ");
+					module.subscribe(Config.CHANNEL_RESPOND_PLUGINS,
+						respondPluginhandle);
+
+					module.subscribe(Config.CHANNEL_SCENEGRAPH_CONTEXT,
+						scenegraphContextHandle);
+
+				}
+
+				/* LISTENERS */
+
+				/*
+				 *	@param obj Object
+				 *		{
+				 *			context	: node.treeNode.type
+				 *		}
+				 **/
+				 var scenegraphContextHandle = function(obj){
+				 	//console.log("[ toolbox ][ scenegraphContextHandle] "+JSON.stringify(obj));
+				 	updateGui(obj.context);
+				 }
+				 var respondPluginhandle = function(obj) {
+				 	if (obj.target != _name)
+				 		return;
+				 	//console.log('[ toolbox ][ handle incoming plugins ]');
+				 	_plugins = obj.plugins;
+					//module.container.append(" " + JSON.stringify(obj.plugins));
+					// add gui elements after plugin list has been loaded
+					updateGui();
+					//updateGui(Config.PLUGINTYPE.CONTEXT_3D);
+				}
+
+				var updateGui = function(context) {
+
+					var pluginsToShow = [];
+					if(!context){
+						for(var key in _plugins){
+							if((_plugins[key].type === Config.PLUGINTYPE.CONTEXT_3D) || (_plugins[key].type === Config.PLUGINTYPE.CONTEXT_2D)){
+								pluginsToShow.push(_plugins[key]);
+							}
+						}
+					}else{
+
+						for(var key in _plugins){
+							if((_plugins[key].context === context) && (_plugins[key].type !== Config.PLUGINTYPE.CONTEXT_3D &&
+								_plugins[key].type !== Config.PLUGINTYPE.CONTEXT_2D)){
+								pluginsToShow.push(_plugins[key]);
+						}
+					}
+				}
+
+				_.templateSettings.variable = "rc";
+					// get template code
+					var templateData = {
+						title : 'Toolbox',
+						plugins : pluginsToShow
+					}
+
+					var template = _.template($("script.pluginListContainer")
+						.html());
+
+					// add templates to container
+					$('.plugin').draggable('destroy');
+					module.container.html(template(templateData));
+
+					// add drag beahvior
+					$('.plugin').draggable({
+						cursor : 'move',
+						helper : function() {
+							var id = $(this).attr('id');
+							var currentIcon = $('#'+id+" img").attr('src');
+							//console.log(currentIcon);
+							_.templateSettings.variable = "rc";
+							var template = _.template($("script.pluginDragHelperContainer").html());
+							return template({icon:currentIcon,name:id});
+						},
+						stop : dropListener
+					});
+
+					// add tooltip
+					$( ".plugin" ).tooltip({
+						position: {
+							my: "right-15 center",
+							at: "left center",
+							using: function( position, feedback ) {
+								$( this ).css( position );
+								$( "<div>" )
+								.addClass( "arrow right" )
+								.addClass( feedback.vertical )
+								.addClass( feedback.horizontal )
+								.appendTo( this );
+							}
+						}
+					});
+				}
+				var dragHelper = function(event) {
+					var id = $(this).attr('id');
+					var currentIcon = $('#'+id+" img").attr('src');
+					//console.log(currentIcon);
+					_.templateSettings.variable = "rc";
+					var template = _.template($("script.pluginDragHelperContainer").html());
+					return template({icon:currentIcon});
+				}
+				var dropListener = function(event, ui) {
+					var id = $(this).attr("id");
+					var offsetXPos = parseInt(ui.offset.left);
+					var offsetYPos = parseInt(ui.offset.top);
+					//console.log('[ toolbox ]'+" drop: x: "+offsetXPos+" y: "+offsetYPos);
+					module.publish(Config.CHANNEL_DROP,{plugin:id,x:offsetXPos,y:offsetYPos});
+
+				}
+
+				/* public */
+				return {
+					name : _name,
+					init : _init
+
+				}
+			})();
+
+			return module;
+		});

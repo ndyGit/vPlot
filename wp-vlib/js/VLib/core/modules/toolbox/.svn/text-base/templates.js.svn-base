@@ -1,0 +1,21 @@
+<script type="text/html" class="pluginListContainer">
+<div class="pluginListContainer">
+<h2> <%- rc.title %> </h2>
+
+<% _.each(rc.plugins,function(plugin){ %>
+
+	<div id="plugin-<%- plugin.type %>-<%- plugin.name %>" class="plugin btn btn-large" title="<%-plugin.description%>">
+	<div class="btn-group">
+	<img class="pluginIcon img-circle" src="<%- plugin.icon %>" alt="<%- plugin.type %>"/><br />
+	<%- plugin.name %>
+	</div>
+	</div>
+	<% }); %>
+</div>
+
+</script>
+<script type="text/html" class="pluginDragHelperContainer">
+<div id="test" class="pluginDrag btn btn-inverse">
+<img class="pluginIcon img-rounded"src="<%- rc.icon %>" alt="<%- rc.name %>"/>
+</div>
+</script>

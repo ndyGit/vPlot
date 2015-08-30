@@ -1,0 +1,476 @@
+@CHARSET "UTF-8";
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    font-size: 14px !important;
+}
+
+.jumbotron {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-align: center;
+}
+
+.vlib-editor {
+    padding: 0px!important;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    heigth: 100%;
+}
+
+h4 {
+    margin-top: 25px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 10px;
+}
+
+.editor-grid {
+    padding: 0px;
+    margin: 0px;
+    background-color: #FFFFFF;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.plugin {
+    text-align: center;
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    list-style: none;
+    background-color: #EEEEEE;
+}
+
+.pluginDrag {
+    background-color: white;
+    z-index: 1001;
+}
+
+.treeRow {
+    width: 100%;
+    height: 150px;
+    background: gray;
+    margin: 5px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+}
+
+.treeCol {
+    background-color: white;
+    width: 50px;
+    heigth: 100%;
+}
+
+.dropRow {
+    width: 100%;
+    height: 50px;
+    border: 1px dashed gray;
+}
+
+.element {
+    height: 50px;
+    line-height: 3em;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+}
+
+.treeNode {
+    display: inline-block;
+    padding: 2px;
+    float: left;
+}
+
+.pluginIcon {
+    max-width: 35px;
+    max-height: 100%;
+    color: gray;
+}
+.pluginIconSmall {
+    color: gray;
+    max-height: 100%;
+    max-width: 30px;
+    margin: 3px;
+}
+
+.jOrgChart {
+    margin: 10px;
+    padding: 20px;
+    overflow: scroll;
+}
+
+.node p {
+    font-family: tahoma;
+    font-size: 10px;
+    line-height: 11px;
+    padding: 2px;
+}
+
+.jOrgChart .line {
+    height: 20px;
+    width: 4px;
+}
+
+.jOrgChart .down {
+    background-color: #000000;
+    margin: 0 auto;
+}
+
+.jOrgChart .top {
+    border-top: 3px solid #000000;
+}
+
+.jOrgChart .left {
+    border-right: 4px solid #000000;
+}
+
+.jOrgChart .right {
+    border-left: 4px solid #000000;
+}
+
+.jOrgChart table {
+    width: 100%;
+}
+
+.jOrgChart td {
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+}
+
+.jOrgChart .node {
+    color: #000000;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    margin: 0 2px;
+    z-index: 10;
+}
+
+.drag-active {
+    border-style: dotted !important;
+}
+
+.drop-hover {
+    border-color: #E05E00 !important;
+    border-style: solid !important;
+}
+
+.form-horizontal {
+    position: relative;
+    padding: 10px;
+}
+
+table, th {
+    text-align: center;
+}
+
+.slider-red, .slider-green, .slider-blue {
+    margin: 15px;
+}
+
+.slider-red .ui-slider-range {
+    background: #ef2929 !important;
+}
+
+.slider-red .ui-slider-handle {
+    border-color: #ef2929 !important;
+}
+
+.slider-green .ui-slider-range {
+    background: #8ae234 !important;
+}
+
+.slider-green .ui-slider-handle {
+    border-color: #8ae234 !important;
+}
+
+.slider-blue .ui-slider-range {
+    background: #729fcf !important;
+}
+
+.slider-blue .ui-slider-handle {
+    border-color: #729fcf !important;
+}
+
+.plotControls {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 1000;
+}
+
+.vPlot-BaseContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.vPlot-BaseContainer:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white
+}
+
+.vPlot-BaseContainer:-moz-full-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white
+}
+
+.vPlot-BaseContainer:-ms-full-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white
+}
+
+.vPlot-BaseContainer:-o-full-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white
+}
+
+.vPlot-BaseContainer:full-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white
+}
+
+
+
+#wpwrap {
+    background-color: white;
+}
+
+.vlib-img-container {
+    padding-top: 10px;
+    position: relative;
+    width: 35%;
+    border: 1px dashed #D7D7D7;
+}
+
+.center {
+    text-align: center;
+    width: 100%;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+.plot-group ul {
+    padding-left: 5px;
+}
+
+.plot-group li {
+    list-style: circle inside none;
+    padding-left: 5px;
+}
+
+.tree {
+}
+
+.tree-base {
+    margin: 0;
+    padding: 0;
+}
+
+.tree .tree-icon {
+    color: #454545;
+    padding-right: 5px;
+}
+
+.panel-body {
+    position: relative;
+}
+
+.vlib-group-container {
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    width: 20px;
+    z-index: 1000;
+}
+
+.toggle-group {
+    background-color: white;
+    display: none;
+    margin-top: 7px;
+    padding: 5px;
+    position: absolute;
+}
+
+.tree li {
+    margin: 0 0 2px;
+    list-style-type: none;
+}
+
+.tree ul {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.tree .list-group-item {
+    padding-top: 2px !important;
+    padding-bottom: 6px !important;
+}
+
+.tree a {
+    padding: 5px;
+    position: relative;
+}
+
+.file-table-label {
+    text-align: right;
+    width: 15%;
+    font-weight: bold;
+    color: #428bca;
+}
+
+.file-table-value {
+    text-align: left;
+    width: auto;
+}
+
+.plot-panel {
+    padding: 0px;
+}
+
+.toggle-plot-container {
+    cursor: pointer;
+}
+
+.frontend-panel-heading {
+    margin: 0px !important;
+}
+
+.vlib-base-panel .panel-heading {
+    padding: 0px !important;
+}
+
+
+.vplot-logo-container {
+    color: #D7D7D7;
+    font-family: Avant Garde, Avantgarde, Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+}
+
+#plotMessage {
+    display: block;
+    overflow-y: hidden;
+    padding-left: 20%;
+    padding-top: 20px;
+    position: absolute;
+    width: 80%;
+    z-index: 3;
+}
+
+.vPlot-BaseContainer {
+    position: relative;
+}
+
+.alert {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding-left: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.vlib-plot-container {
+    width: auto;
+    height:auto;
+    position: relative;
+    display: inline-block
+}
+
+.override-size {
+    min-width: 0px !important;
+    min-height: 0px !important;
+}
+
+.thumbnail .caption {
+    padding: 10px !important;
+}
+
+.thumbnail .caption .pattern-container {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin : 10px;
+}
+
+.thumbnail .caption .pattern {
+    float: left;
+    margin: 1px;
+}
+.label-primary, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger{
+    text-shadow: none!important;
+}
+.dataset-panel input{
+    text-align: center;
+    font-weight: bold;
+}
+textarea{
+    resize: vertical!important;
+    width: 100%;
+}
+.vplot-label{
+    min-width: 100px;
+    width:auto;
+    height:auto;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+
+}
+
+#plotPreview{
+    position: absolute;
+    display: none;
+    width:100%;
+    height:100%;
+    z-index: 2;
+}
+
+#plotPreview .preview-image{
+    width: 100%;
+}
+#plotPreview #preview-go-left{
+
+}
+#plotPreview #preview-go-right{
+
+}

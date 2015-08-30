@@ -1,0 +1,1 @@
+{"sceneGraph":{"id":"3d_f81bf53f-b111-4d98-b5fc-3bff449c118a","name":"3d","config":{"container":"vPlot-render-vPlot","scene":{"width":"auto","height":"auto"},"camera":{"position":{"x":800,"y":800,"z":800},"rotation":{"x":-0.9,"y":0.9,"z":2.5},"up":{"x":0,"y":1,"z":0}},"alpha":false,"antialias":true},"childs":[]},"name":"asd","description":"default"}

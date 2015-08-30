@@ -1,0 +1,294 @@
+define(
+	[ 'require', 'config','core/AbstractPlugin.vlib','core/Utils.vlib', 'libs/rainbow' ],
+	function(require, Config,AbstractPlugin, UTILS, r) {
+		/**
+		TODO<br />
+		@class Plugin Heatmap
+		@constructor
+		@extends AbstractPlugin
+		**/
+		var Plugin = (function(state) {
+			var name = 'heatmapPoints';
+			Plugin.superClass.constuctor.call(this,name);
+			Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+			Plugin.superClass.setType.call(this,Config.PLUGINTYPE.COLOR);
+			/** path to plugin-template file * */
+			Plugin.superClass.setTemplates.call(this,Config.absPlugins+ '/plugins_3d/heatmapPoints/templates.js');
+			Plugin.superClass.setIcon.call(this,Config.absPlugins+ '/plugins_3d/heatmapPoints/icon.png');
+			Plugin.superClass.setAccepts.call(this,{
+				predecessors : [ Config.PLUGINTYPE.DATA ],
+				successors : [  ]
+			});
+			Plugin.superClass.setDescription.call(this,'Requires: [ '+this.accepts.predecessors.join(', ')+' ] Accepts: [ '+this.accepts.successors.join(', ')+' ]');
+			/** ********************************** */
+			/** PRIVATE VARIABLES * */
+			/** ********************************** */
+			var numberRangeFromDefault = 0;
+			var numberRangeToDefault = 1;
+			var spectrumFromDefault = '008000';
+			var spectrumToDefault = 'ff0000';
+			if(state !== undefined){
+				numberRangeFromDefault = state.numberRangeFromDefault;
+				numberRangeToDefault = state.numberRangeToDefault;
+				spectrumFromDefault = state.spectrumFromDefault;
+				spectrumToDefault = state.spectrumToDefault;
+			}
+			/** ********************************** */
+			/** PUBLIC VARIABLES * */
+			/** ********************************** */
+			this.config = {
+				spectrum : {
+					from : spectrumFromDefault,
+					to : spectrumToDefault
+				},
+				numberRange : {
+					from : numberRangeFromDefault,
+					to : numberRangeToDefault
+				}
+			};
+
+
+			/** ********************************** */
+			/** PUBLIC METHODS * */
+			/** ********************************** */
+			this.deepCopy = function(){
+				var privates = {
+					numberRangeFromDefault : numberRangeFromDefault,
+					numberRangeToDefault : numberRangeToDefault,
+					spectrumFromDefault : spectrumFromDefault,
+					spectrumToDefault : spectrumToDefault
+				}
+				return new Plugin(privates);
+			}
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format: { spectrum : {from: spectrumFrom,
+				 *         to : spectrumTo }, numberRange : { from : numberFrom,
+				 *         to : numberTo } }
+				 */
+				 this.getConfigCallback = function(containerId) {
+				 	var spectrumFrom = $(
+				 		'#' + containerId + ' #colorFrom')
+				 	.val();
+				 	var spectrumTo = $(
+				 		'#' + containerId + ' #colorTo')
+				 	.val();
+				 	var numberFrom = $(
+				 		'#' + containerId + ' #numberFrom')
+				 	.val();
+				 	var numberTo = $(
+				 		'#' + containerId + ' #numberTo')
+				 	.val();
+
+
+				 	var result = {
+				 		spectrum : {
+				 			from : spectrumFrom,
+				 			to : spectrumTo
+				 		},
+				 		numberRange : {
+				 			from : numberFrom,
+				 			to : numberTo
+				 		}
+
+				 	};
+				 	console.log("[ heatmap ][getConfig] " + JSON.stringify(result));
+				 	return result;
+				 }
+				/**
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+
+				 	if (config === "") {
+
+				 		config = {
+				 			spectrum : {
+				 				from : spectrumFromDefault,
+				 				to : spectrumToDefault
+				 			},
+				 			numberRange : {
+				 				from : numberRangeFromDefault,
+				 				to : numberRangeToDefault
+				 			}
+				 		};
+				 	}
+				 	if(config.spectrum === undefined){
+				 		config.spectrum = {
+				 			from : spectrumFromDefault,
+				 			to : spectrumToDefault
+				 		}
+				 	}
+				 	if(config.numberRange === undefined){
+				 		config.numberRange = {
+				 			from : numberRangeFromDefault,
+				 			to : numberRangeToDefault
+				 		}
+				 	}
+
+				 	$('#' + containerId + ' #colorFrom')
+				 	.val(config.spectrum.from);
+				 	$('#' + containerId + ' #colorTo').val(
+				 		config.spectrum.to);
+				 	$('#' + containerId + ' #numberFrom')
+				 	.val(config.numberRange.from);
+				 	$('#' + containerId + ' #numberTo')
+				 	.val(config.numberRange.to);
+
+				 	var hexFromRGB = function(r, g, b) {
+				 		var hex = [
+				 		r.toString( 16 ),
+				 		g.toString( 16 ),
+				 		b.toString( 16 )
+				 		];
+				 		$.each( hex, function( nr, val ) {
+				 			if ( val.length === 1 ) {
+				 				hex[ nr ] = "0" + val;
+				 			}
+				 		});
+				 		return hex.join( "" ).toUpperCase();
+				 	}
+				 	var hexToRgb = function(value) {
+				 		var hex = '#'+value;
+				 		var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+				 		hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+				 			return r + r + g + g + b + b;
+				 		});
+
+				 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+				 		return result ? {
+				 			r: parseInt(result[1], 16),
+				 			g: parseInt(result[2], 16),
+				 			b: parseInt(result[3], 16)
+				 		} : null;
+				 	}
+
+
+				 	var refreshSwatchFrom = function() {
+				 		var red = $( "#fromRed" ).slider( "value" ),
+				 		green = $( "#fromGreen" ).slider( "value" ),
+				 		blue = $( "#fromBlue" ).slider( "value" ),
+				 		hex = hexFromRGB( red, green, blue );
+				 		$( "#fromSwatch" ).css( "background-color", "#" + hex );
+				 		$('#' + containerId).find('#colorFrom').val(hex);
+				 	}
+				 	var refreshSwatchTo = function() {
+				 		var red = $( "#toRed" ).slider( "value" ),
+				 		green = $( "#toGreen" ).slider( "value" ),
+				 		blue = $( "#toBlue" ).slider( "value" ),
+				 		hex = hexFromRGB( red, green, blue );
+				 		$( "#toSwatch" ).css( "background-color", "#" + hex );
+				 		$('#' + containerId).find('#colorTo').val(hex);
+				 	}
+
+				 	var fromRed = 255;
+				 	var fromGreen = 140;
+				 	var fromBlue = 60;
+				 	var fromRGB = hexToRgb(config.spectrum.from);
+				 	fromRed = fromRGB.r;
+				 	fromGreen = fromRGB.g;
+				 	fromBlue = fromRGB.b;
+				 	var toRed = 255;
+				 	var toGreen = 140;
+				 	var toBlue = 60;
+				 	var toRGB = hexToRgb(config.spectrum.to);
+				 	toRed = toRGB.r;
+				 	toGreen = toRGB.g;
+				 	toBlue = toRGB.b;
+
+				 	$( "#fromRed, #fromGreen, #fromBlue" ).slider({
+				 		orientation: "horizontal",
+				 		range: "min",
+				 		max: 255,
+				 		value: 127,
+				 		slide: refreshSwatchFrom,
+				 		change: refreshSwatchFrom
+				 	});
+				 	$( "#toRed, #toGreen, #toBlue" ).slider({
+				 		orientation: "horizontal",
+				 		range: "min",
+				 		max: 255,
+				 		value: 127,
+				 		slide: refreshSwatchTo,
+				 		change: refreshSwatchTo
+				 	});
+
+				 	$( "#fromRed" ).slider( "value", fromRed );
+				 	$( "#fromGreen" ).slider( "value", fromGreen );
+				 	$( "#fromBlue" ).slider( "value", fromBlue );
+
+				 	$( "#toRed" ).slider( "value", toRed );
+				 	$( "#toGreen" ).slider( "value", toGreen );
+				 	$( "#toBlue" ).slider( "value", toBlue );
+
+				 }
+				 this.exec = function(c, childs) {
+				 	if (c !== '' && c !== undefined)
+				 		this.config = c;
+
+				 	console.log("[ heatmap ] \t\t EXEC");
+
+					//console.log("[ heatmap ][ config ] "+JSON.stringify(config));
+					return {
+						pType : this.type,
+						response : {
+							callback 	: this.colorCallback,
+							context : this,
+							heatmap : this.config
+						}
+					};
+
+				}
+				/**
+				 * config = object config.data = data array config.numberRange =
+				 * {from:<MINVALUE>,to:<MAXVALUE>} config.spectrum = {from:<COLOR>,to:<COLOR>}
+				 * (optional. default: from:blue to:red)
+				 */
+				 this.colorCallback = function(data) {
+					//console.log("[ heatmap ] colorCallback");
+
+					var minValue = this.config.numberRange.from === undefined ? this.numberRangeFromDefault
+					: this.config.numberRange.from;
+					var maxValue = this.config.numberRange.to === undefined ? this.numberRangeToDefault
+					: this.config.numberRange.to;
+					var fromColor = this.config.spectrum.from === undefined ? this.spectrumFromDefault
+					: this.config.spectrum.from;
+					var toColor = this.config.spectrum.to === undefined ? this.spectrumToDefault
+					: this.config.spectrum.to;
+					var colorArray = [];
+
+					if (data === undefined) {
+						return;
+					}
+
+					// requires( 'libs/rainbow');
+					var rainbow = new Rainbow();
+					rainbow.setNumberRange(parseFloat(minValue), parseFloat(maxValue));
+					rainbow.setSpectrum(fromColor, toColor);
+					var range = maxValue - minValue;
+					for ( var i = 0; i < data.length; ++i) {
+						colorArray[i] = rainbow.colourAt(data[i].z);
+					}
+
+					return colorArray;
+				}
+
+
+			});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+
+});

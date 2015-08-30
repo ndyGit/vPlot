@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../plugins/plugins_3d/3d/3d.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../plugins/plugins_3d/3d/3d.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define(
+	[ &#x27;require&#x27;, &#x27;config&#x27;, &#x27;core/utils.vlib&#x27;, &#x27;core/AbstractPlugin.vlib&#x27;, &#x27;three&#x27;, &#x27;jquery&#x27;,&#x27;libs/Detector&#x27;,&#x27;libs/stats&#x27;,&#x27;libs/animFrame&#x27; ],
+	function(require, Config,UTILS, AbstractPlugin, THREE, $) {
+		&#x27;use strict&#x27;;
+			/**
+			TODO&lt;br /&gt;
+			@class Plugin 3D
+			@constructor
+			@extends AbstractPlugin
+			**/
+
+			var Plugin = (function(state) {
+				var name = &#x27;3d&#x27;;
+				Plugin.superClass.constuctor.call(this,name);
+				Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+				Plugin.superClass.setType.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+				/** path to plugin-template file * */
+				Plugin.superClass.setTemplates.call(this,Config.absPlugins+ &#x27;/plugins_3d/3d/templates.js&#x27;);
+				Plugin.superClass.setIcon.call(this,Config.absPlugins+ &#x27;/plugins_3d/3d/icon.png&#x27;);
+				Plugin.superClass.setAccepts.call(this,{
+					predecessors : [ Config.PLUGINTYPE.ROOT ],
+					successors : [ Config.PLUGINTYPE.PLOT,
+					Config.PLUGINTYPE.LIGHT, Config.PLUGINTYPE.CAMERA ]
+				});
+				Plugin.superClass.setDescription.call(this,&#x27;Requires: [ &#x27;+this.accepts.predecessors.join(&#x27;, &#x27;)+&#x27; ] Accepts: [ &#x27;+this.accepts.successors.join(&#x27;, &#x27;)+&#x27; ]&#x27;);
+
+				/** ********************************** */
+				/** PRIVATE VARIABLES * */
+				/** ********************************** */
+
+				var animationFrameId;
+				var sceneHeightDefault = &#x27;auto&#x27;;
+				var sceneWidthDefault = &#x27;auto&#x27;;
+				var container = $(&#x27;body&#x27;);
+
+				var camXDefault = 0;
+				var camYDefault = 0;
+				var camZDefault = 1000;
+
+				var sceneObjects = [];
+				var stats = null;
+				var camera = null;
+				//camera control callback
+				var cccall;
+				//camera control context
+				var cccon;
+				var scene = null;
+				var renderer = null;
+				var controls = null;
+				var clock = null;
+				var running = false;
+
+				// var mouseX, mouseY, projector;
+				// var intersectionObjects = [];
+				// var intersectionObjectsData = [];
+
+				if(state !== undefined){
+					sceneHeightDefault = state.sceneHeightDefault;
+					sceneWidthDefault = state.sceneWidthDefault;
+					container = state.container;
+					camXDefault = state.camXDefault;
+					camYDefault = state.camYDefault;
+					camZDefault = state.camZDefault;
+					camera = state.camera;
+					scene = state.scene;
+					renderer = state.renderer;
+					controls = state.controls;
+					clock = state.clock;
+					running = state.running;
+
+				}
+				/** ********************************** */
+				/** PUBLIC VARIABLES * */
+				/** ********************************** */
+
+				/** ********************************** */
+				/** PUBLIC METHODS * */
+				/** ********************************** */
+				this.deepCopy = function(){
+					var privates = {
+						sceneHeightDefault	: sceneHeightDefault,
+						sceneWidthDefault	: sceneWidthDefault,
+						container			: container,
+						camXDefault		: camXDefault,
+						camYDefault		: camYDefault,
+						camZDefault		: camZDefault,
+						camera		: camera,
+						scene		: scene,
+						renderer	: renderer,
+						controls	: controls,
+						clock		: clock,
+						running		: running,
+							// no need to copy state of intersection stuff. they are just short-time buffers
+						};
+						return new Plugin(privates);
+					};
+				/**
+				 * Takes inserted configuration from the plugin-template and
+				 * returns the parameters as JSON-config-file
+				 *
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 *
+				 * @return config file format:
+				 *         {camera:{x:VALUE,y:VALUE,z:VALUE}}
+				 */
+				 this.getConfigCallback = function(containerId) {
+
+					var c = $(&#x27;#&#x27;+containerId);
+					var antialias = c.find(&#x27;#antialias&#x27;).is(&#x27;:checked&#x27;);
+					var alpha = c.find(&#x27;#alpha&#x27;).is(&#x27;:checked&#x27;);
+
+					var sceneWidth = c.find(&#x27;#sceneWidth&#x27;).val();
+					var sceneHeight = c.find(&#x27;#sceneHeight&#x27;).val();
+					var camX = c.find(&#x27;#camX&#x27;).val();
+					var camY = c.find(&#x27;#camY&#x27;).val();
+					var camZ = c.find(&#x27;#camZ&#x27;).val();
+
+					if(camX === &#x27;&#x27; || camX === undefined){
+						camX = camXDefault;
+					}
+					if(camY === &#x27;&#x27; || camY === undefined){
+						camY = camYDefault;
+					}
+					if(camZ === &#x27;&#x27; || camZ === undefined){
+						camZ = camZDefault;
+					}
+					var result = {
+						antialias : antialias,
+						alpha : alpha,
+						scene : {
+							width : sceneWidth,
+							height : sceneHeight
+						},
+						camera : {
+							x : camX ,
+							y : camY ,
+							z : camZ
+						}
+					};
+					console.log(&#x27;[ 3d ][getConfig] &#x27; + JSON.stringify(result));
+					return result;
+				 };
+				/*
+				 * Takes arguments from config and inserts them to the
+				 * plugin-template
+				 *
+				 * @param config
+				 *            plugin config file
+				 * @param containerId
+				 *            parent container where the plugin-template got
+				 *            added
+				 */
+				 this.setConfigCallback = function(config, containerId) {
+
+					var c = $(&#x27;#&#x27;+containerId);
+					if (config === undefined ){
+						config = {
+							scene : {width:&#x27;auto&#x27;,height:&#x27;auto&#x27;},
+							camera : {x:camXDefault,y:camYDefault,z:camZDefault},
+							alpha : false,
+							antialias : true
+						};
+					}
+					if(config.scene === undefined){
+						config.scene =  {width:&#x27;auto&#x27;,height:&#x27;auto&#x27;};
+					}
+					if(config.camera === undefined){
+						config.camera =  {x:0,y:0,z:1000};
+					}
+					if (config.antialias !== undefined) {
+						if(config.antialias === true){
+							c.find(&#x27;#antialias&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+						}
+					}
+					if (config.alpha !== undefined) {
+						if(config.alpha === true){
+							$(&#x27;#&#x27; + containerId + &#x27; #alpha&#x27;).attr(&#x27;checked&#x27;,&#x27;checked&#x27;);
+						}
+					}
+					if (config.scene.width !== undefined) {
+						c.find(&#x27;#sceneWidth&#x27;)
+						.val(config.scene.width);
+					} else {
+						c.find(&#x27;#sceneWidth&#x27;)
+						.val(sceneWidthDefault);
+					}
+					if (config.scene.height !== undefined) {
+						c.find(&#x27;#sceneHeight&#x27;)
+						.val(config.scene.height);
+					} else {
+						c.find(&#x27;#sceneHeight&#x27;)
+						.val(sceneHeightDefault);
+					}
+					if (config.camera.x !== undefined) {
+						c.find(&#x27;#camX&#x27;).val(
+							config.camera.x);
+					} else {
+						c.find(&#x27;#camX&#x27;).val(
+							camXDefault);
+					}
+					if (config.camera.y !== undefined) {
+
+						c.find(&#x27;#camY&#x27;).val(
+							config.camera.y);
+					} else {
+						c.find(&#x27;#camY&#x27;).val(
+							camYDefault);
+					}
+					if (config.camera.z !== undefined) {
+						c.find(&#x27;#camZ&#x27;).val(
+							config.camera.z);
+					} else {
+						c.find(&#x27;#camZ&#x27;).val(
+							camZDefault);
+					}
+				 };
+
+				 this.exec = function(config, childs) {
+
+					console.log(this.id+&#x27;[ 3d ] \t\t EXEC &#x27;+running);
+
+
+					if (config.scene === undefined) {
+						config.scene = {width:&#x27;auto&#x27;,height:&#x27;auto&#x27;};
+					}
+					if (config.camera === undefined) {
+						config.camera ={x:0,y:0,z:1000};
+					}
+					if (config.container !== undefined) {
+						container = $(&#x27;#&#x27;+config.container);
+					}else{
+						alert(&#x27;plugin 3d ERROR: NO RENDER CONTAINER GIVEN!&#x27;);
+					}
+					if(config.alpha === undefined ){
+						config.alpha = false;
+					}
+					if(config.antialias === undefined ){
+						config.antialias = true;
+					}
+
+					var width = ((config.scene.width === undefined) || (config.scene.width === &#x27;auto&#x27;)) ? container
+					.width() : config.scene.width;
+
+					var height = ((config.scene.height === undefined) || (config.scene.height === &#x27;auto&#x27;))  ? container
+					.height() : config.scene.height;
+
+					//check if min-height is set
+					if(height === 0){
+						height = container.css(&#x27;min-height&#x27;);
+
+					}
+					//default
+					if(height === 0){
+						height = Config.DEFAULT_PLOT_HEIGHT;
+					}
+					var camX = config.camera.x === undefined ? camXDefault
+					: config.camera.x;
+					var camY = config.camera.y === undefined ? camYDefault
+					: config.camera.y;
+					var camZ = config.camera.z === undefined ? camZDefault
+					: config.camera.z;
+
+
+					// ********************************* init
+					if(true/*running*/){
+
+						if ( Detector.webgl ){
+							renderer = new THREE.WebGLRenderer({
+								antialias : config.antialias,
+								alpha: config.alpha
+							});
+						}else{
+							Detector.addGetWebGLMessage();
+						}
+
+						renderer.sortObjects = true;
+						renderer.setSize(width, height);
+
+						clock = new THREE.Clock();
+						camera = new THREE.PerspectiveCamera(45, (width / height),
+							1, 10000);
+
+
+						scene = new THREE.Scene();
+						renderer.setClearColor( 0xffffff, 1);
+
+						stats = new Stats();
+						stats.domElement.style.position = &#x27;relative&#x27;;
+						stats.domElement.style.width = &#x27;100%&#x27;;
+						stats.domElement.style.top = &#x27;0px&#x27;;
+						container.parent().find(&#x27;#plotStats&#x27;).html( stats.domElement );
+
+						scene.add(camera);
+						camera.position.set(camX, camY, camZ);
+						camera.lookAt(scene.position);
+						this.start();
+					}
+
+					// ********************************* scene
+
+
+					sceneObjects = [];
+					var child;
+					for ( var i = 0; i &lt; childs.length; ++i) {
+						child = childs[i];
+						if(child !== undefined &amp;&amp; child.pType !== undefined){
+							if($.inArray(child.pType, this.accepts.successors) != -1){
+								switch(child.pType){
+									case Config.PLUGINTYPE.CAMERA:
+									cccall = child.response.callback;
+									cccon = child.response.callbackObj;
+									resetCameraControler();
+
+									break;
+									case Config.PLUGINTYPE.LIGHT:
+									sceneObjects.push(child.response);
+									break;
+									case Config.PLUGINTYPE.PLOT:
+									var plotObj;
+									for ( var index = 0; index &lt; child.response.length; ++index) {
+										plotObj = child.response[index];
+										//plotObj.rotation.x = -Math.PI / 2;
+										sceneObjects.push(plotObj);
+									}
+									break;
+									default:
+										// add geometry
+										for ( index = 0; index &lt; child.response.length; ++index) {
+											sceneObjects.push(child.response[index]);
+										}
+										break;
+									}
+								}
+							}else{
+								console.log(&#x27;pType of child plugin not set!&#x27;);
+							}
+						}
+
+						for(i = 0; i &lt; sceneObjects.length;++i){
+							scene.add(sceneObjects[i]);
+						}
+
+						console.log(&#x27;[ plugin ][ 3d ] sceneSize( &#x27; + width + &#x27; x &#x27; + height +&#x27; )&#x27;);
+						console.log(&#x27;[ plugin ][ 3d ] cameraPosition( &#x27; + camX + &#x27;, &#x27; + camY + &#x27;, &#x27; + camZ + &#x27; )&#x27;);
+
+
+
+					//projector = new THREE.Projector();
+
+
+
+					//document.addEventListener(&#x27;click&#x27;, onDocumentMouseDown,false);
+					window.addEventListener( &#x27;resize&#x27;, onWindowResize, false );
+					renderer.domElement.addEventListener(&#x27;mouseover&#x27;, resetCameraControler, true);
+					return renderer;
+
+				};
+
+				var resetCameraControler = function(){
+					console.log(&#x27;reset controler&#x27;);
+					if(cccall === undefined || cccon === undefined) return;
+					controls = cccall.apply(cccon, [camera, renderer, container ]);
+				};
+				// var onDocumentMouseDown = function(event) {
+
+				// 	event.preventDefault();
+
+				// 	var vector = new THREE.Vector3(
+				// 		((window.innerWidth - ( window.innerWidth - event.clientX)) / container.innerWidth) * 2 - 1,
+				// 		-((window.innerHeight - ( window.innerHeight - event.clientY)) / container.innerHeight) * 2 + 1, 0.5);
+
+				// 	projector.unprojectVector(vector, camera);
+
+				// 	var raycaster = new THREE.Raycaster(camera.position, vector
+				// 		.sub(camera.position).normalize());
+
+				// 	var intersects = raycaster.intersectObjects(scene.children,true);
+
+				// 	if (intersects.length &gt; 0) {
+				// 		var ip = intersects[0].point;
+				// 		console.log(&#x27;click intersection: point( &#x27;,ip.x+ &#x27;, &#x27;+ip.y+&#x27;, &#x27;+ip.z+&#x27; )&#x27;);
+
+				// 	}
+
+				// };
+				this.stop = function(){
+					console.log(id+&#x27; stopping animation frame loop!&#x27;);
+					if(animationFrameId !== undefined){
+						 //cancelRequestAnimationFrame(animationFrameId);
+						 cancelRequestAnimFrame(animationFrameId);
+						 animationFrameId = undefined;
+						}
+					//reset
+					for(var i = 0; i &lt; sceneObjects.length;++i){
+						scene.remove(sceneObjects[i]);
+						sceneObjects[i].deallocateObject();
+					}
+					sceneObjects = [];
+					running = false;
+				};
+
+				this.start = function(){
+					running = true;
+					if(!animationFrameId){
+						console.log(&#x27;starting animation frame loop!&#x27;);
+						animate.apply(this, []);
+					}
+				};
+				/** ********************************** */
+				/** PRIVATE METHODS * */
+				/** ********************************** */
+				var animate = function() {
+
+					animationFrameId = requestAnimFrame(animate);
+					render.apply(this, []);
+				};
+				this.getId = function(){
+					return id;
+				};
+				/**
+				* Renders the current state
+				*/
+				var render = function() {
+
+					if (controls !== null) {
+						var delta = clock.getDelta();
+						controls.update(delta);
+					}
+					renderer.render(scene, camera);
+					//console.log( id+&quot; memory: &quot;, renderer.info.memory.programs );
+					if(stats !== null &amp;&amp; stats !== undefined) stats.update();
+				};
+
+				var onWindowResize = function(){
+					camera.aspect = container.width() / container.height();
+					camera.updateProjectionMatrix();
+					renderer.setSize( container.width(), container.height() );
+				};
+
+			});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

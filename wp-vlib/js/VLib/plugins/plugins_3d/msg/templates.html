@@ -1,0 +1,37 @@
+<script type="text/html" class="pluginConfigForm" id="msg">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<h3>Message</h3>
+		</li>
+		<li class="list-group-item">
+			<b>Type</b>
+			<select class="form-control" id="msgType">
+				<option value="success">Success</option>
+				<option value="info">Information</option>
+				<option value="warning">Warning</option>
+				<option value="danger">Danger</option>
+			</select>
+		</li>
+		<li class="list-group-item">
+			<b>Text</b>
+			<textarea id="msgText" placeholder="Message"></textarea>
+		</li>
+		<li class="list-group-item">
+			<div class="input-group">
+				<span class="input-group-addon"><input type="checkbox" id="remove"></span>
+				<span class="form-control" >Remove message after some time </span>
+			</div>
+			<div id="time-container" style="display:none;">
+				<label class="control-label" for="time">Time </label>
+
+				<div class="controls">
+					<div class="input-group">
+						<input class="form-control" type="text" id="time">
+						<span class="input-group-addon">Seconds</span>
+					</div>
+					<div id="timeSlider"></div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</script>

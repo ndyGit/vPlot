@@ -1,0 +1,118 @@
+<script type="text/html" class="pluginConfigForm" id="label">
+	<ul class="list-group">
+		<form class="form-horizontal" role="form">
+			<li class="list-group-item">
+				<h3>Label</h3>
+			</li>
+			<li class="list-group-item">
+				<b>Custom Text</b>
+				<textarea id="customText" placeholder="Label"></textarea>
+			</li>
+			<li class="list-group-item">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="useDataLabel" id="useDataLabel"/>
+						<b>Display label-field from dataset</b>
+					</label>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<b>Offset</b>
+
+				<div style="margin-top:10px;"/>
+				<div class="input-group">
+					<span class="input-group-addon">x</span>
+					<input class="form-control" type="text" id="offset-x"/>
+				</div>
+				<div id="offsetSliderX"></div>
+
+				<div class="input-group">
+					<span class="input-group-addon">y</span>
+					<input class="form-control" type="text" id="offset-y"/>
+				</div>
+				<div id="offsetSliderY"></div>
+			</li>
+			<li class="list-group-item">
+				<b>Position</b>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionPosition" value="mouse" checked>
+								Relative to mouse
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionPosition"
+								       value="static-top-left">
+								Static top left
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionPosition"
+								       value="static-bottom-left">
+								Static bottom left
+							</label>
+						</div>
+					</div>
+					<div class="col-md-6">
+
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionPosition"
+								       value="static-top-right">
+								Static top right
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionPosition"
+								       value="static-bottom-right">
+								Static bottom right
+							</label>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<b>Animation</b>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionAnimation"
+								       value="slide">
+								Slide
+							</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionAnimation"
+								       value="fade">
+								Fade
+							</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionAnimation"
+								       value="show">
+								Show
+							</label>
+						</div>
+					</div>
+				</div>
+			</li>
+	</ul>
+</script>
+

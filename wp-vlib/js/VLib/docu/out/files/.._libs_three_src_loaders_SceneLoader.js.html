@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/src/loaders/SceneLoader.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/src/loaders/SceneLoader.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @author alteredq / http://alteredqualia.com/
+ */
+
+THREE.SceneLoader = function () {
+
+	this.onLoadStart = function () {};
+	this.onLoadProgress = function() {};
+	this.onLoadComplete = function () {};
+
+	this.callbackSync = function () {};
+	this.callbackProgress = function () {};
+
+	this.geometryHandlers = {};
+	this.hierarchyHandlers = {};
+
+	this.addGeometryHandler( &quot;ascii&quot;, THREE.JSONLoader );
+
+};
+
+THREE.SceneLoader.prototype = {
+
+	constructor: THREE.SceneLoader,
+
+	load: function ( url, onLoad, onProgress, onError ) {
+
+		var scope = this;
+
+		var loader = new THREE.XHRLoader( scope.manager );
+		loader.setCrossOrigin( this.crossOrigin );
+		loader.load( url, function ( text ) {
+
+			scope.parse( JSON.parse( text ), onLoad, url );
+
+		} );
+
+	},
+
+	setCrossOrigin: function ( value ) {
+
+		this.crossOrigin = value;
+
+	},
+
+	addGeometryHandler: function ( typeID, loaderClass ) {
+
+		this.geometryHandlers[ typeID ] = { &quot;loaderClass&quot;: loaderClass };
+
+	},
+
+	addHierarchyHandler: function ( typeID, loaderClass ) {
+
+		this.hierarchyHandlers[ typeID ] = { &quot;loaderClass&quot;: loaderClass };
+
+	},
+
+	parse: function ( json, callbackFinished, url ) {
+
+		var scope = this;
+
+		var urlBase = THREE.Loader.prototype.extractUrlBase( url );
+
+		var geometry, material, camera, fog,
+			texture, images, color,
+			light, hex, intensity,
+			counter_models, counter_textures,
+			total_models, total_textures,
+			result;
+
+		var target_array = [];
+
+		var data = json;
+
+		// async geometry loaders
+
+		for ( var typeID in this.geometryHandlers ) {
+
+			var loaderClass = this.geometryHandlers[ typeID ][ &quot;loaderClass&quot; ];
+			this.geometryHandlers[ typeID ][ &quot;loaderObject&quot; ] = new loaderClass();
+
+		}
+
+		// async hierachy loaders
+
+		for ( var typeID in this.hierarchyHandlers ) {
+
+			var loaderClass = this.hierarchyHandlers[ typeID ][ &quot;loaderClass&quot; ];
+			this.hierarchyHandlers[ typeID ][ &quot;loaderObject&quot; ] = new loaderClass();
+
+		}
+
+		counter_models = 0;
+		counter_textures = 0;
+
+		result = {
+
+			scene: new THREE.Scene(),
+			geometries: {},
+			face_materials: {},
+			materials: {},
+			textures: {},
+			objects: {},
+			cameras: {},
+			lights: {},
+			fogs: {},
+			empties: {},
+			groups: {}
+
+		};
+
+		if ( data.transform ) {
+
+			var position = data.transform.position,
+				rotation = data.transform.rotation,
+				scale = data.transform.scale;
+
+			if ( position ) {
+
+				result.scene.position.fromArray( position );
+
+			}
+
+			if ( rotation ) {
+
+				result.scene.rotation.fromArray( rotation );
+
+			}
+
+			if ( scale ) {
+
+				result.scene.scale.fromArray( scale );
+
+			}
+
+			if ( position || rotation || scale ) {
+
+				result.scene.updateMatrix();
+				result.scene.updateMatrixWorld();
+
+			}
+
+		}
+
+		function get_url( source_url, url_type ) {
+
+			if ( url_type == &quot;relativeToHTML&quot; ) {
+
+				return source_url;
+
+			} else {
+
+				return urlBase + &quot;/&quot; + source_url;
+
+			}
+
+		};
+
+		// toplevel loader function, delegates to handle_children
+
+		function handle_objects() {
+
+			handle_children( result.scene, data.objects );
+
+		}
+
+		// handle all the children from the loaded json and attach them to given parent
+
+		function handle_children( parent, children ) {
+
+			var mat, dst, pos, rot, scl, quat;
+
+			for ( var objID in children ) {
+
+				// check by id if child has already been handled,
+				// if not, create new object
+
+				var object = result.objects[ objID ];
+				var objJSON = children[ objID ];
+
+				if ( object === undefined ) {
+
+					// meshes
+
+					if ( objJSON.type &amp;&amp; ( objJSON.type in scope.hierarchyHandlers ) ) {
+
+						if ( objJSON.loading === undefined ) {
+
+							var reservedTypes = {
+								&quot;type&quot;: 1, &quot;url&quot;: 1, &quot;material&quot;: 1,
+								&quot;position&quot;: 1, &quot;rotation&quot;: 1, &quot;scale&quot; : 1,
+								&quot;visible&quot;: 1, &quot;children&quot;: 1, &quot;userData&quot;: 1,
+								&quot;skin&quot;: 1, &quot;morph&quot;: 1, &quot;mirroredLoop&quot;: 1, &quot;duration&quot;: 1
+							};
+
+							var loaderParameters = {};
+
+							for ( var parType in objJSON ) {
+
+								if ( ! ( parType in reservedTypes ) ) {
+
+									loaderParameters[ parType ] = objJSON[ parType ];
+
+								}
+
+							}
+
+							material = result.materials[ objJSON.material ];
+
+							objJSON.loading = true;
+
+							var loader = scope.hierarchyHandlers[ objJSON.type ][ &quot;loaderObject&quot; ];
+
+							// ColladaLoader
+
+							if ( loader.options ) {
+
+								loader.load( get_url( objJSON.url, data.urlBaseType ), create_callback_hierachy( objID, parent, material, objJSON ) );
+
+							// UTF8Loader
+							// OBJLoader
+
+							} else {
+
+								loader.load( get_url( objJSON.url, data.urlBaseType ), create_callback_hierachy( objID, parent, material, objJSON ), loaderParameters );
+
+							}
+
+						}
+
+					} else if ( objJSON.geometry !== undefined ) {
+
+						geometry = result.geometries[ objJSON.geometry ];
+
+						// geometry already loaded
+
+						if ( geometry ) {
+
+							var needsTangents = false;
+
+							material = result.materials[ objJSON.material ];
+							needsTangents = material instanceof THREE.ShaderMaterial;
+
+							pos = objJSON.position;
+							rot = objJSON.rotation;
+							scl = objJSON.scale;
+							mat = objJSON.matrix;
+							quat = objJSON.quaternion;
+
+							// use materials from the model file
+							// if there is no material specified in the object
+
+							if ( ! objJSON.material ) {
+
+								material = new THREE.MeshFaceMaterial( result.face_materials[ objJSON.geometry ] );
+
+							}
+
+							// use materials from the model file
+							// if there is just empty face material
+							// (must create new material as each model has its own face material)
+
+							if ( ( material instanceof THREE.MeshFaceMaterial ) &amp;&amp; material.materials.length === 0 ) {
+
+								material = new THREE.MeshFaceMaterial( result.face_materials[ objJSON.geometry ] );
+
+							}
+
+							if ( material instanceof THREE.MeshFaceMaterial ) {
+
+								for ( var i = 0; i &lt; material.materials.length; i ++ ) {
+
+									needsTangents = needsTangents || ( material.materials[ i ] instanceof THREE.ShaderMaterial );
+
+								}
+
+							}
+
+							if ( needsTangents ) {
+
+								geometry.computeTangents();
+
+							}
+
+							if ( objJSON.skin ) {
+
+								object = new THREE.SkinnedMesh( geometry, material );
+
+							} else if ( objJSON.morph ) {
+
+								object = new THREE.MorphAnimMesh( geometry, material );
+
+								if ( objJSON.duration !== undefined ) {
+
+									object.duration = objJSON.duration;
+
+								}
+
+								if ( objJSON.time !== undefined ) {
+
+									object.time = objJSON.time;
+
+								}
+
+								if ( objJSON.mirroredLoop !== undefined ) {
+
+									object.mirroredLoop = objJSON.mirroredLoop;
+
+								}
+
+								if ( material.morphNormals ) {
+
+									geometry.computeMorphNormals();
+
+								}
+
+							} else {
+
+								object = new THREE.Mesh( geometry, material );
+
+							}
+
+							object.name = objID;
+
+							if ( mat ) {
+
+								object.matrixAutoUpdate = false;
+								object.matrix.set(
+									mat[0],  mat[1],  mat[2],  mat[3],
+									mat[4],  mat[5],  mat[6],  mat[7],
+									mat[8],  mat[9],  mat[10], mat[11],
+									mat[12], mat[13], mat[14], mat[15]
+								);
+
+							} else {
+
+								object.position.fromArray( pos );
+
+								if ( quat ) {
+
+									object.quaternion.fromArray( quat );
+
+								} else {
+
+									object.rotation.fromArray( rot );
+
+								}
+
+								object.scale.fromArray( scl );
+
+							}
+
+							object.visible = objJSON.visible;
+							object.castShadow = objJSON.castShadow;
+							object.receiveShadow = objJSON.receiveShadow;
+
+							parent.add( object );
+
+							result.objects[ objID ] = object;
+
+						}
+
+					// lights
+
+					} else if ( objJSON.type === &quot;AmbientLight&quot; || objJSON.type === &quot;PointLight&quot; ||
+						objJSON.type === &quot;DirectionalLight&quot; || objJSON.type === &quot;SpotLight&quot; ||
+						objJSON.type === &quot;HemisphereLight&quot; || objJSON.type === &quot;AreaLight&quot; ) {
+
+						var color = objJSON.color;
+						var intensity = objJSON.intensity;
+						var distance = objJSON.distance;
+						var position = objJSON.position;
+						var rotation = objJSON.rotation;
+
+						switch ( objJSON.type ) {
+
+							case &#x27;AmbientLight&#x27;:
+								light = new THREE.AmbientLight( color );
+								break;
+
+							case &#x27;PointLight&#x27;:
+								light = new THREE.PointLight( color, intensity, distance );
+								light.position.fromArray( position );
+								break;
+
+							case &#x27;DirectionalLight&#x27;:
+								light = new THREE.DirectionalLight( color, intensity );
+								light.position.fromArray( objJSON.direction );
+								break;
+
+							case &#x27;SpotLight&#x27;:
+								light = new THREE.SpotLight( color, intensity, distance, 1 );
+								light.angle = objJSON.angle;
+								light.position.fromArray( position );
+								light.target.set( position[ 0 ], position[ 1 ] - distance, position[ 2 ] );
+								light.target.applyEuler( new THREE.Euler( rotation[ 0 ], rotation[ 1 ], rotation[ 2 ], &#x27;XYZ&#x27; ) );
+								break;
+
+							case &#x27;HemisphereLight&#x27;:
+								light = new THREE.DirectionalLight( color, intensity, distance );
+								light.target.set( position[ 0 ], position[ 1 ] - distance, position[ 2 ] );
+								light.target.applyEuler( new THREE.Euler( rotation[ 0 ], rotation[ 1 ], rotation[ 2 ], &#x27;XYZ&#x27; ) );
+								break;
+
+							case &#x27;AreaLight&#x27;:
+								light = new THREE.AreaLight(color, intensity);
+								light.position.fromArray( position );
+								light.width = objJSON.size;
+								light.height = objJSON.size_y;
+								break;
+
+						}
+
+						parent.add( light );
+
+						light.name = objID;
+						result.lights[ objID ] = light;
+						result.objects[ objID ] = light;
+
+					// cameras
+
+					} else if ( objJSON.type === &quot;PerspectiveCamera&quot; || objJSON.type === &quot;OrthographicCamera&quot; ) {
+
+						pos = objJSON.position;
+						rot = objJSON.rotation;
+						quat = objJSON.quaternion;
+
+						if ( objJSON.type === &quot;PerspectiveCamera&quot; ) {
+
+							camera = new THREE.PerspectiveCamera( objJSON.fov, objJSON.aspect, objJSON.near, objJSON.far );
+
+						} else if ( objJSON.type === &quot;OrthographicCamera&quot; ) {
+
+							camera = new THREE.OrthographicCamera( objJSON.left, objJSON.right, objJSON.top, objJSON.bottom, objJSON.near, objJSON.far );
+
+						}
+
+						camera.name = objID;
+						camera.position.fromArray( pos );
+
+						if ( quat !== undefined ) {
+
+							camera.quaternion.fromArray( quat );
+
+						} else if ( rot !== undefined ) {
+
+							camera.rotation.fromArray( rot );
+
+						}
+
+						parent.add( camera );
+
+						result.cameras[ objID ] = camera;
+						result.objects[ objID ] = camera;
+
+					// pure Object3D
+
+					} else {
+
+						pos = objJSON.position;
+						rot = objJSON.rotation;
+						scl = objJSON.scale;
+						quat = objJSON.quaternion;
+
+						object = new THREE.Object3D();
+						object.name = objID;
+						object.position.fromArray( pos );
+
+						if ( quat ) {
+
+							object.quaternion.fromArray( quat );
+
+						} else {
+
+							object.rotation.fromArray( rot );
+
+						}
+
+						object.scale.fromArray( scl );
+						object.visible = ( objJSON.visible !== undefined ) ? objJSON.visible : false;
+
+						parent.add( object );
+
+						result.objects[ objID ] = object;
+						result.empties[ objID ] = object;
+
+					}
+
+					if ( object ) {
+
+						if ( objJSON.userData !== undefined ) {
+
+							for ( var key in objJSON.userData ) {
+
+								var value = objJSON.userData[ key ];
+								object.userData[ key ] = value;
+
+							}
+
+						}
+
+						if ( objJSON.groups !== undefined ) {
+
+							for ( var i = 0; i &lt; objJSON.groups.length; i ++ ) {
+
+								var groupID = objJSON.groups[ i ];
+
+								if ( result.groups[ groupID ] === undefined ) {
+
+									result.groups[ groupID ] = [];
+
+								}
+
+								result.groups[ groupID ].push( objID );
+
+							}
+
+						}
+
+					}
+
+				}
+
+				if ( object !== undefined &amp;&amp; objJSON.children !== undefined ) {
+
+					handle_children( object, objJSON.children );
+
+				}
+
+			}
+
+		};
+
+		function handle_mesh( geo, mat, id ) {
+
+			result.geometries[ id ] = geo;
+			result.face_materials[ id ] = mat;
+			handle_objects();
+
+		};
+
+		function handle_hierarchy( node, id, parent, material, obj ) {
+
+			var p = obj.position;
+			var r = obj.rotation;
+			var q = obj.quaternion;
+			var s = obj.scale;
+
+			node.position.fromArray( p );
+
+			if ( q ) {
+
+				node.quaternion.fromArray( q );
+
+			} else {
+
+				node.rotation.fromArray( r );
+
+			}
+
+			node.scale.fromArray( s );
+
+			// override children materials
+			// if object material was specified in JSON explicitly
+
+			if ( material ) {
+
+				node.traverse( function ( child ) {
+
+					child.material = material;
+
+				} );
+
+			}
+
+			// override children visibility
+			// with root node visibility as specified in JSON
+
+			var visible = ( obj.visible !== undefined ) ? obj.visible : true;
+
+			node.traverse( function ( child ) {
+
+				child.visible = visible;
+
+			} );
+
+			parent.add( node );
+
+			node.name = id;
+
+			result.objects[ id ] = node;
+			handle_objects();
+
+		};
+
+		function create_callback_geometry( id ) {
+
+			return function ( geo, mat ) {
+
+				geo.name = id;
+
+				handle_mesh( geo, mat, id );
+
+				counter_models -= 1;
+
+				scope.onLoadComplete();
+
+				async_callback_gate();
+
+			}
+
+		};
+
+		function create_callback_hierachy( id, parent, material, obj ) {
+
+			return function ( event ) {
+
+				var result;
+
+				// loaders which use EventDispatcher
+
+				if ( event.content ) {
+
+					result = event.content;
+
+				// ColladaLoader
+
+				} else if ( event.dae ) {
+
+					result = event.scene;
+
+
+				// UTF8Loader
+
+				} else {
+
+					result = event;
+
+				}
+
+				handle_hierarchy( result, id, parent, material, obj );
+
+				counter_models -= 1;
+
+				scope.onLoadComplete();
+
+				async_callback_gate();
+
+			}
+
+		};
+
+		function create_callback_embed( id ) {
+
+			return function ( geo, mat ) {
+
+				geo.name = id;
+
+				result.geometries[ id ] = geo;
+				result.face_materials[ id ] = mat;
+
+			}
+
+		};
+
+		function async_callback_gate() {
+
+			var progress = {
+
+				totalModels : total_models,
+				totalTextures : total_textures,
+				loadedModels : total_models - counter_models,
+				loadedTextures : total_textures - counter_textures
+
+			};
+
+			scope.callbackProgress( progress, result );
+
+			scope.onLoadProgress();
+
+			if ( counter_models === 0 &amp;&amp; counter_textures === 0 ) {
+
+				finalize();
+				callbackFinished( result );
+
+			}
+
+		};
+
+		function finalize() {
+
+			// take care of targets which could be asynchronously loaded objects
+
+			for ( var i = 0; i &lt; target_array.length; i ++ ) {
+
+				var ta = target_array[ i ];
+
+				var target = result.objects[ ta.targetName ];
+
+				if ( target ) {
+
+					ta.object.target = target;
+
+				} else {
+
+					// if there was error and target of specified name doesn&#x27;t exist in the scene file
+					// create instead dummy target
+					// (target must be added to scene explicitly as parent is already added)
+
+					ta.object.target = new THREE.Object3D();
+					result.scene.add( ta.object.target );
+
+				}
+
+				ta.object.target.userData.targetInverse = ta.object;
+
+			}
+
+		};
+
+		var callbackTexture = function ( count ) {
+
+			counter_textures -= count;
+			async_callback_gate();
+
+			scope.onLoadComplete();
+
+		};
+
+		// must use this instead of just directly calling callbackTexture
+		// because of closure in the calling context loop
+
+		var generateTextureCallback = function ( count ) {
+
+			return function () {
+
+				callbackTexture( count );
+
+			};
+
+		};
+
+		function traverse_json_hierarchy( objJSON, callback ) {
+
+			callback( objJSON );
+
+			if ( objJSON.children !== undefined ) {
+
+				for ( var objChildID in objJSON.children ) {
+
+					traverse_json_hierarchy( objJSON.children[ objChildID ], callback );
+
+				}
+
+			}
+
+		};
+
+		// first go synchronous elements
+
+		// fogs
+
+		var fogID, fogJSON;
+
+		for ( fogID in data.fogs ) {
+
+			fogJSON = data.fogs[ fogID ];
+
+			if ( fogJSON.type === &quot;linear&quot; ) {
+
+				fog = new THREE.Fog( 0x000000, fogJSON.near, fogJSON.far );
+
+			} else if ( fogJSON.type === &quot;exp2&quot; ) {
+
+				fog = new THREE.FogExp2( 0x000000, fogJSON.density );
+
+			}
+
+			color = fogJSON.color;
+			fog.color.setRGB( color[0], color[1], color[2] );
+
+			result.fogs[ fogID ] = fog;
+
+		}
+
+		// now come potentially asynchronous elements
+
+		// geometries
+
+		// count how many geometries will be loaded asynchronously
+
+		var geoID, geoJSON;
+
+		for ( geoID in data.geometries ) {
+
+			geoJSON = data.geometries[ geoID ];
+
+			if ( geoJSON.type in this.geometryHandlers ) {
+
+				counter_models += 1;
+
+				scope.onLoadStart();
+
+			}
+
+		}
+
+		// count how many hierarchies will be loaded asynchronously
+
+		for ( var objID in data.objects ) {
+
+			traverse_json_hierarchy( data.objects[ objID ], function ( objJSON ) {
+
+				if ( objJSON.type &amp;&amp; ( objJSON.type in scope.hierarchyHandlers ) ) {
+
+					counter_models += 1;
+
+					scope.onLoadStart();
+
+				}
+
+			});
+
+		}
+
+		total_models = counter_models;
+
+		for ( geoID in data.geometries ) {
+
+			geoJSON = data.geometries[ geoID ];
+
+			if ( geoJSON.type === &quot;cube&quot; ) {
+
+				geometry = new THREE.CubeGeometry( geoJSON.width, geoJSON.height, geoJSON.depth, geoJSON.widthSegments, geoJSON.heightSegments, geoJSON.depthSegments );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type === &quot;plane&quot; ) {
+
+				geometry = new THREE.PlaneGeometry( geoJSON.width, geoJSON.height, geoJSON.widthSegments, geoJSON.heightSegments );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type === &quot;sphere&quot; ) {
+
+				geometry = new THREE.SphereGeometry( geoJSON.radius, geoJSON.widthSegments, geoJSON.heightSegments );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type === &quot;cylinder&quot; ) {
+
+				geometry = new THREE.CylinderGeometry( geoJSON.topRad, geoJSON.botRad, geoJSON.height, geoJSON.radSegs, geoJSON.heightSegs );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type === &quot;torus&quot; ) {
+
+				geometry = new THREE.TorusGeometry( geoJSON.radius, geoJSON.tube, geoJSON.segmentsR, geoJSON.segmentsT );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type === &quot;icosahedron&quot; ) {
+
+				geometry = new THREE.IcosahedronGeometry( geoJSON.radius, geoJSON.subdivisions );
+				geometry.name = geoID;
+				result.geometries[ geoID ] = geometry;
+
+			} else if ( geoJSON.type in this.geometryHandlers ) {
+
+				var loaderParameters = {};
+
+				for ( var parType in geoJSON ) {
+
+					if ( parType !== &quot;type&quot; &amp;&amp; parType !== &quot;url&quot; ) {
+
+						loaderParameters[ parType ] = geoJSON[ parType ];
+
+					}
+
+				}
+
+				var loader = this.geometryHandlers[ geoJSON.type ][ &quot;loaderObject&quot; ];
+				loader.load( get_url( geoJSON.url, data.urlBaseType ), create_callback_geometry( geoID ), loaderParameters );
+
+			} else if ( geoJSON.type === &quot;embedded&quot; ) {
+
+				var modelJson = data.embeds[ geoJSON.id ],
+					texture_path = &quot;&quot;;
+
+				// pass metadata along to jsonLoader so it knows the format version
+
+				modelJson.metadata = data.metadata;
+
+				if ( modelJson ) {
+
+					var jsonLoader = this.geometryHandlers[ &quot;ascii&quot; ][ &quot;loaderObject&quot; ];
+					var model = jsonLoader.parse( modelJson, texture_path );
+					create_callback_embed( geoID )( model.geometry, model.materials );
+
+				}
+
+			}
+
+		}
+
+		// textures
+
+		// count how many textures will be loaded asynchronously
+
+		var textureID, textureJSON;
+
+		for ( textureID in data.textures ) {
+
+			textureJSON = data.textures[ textureID ];
+
+			if ( textureJSON.url instanceof Array ) {
+
+				counter_textures += textureJSON.url.length;
+
+				for( var n = 0; n &lt; textureJSON.url.length; n ++ ) {
+
+					scope.onLoadStart();
+
+				}
+
+			} else {
+
+				counter_textures += 1;
+
+				scope.onLoadStart();
+
+			}
+
+		}
+
+		total_textures = counter_textures;
+
+		for ( textureID in data.textures ) {
+
+			textureJSON = data.textures[ textureID ];
+
+			if ( textureJSON.mapping !== undefined &amp;&amp; THREE[ textureJSON.mapping ] !== undefined ) {
+
+				textureJSON.mapping = new THREE[ textureJSON.mapping ]();
+
+			}
+
+			if ( textureJSON.url instanceof Array ) {
+
+				var count = textureJSON.url.length;
+				var url_array = [];
+
+				for( var i = 0; i &lt; count; i ++ ) {
+
+					url_array[ i ] = get_url( textureJSON.url[ i ], data.urlBaseType );
+
+				}
+
+				var isCompressed = /\.dds$/i.test( url_array[ 0 ] );
+
+				if ( isCompressed ) {
+
+					texture = THREE.ImageUtils.loadCompressedTextureCube( url_array, textureJSON.mapping, generateTextureCallback( count ) );
+
+				} else {
+
+					texture = THREE.ImageUtils.loadTextureCube( url_array, textureJSON.mapping, generateTextureCallback( count ) );
+
+				}
+
+			} else {
+
+				var isCompressed = /\.dds$/i.test( textureJSON.url );
+				var fullUrl = get_url( textureJSON.url, data.urlBaseType );
+				var textureCallback = generateTextureCallback( 1 );
+
+				if ( isCompressed ) {
+
+					texture = THREE.ImageUtils.loadCompressedTexture( fullUrl, textureJSON.mapping, textureCallback );
+
+				} else {
+
+					texture = THREE.ImageUtils.loadTexture( fullUrl, textureJSON.mapping, textureCallback );
+
+				}
+
+				if ( THREE[ textureJSON.minFilter ] !== undefined )
+					texture.minFilter = THREE[ textureJSON.minFilter ];
+
+				if ( THREE[ textureJSON.magFilter ] !== undefined )
+					texture.magFilter = THREE[ textureJSON.magFilter ];
+
+				if ( textureJSON.anisotropy ) texture.anisotropy = textureJSON.anisotropy;
+
+				if ( textureJSON.repeat ) {
+
+					texture.repeat.set( textureJSON.repeat[ 0 ], textureJSON.repeat[ 1 ] );
+
+					if ( textureJSON.repeat[ 0 ] !== 1 ) texture.wrapS = THREE.RepeatWrapping;
+					if ( textureJSON.repeat[ 1 ] !== 1 ) texture.wrapT = THREE.RepeatWrapping;
+
+				}
+
+				if ( textureJSON.offset ) {
+
+					texture.offset.set( textureJSON.offset[ 0 ], textureJSON.offset[ 1 ] );
+
+				}
+
+				// handle wrap after repeat so that default repeat can be overriden
+
+				if ( textureJSON.wrap ) {
+
+					var wrapMap = {
+						&quot;repeat&quot;: THREE.RepeatWrapping,
+						&quot;mirror&quot;: THREE.MirroredRepeatWrapping
+					}
+
+					if ( wrapMap[ textureJSON.wrap[ 0 ] ] !== undefined ) texture.wrapS = wrapMap[ textureJSON.wrap[ 0 ] ];
+					if ( wrapMap[ textureJSON.wrap[ 1 ] ] !== undefined ) texture.wrapT = wrapMap[ textureJSON.wrap[ 1 ] ];
+
+				}
+
+			}
+
+			result.textures[ textureID ] = texture;
+
+		}
+
+		// materials
+
+		var matID, matJSON;
+		var parID;
+
+		for ( matID in data.materials ) {
+
+			matJSON = data.materials[ matID ];
+
+			for ( parID in matJSON.parameters ) {
+
+				if ( parID === &quot;envMap&quot; || parID === &quot;map&quot; || parID === &quot;lightMap&quot; || parID === &quot;bumpMap&quot; ) {
+
+					matJSON.parameters[ parID ] = result.textures[ matJSON.parameters[ parID ] ];
+
+				} else if ( parID === &quot;shading&quot; ) {
+
+					matJSON.parameters[ parID ] = ( matJSON.parameters[ parID ] === &quot;flat&quot; ) ? THREE.FlatShading : THREE.SmoothShading;
+
+				} else if ( parID === &quot;side&quot; ) {
+
+					if ( matJSON.parameters[ parID ] == &quot;double&quot; ) {
+
+						matJSON.parameters[ parID ] = THREE.DoubleSide;
+
+					} else if ( matJSON.parameters[ parID ] == &quot;back&quot; ) {
+
+						matJSON.parameters[ parID ] = THREE.BackSide;
+
+					} else {
+
+						matJSON.parameters[ parID ] = THREE.FrontSide;
+
+					}
+
+				} else if ( parID === &quot;blending&quot; ) {
+
+					matJSON.parameters[ parID ] = matJSON.parameters[ parID ] in THREE ? THREE[ matJSON.parameters[ parID ] ] : THREE.NormalBlending;
+
+				} else if ( parID === &quot;combine&quot; ) {
+
+					matJSON.parameters[ parID ] = matJSON.parameters[ parID ] in THREE ? THREE[ matJSON.parameters[ parID ] ] : THREE.MultiplyOperation;
+
+				} else if ( parID === &quot;vertexColors&quot; ) {
+
+					if ( matJSON.parameters[ parID ] == &quot;face&quot; ) {
+
+						matJSON.parameters[ parID ] = THREE.FaceColors;
+
+					// default to vertex colors if &quot;vertexColors&quot; is anything else face colors or 0 / null / false
+
+					} else if ( matJSON.parameters[ parID ] ) {
+
+						matJSON.parameters[ parID ] = THREE.VertexColors;
+
+					}
+
+				} else if ( parID === &quot;wrapRGB&quot; ) {
+
+					var v3 = matJSON.parameters[ parID ];
+					matJSON.parameters[ parID ] = new THREE.Vector3( v3[ 0 ], v3[ 1 ], v3[ 2 ] );
+
+				}
+
+			}
+
+			if ( matJSON.parameters.opacity !== undefined &amp;&amp; matJSON.parameters.opacity &lt; 1.0 ) {
+
+				matJSON.parameters.transparent = true;
+
+			}
+
+			if ( matJSON.parameters.normalMap ) {
+
+				var shader = THREE.ShaderLib[ &quot;normalmap&quot; ];
+				var uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+
+				var diffuse = matJSON.parameters.color;
+				var specular = matJSON.parameters.specular;
+				var ambient = matJSON.parameters.ambient;
+				var shininess = matJSON.parameters.shininess;
+
+				uniforms[ &quot;tNormal&quot; ].value = result.textures[ matJSON.parameters.normalMap ];
+
+				if ( matJSON.parameters.normalScale ) {
+
+					uniforms[ &quot;uNormalScale&quot; ].value.set( matJSON.parameters.normalScale[ 0 ], matJSON.parameters.normalScale[ 1 ] );
+
+				}
+
+				if ( matJSON.parameters.map ) {
+
+					uniforms[ &quot;tDiffuse&quot; ].value = matJSON.parameters.map;
+					uniforms[ &quot;enableDiffuse&quot; ].value = true;
+
+				}
+
+				if ( matJSON.parameters.envMap ) {
+
+					uniforms[ &quot;tCube&quot; ].value = matJSON.parameters.envMap;
+					uniforms[ &quot;enableReflection&quot; ].value = true;
+					uniforms[ &quot;reflectivity&quot; ].value = matJSON.parameters.reflectivity;
+
+				}
+
+				if ( matJSON.parameters.lightMap ) {
+
+					uniforms[ &quot;tAO&quot; ].value = matJSON.parameters.lightMap;
+					uniforms[ &quot;enableAO&quot; ].value = true;
+
+				}
+
+				if ( matJSON.parameters.specularMap ) {
+
+					uniforms[ &quot;tSpecular&quot; ].value = result.textures[ matJSON.parameters.specularMap ];
+					uniforms[ &quot;enableSpecular&quot; ].value = true;
+
+				}
+
+				if ( matJSON.parameters.displacementMap ) {
+
+					uniforms[ &quot;tDisplacement&quot; ].value = result.textures[ matJSON.parameters.displacementMap ];
+					uniforms[ &quot;enableDisplacement&quot; ].value = true;
+
+					uniforms[ &quot;uDisplacementBias&quot; ].value = matJSON.parameters.displacementBias;
+					uniforms[ &quot;uDisplacementScale&quot; ].value = matJSON.parameters.displacementScale;
+
+				}
+
+				uniforms[ &quot;diffuse&quot; ].value.setHex( diffuse );
+				uniforms[ &quot;specular&quot; ].value.setHex( specular );
+				uniforms[ &quot;ambient&quot; ].value.setHex( ambient );
+
+				uniforms[ &quot;shininess&quot; ].value = shininess;
+
+				if ( matJSON.parameters.opacity ) {
+
+					uniforms[ &quot;opacity&quot; ].value = matJSON.parameters.opacity;
+
+				}
+
+				var parameters = { fragmentShader: shader.fragmentShader, vertexShader: shader.vertexShader, uniforms: uniforms, lights: true, fog: true };
+
+				material = new THREE.ShaderMaterial( parameters );
+
+			} else {
+
+				material = new THREE[ matJSON.type ]( matJSON.parameters );
+
+			}
+
+			material.name = matID;
+
+			result.materials[ matID ] = material;
+
+		}
+
+		// second pass through all materials to initialize MeshFaceMaterials
+		// that could be referring to other materials out of order
+
+		for ( matID in data.materials ) {
+
+			matJSON = data.materials[ matID ];
+
+			if ( matJSON.parameters.materials ) {
+
+				var materialArray = [];
+
+				for ( var i = 0; i &lt; matJSON.parameters.materials.length; i ++ ) {
+
+					var label = matJSON.parameters.materials[ i ];
+					materialArray.push( result.materials[ label ] );
+
+				}
+
+				result.materials[ matID ].materials = materialArray;
+
+			}
+
+		}
+
+		// objects ( synchronous init of procedural primitives )
+
+		handle_objects();
+
+		// defaults
+
+		if ( result.cameras &amp;&amp; data.defaults.camera ) {
+
+			result.currentCamera = result.cameras[ data.defaults.camera ];
+
+		}
+
+		if ( result.fogs &amp;&amp; data.defaults.fog ) {
+
+			result.scene.fog = result.fogs[ data.defaults.fog ];
+
+		}
+
+		// synchronous callback
+
+		scope.callbackSync( result );
+
+		// just in case there are no async elements
+
+		async_callback_gate();
+
+	}
+
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+define([ 'require', 'config','core/AbstractPlugin.vlib','core/Utils.vlib', 'jquery','three','../dataset/dataset.vlib' ],
+	function(require, Config,AbstractPlugin, UTILS, $,THREE, Dataset) {
+
+	/**
+	 * @return object dataset object.data == dataset object.color ==
+	 *         collorCallback(data)
+	 *
+	 */
+	 /**
+		TODO<br />
+		@class Plugin Plane
+		@constructor
+		@extends AbstractPlugin
+	**/
+	 var Plugin = (function() {
+	 	var name = 'plane';
+		Plugin.superClass.constuctor.call(this,name);
+		Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+		Plugin.superClass.setType.call(this,Config.PLUGINTYPE.DATA);
+		/** path to plugin-template file * */
+		Plugin.superClass.setTemplates.call(this,Config.absPlugins+ '/plugins_3d/geometry/templates.js');
+		Plugin.superClass.setIcon.call(this,Config.absPlugins+ '/plugins_3d/default_plugin_icon.png');
+		Plugin.superClass.setAccepts.call(this,{
+			predecessors : [ Config.PLUGINTYPE.PLOT ],
+	 		successors : [ Config.PLUGINTYPE.COLOR, Config.PLUGINTYPE.FUNCTION ]
+		});
+		Plugin.superClass.setDescription.call(this,'Requires: [ '+this.accepts.predecessors.join(', ')+' ] Accepts: [ '+this.accepts.successors.join(', ')+' ]');
+	 	/** ********************************** */
+	 	/** PUBLIC VARIABLES * */
+	 	/** ********************************** */
+
+		// default color
+		this.color = '000000';
+
+		/** ********************************** */
+		/** PUBLIC VARIABLES * */
+		/** ********************************** */
+		var dataset = new Dataset();
+		var customContainer = 'planeContainer';
+		/** ********************************** */
+		/** PUBLIC METHODS * */
+		/** ********************************** */
+		/**
+		 * Takes inserted configuration from the plugin-template and returns the
+		 * parameters as JSON-config-file
+		 *
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 *
+		 * @return config file format: { data:VALUE}
+		 */
+		 this.getConfigCallback = function(containerId) {
+		 	var xSegments = $('#' + containerId + ' #segmentsX').val();
+		 	var ySegments = $('#' + containerId + ' #segmentsY').val();
+
+		 	var xMin = $('#' + containerId + ' #xMin').val();
+		 	var yMin = $('#' + containerId + ' #yMin').val();
+		 	var zMin = $('#' + containerId + ' #zMin').val();
+
+		 	var xMax = $('#' + containerId + ' #xMax').val();
+		 	var yMax = $('#' + containerId + ' #yMax').val();
+		 	var zMax = $('#' + containerId + ' #zMax').val();
+		 	return{
+		 		segmentsX : xSegments,
+		 		segmentsY : ySegments,
+		 		xMin : xMin,
+		 		yMin : yMin,
+		 		zMin : zMin,
+		 		xMax : xMax,
+		 		yMax : yMax,
+		 		zMax : zMax
+		 	}
+		 }
+		/**
+		 * Takes arguments from config and inserts them to the plugin-template
+		 *
+		 * @param config
+		 *            plugin config file
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 */
+		 this.setConfigCallback = function(config, containerId) {
+		 	if (config === "" || config === undefined) {
+		 		config = {
+		 			segmentsX : 20,
+		 			segmentsY : 20,
+		 			xMin : 0,
+		 			yMin : 0,
+		 			zMin : 0,
+		 			xMax : 10,
+		 			yMax : 10,
+		 			zMax : 10
+		 		};
+		 	}
+		 	if(config.segmentsX !== undefined){
+		 		$('#' + containerId + ' #segmentsX').val(config.segmentsX);
+		 	}
+		 	if(config.segmentsY !== undefined){
+		 		$('#' + containerId + ' #segmentsY').val(config.segmentsY);
+		 	}
+		 	if(config.xMin !== undefined){
+		 		$('#' + containerId + ' #xMin').val(config.xMin);
+		 	}
+		 	if(config.yMin !== undefined){
+		 		$('#' + containerId + ' #yMin').val(config.yMin);
+		 	}
+		 	if(config.zMin !== undefined){
+		 		$('#' + containerId + ' #zMin').val(config.zMin);
+		 	}
+		 	if(config.xMax !== undefined){
+		 		$('#' + containerId + ' #xMax').val(config.xMax);
+		 	}
+		 	if(config.yMax !== undefined){
+		 		$('#' + containerId + ' #yMax').val(config.yMax);
+		 	}
+		 	if(config.zMax !== undefined){
+		 		$('#' + containerId + ' #zMax').val(config.zMax);
+		 	}
+		 }
+		 var initialized = false;
+		 this.exec = function(config, childs) {
+		 	console.log(this.id+"[ plane ] \t\t EXEC" + JSON.stringify(config));
+
+
+		 	var segments = 20,segmentsX = 20,segmentsY = 20,
+		 	x_MIN = 0, x_MAX = 10,
+		 	y_MIN = 0, y_MAX = 10,
+		 	z_MIN = 0, z_MAX = 10;
+
+		 	if(config != "" && config !== undefined){
+
+		 		if( config.segmentsX !== undefined){
+		 			segmentsX = isNaN(parseInt(config.segmentsX)) ? segments : parseInt(config.segmentsX);
+		 		}
+		 		if(config.segmentsY !== undefined){
+		 			segmentsY = isNaN(parseInt(config.segmentsY)) ? segments : parseInt(config.segmentsY);
+		 		}
+		 		if( config.xMin !== undefined){
+		 			x_MIN = isNaN(parseFloat(config.xMin)) ? x_MIN : parseFloat(config.xMin);
+		 		}
+		 		if(config.yMin !== undefined){
+		 			y_MIN = isNaN(parseFloat(config.yMin)) ? y_MIN : parseFloat(config.yMin);
+		 		}
+		 		if(config.zMin !== undefined){
+		 			z_MIN = isNaN(parseFloat(config.zMin)) ? z_MIN : parseFloat(config.zMin);
+		 		}
+		 		if(config.xMax !== undefined){
+		 			x_MAX = isNaN(parseFloat(config.xMax)) ? x_MAX : parseFloat(config.xMax);
+		 		}
+		 		if(config.yMax !== undefined){
+		 			y_MAX = isNaN(parseFloat(config.yMax)) ? y_MAX : parseFloat(config.yMax);
+		 		}
+		 		if( config.xMax !== undefined){
+		 			z_MAX = isNaN(parseFloat(config.zMax)) ? z_MAX : parseFloat(config.zMax);
+		 		}
+		 	}
+
+		 	var data = [];
+		 	var xRange = x_MAX - x_MIN;
+		 	var yRange = y_MAX - y_MIN;
+		 	var zRange = z_MAX - z_MIN;
+
+		 	var u,v;
+		 	for(var i = 0; i<= segmentsY; i++){
+		 		v = i / segmentsY;
+		 		for(var j = 0; j <= segmentsX;j++){
+		 			u = j / segmentsX;
+		 			data.push({
+		 				x: xRange * u + x_MIN,
+		 				y: yRange * v + y_MIN,
+		 				z: 0
+		 			});
+		 		}
+		 	}
+
+		 	var borders = {
+		 		xMax : x_MAX,
+		 		yMax : y_MAX,
+		 		zMax : z_MAX,
+		 		xMin : x_MIN,
+		 		yMin : y_MIN,
+		 		zMin : z_MIN
+		 	}
+		 	var dc = {
+		 		data : data
+		 	}
+		 	var result = dataset.exec(dc,childs);
+
+		 	return {
+		 		pType : this.type,
+		 		response :{
+		 			data : result.response.data,
+		 			color : result.response.color,
+		 			colorArray : result.response.colorArray,
+		 			heatmap : result.response.heatmap,
+		 			borders:borders
+		 		}
+		 	};
+		 }
+
+
+
+		 /** ********************************** */
+		 /** PRIVATE METHODS * */
+		 /** ********************************** */
+
+
+		});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+
+});

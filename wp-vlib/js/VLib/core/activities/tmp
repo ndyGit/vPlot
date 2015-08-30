@@ -1,0 +1,570 @@
+define( ['require',
+		'config',
+		'jquery',
+		'core/Framework3D.vlib', 'core/utils/Utils.Activity.vlib'],
+	function ( require, Config, $, F3D, ACTIVITY ) {
+		var MOUSE = MOUSE || (function () {
+				var activities_ = {};
+				var threshold = {};
+				var overList = [];
+				var destroyableActivityList = [];
+
+				var mouse_counter = 0;
+				var projector = new F3D.Projector();
+				var raycaster = new F3D.Raycaster();
+
+
+				var intersectionTest = function ( event, camera, container, activities ) {
+					event.preventDefault();
+					if ( activities.length === 0 ) {
+						return;
+					}
+
+					var cId = container.attr( "id" );
+
+					var offsetX = container.offset().left;
+					var offsetY = container.offset().top;
+
+					var mouseVector = new F3D.Vector3(
+						( ( event.clientX - offsetX) / container.width()) * 2 - 1,
+						-( ( event.clientY + $( window ).scrollTop() - offsetY ) / container.height() ) * 2 + 1,
+						0 );
+
+					//console.log("MOUSE( %s, %s ) Container( %s, %s )", mouseVector.x, mouseVector.y, offsetX, offsetY);
+					projector.unprojectVector( mouseVector, camera );
+					var normalizedMouseVector = mouseVector.sub( camera.position ).normalize();
+
+					raycaster.params.PointCloud.threshold = threshold[ cId ].point;
+					raycaster.linePrecision = threshold[ cId ].line;
+
+					raycaster.ray.set(
+						camera.position,
+						normalizedMouseVector );
+
+					return raycaster.intersectObjects( activities );
+				};
+
+				var actionOnIntersection = function ( event_type, event, scene, camera, renderer, container, intersectables ) {
+					var cId = container.attr( "id" );
+					var intersections = intersectionTest( event, camera, container, intersectables );
+					var args = {
+						event       : event,
+						intersection: intersections[0],
+						scene       : scene,
+						camera      : camera,
+						renderer    : renderer,
+						container   : container
+					};
+
+					var mouse, mouseActive, mouseActivities;
+
+					if ( intersections.length > 0 ) {
+
+						var object = intersections[0].object;
+						mouseActivities = intersections[0].object.mouse;
+
+						if ( mouseActivities.active.length === 0 ) {
+							for ( var i = 0, len = mouseActivities.activities.length; i < len; ++i ) {
+								mouseActivities.active.push( mouseActivities.activities[i] );
+							}
+						}
+						mouseActive = mouseActivities.active;
+
+						for ( var i = 0; i < mouseActive.length; ++i ) {
+							container.css( "cursor", "pointer" );
+							mouse = mouseActive[i];
+
+							if ( mouse.type === event_type ) {
+								console.log(mouse.type+" "+event_type);
+								//console.log("handle %s intersections", mouseActivities.active.length);
+								//console.log(mouseActivities);
+								if ( !mouse.handle.isLocked() ) {
+
+									if ( mouse.type === MOUSE.EVENT.OVER ) {
+										handleOut( container, args, object );
+										overList.push( {o: object, a: args} );
+										//console.log("overList push "+object.id);
+									}
+
+									/* run handle */
+									console.log('play '+mouse.type);
+									args.intersection = intersections[0];
+									mouse.handle.exec( args );
+									/* update next-list*/
+
+									if(mouse.childs.length > 0){
+										alert();
+										mouseActivities.active.splice( i, 1 );
+										mouseActivities.active = mouseActivities.active.concat( mouse.childs );
+									}
+
+
+									if( true === mouse.handle.destroyable ){
+										destroyableActivityList.push( {o: object, a: args} );
+									}
+
+								}
+							}
+						}
+
+					} else {
+						/* NO HIT */
+						container.css( "cursor", "default" );
+						/* OUT EVENT ?*/
+						handleOut( container, args, false );
+					}
+
+				};
+				var handleDestroyables = function( currentlyOver ){
+					"use strict";
+					var destroyable;
+					while( destroyable = destroyableActivityList.pop() ){
+						if(!currentlyOver || (currentlyOver.id !== destroyable.o.id)){
+							destroyable.o.mouse.activities[0].handle.exec( destroyable.a, false, false, true );
+						}
+					}
+				};
+				var handleOut = function ( container, args, currentlyOver ) {
+					handleDestroyables( currentlyOver );
+					if ( overList.length === 0 ){
+						return;
+					}
+
+					var mouseOverActivity, activity, over, destroyableActivity;
+					while ( over = overList.pop() ) {
+						//console.log("overList.pop() "+over.o.id);
+						mouseOverActivity = over.o.mouse.active;
+
+						/* INACTIVE ACTIVITY? */
+						if ( !mouseOverActivity || mouseOverActivity.length === 0 ) {
+							continue;
+						}
+						/* IS THERE A OUT-ACTIVITY WITHIN ACTIVITY LIST? */
+						for ( var j = 0, jl = mouseOverActivity.length; j < jl; ++j ) {
+							activity = mouseOverActivity[j];
+							/* OVER -> OUT. EXEC & UPDATE activity.active  */
+							if ( activity.type === MOUSE.EVENT.OUT ) {
+								console.log('is out');
+								if ( over.o === activity.o ) {
+									container.css( "cursor", "default" );
+
+									/*
+									 REPLACE CURRENT INTERSECTION OBJECT BY OVER-INTERSECTION-OBJECT
+									 ( current = new over-object )
+									 */
+									args.intersection = over.a.intersection;
+									/* EXEC OUT EVENT */
+									activity.handle.exec( args, false, false );
+									//console.log("exec out");
+									if ( !activity.handle.isLocked() ) {
+										over.o.mouse.active.splice( j, 1 );
+									}
+
+								}
+							}
+						}
+					}
+
+
+				};
+				return {
+					add   : function ( activity ) {
+
+						if ( !activities_.hasOwnProperty( activity.cId ) ) {
+							activities_[activity.cId] = {
+								click   : [],
+								dblclick: [],
+								over    : [],
+								out     : [],
+								drag    : []
+							}
+						}
+						if ( !threshold.hasOwnProperty( activity.cId ) ) {
+							threshold[activity.cId] = {
+								point: 10,
+								line : 10
+							}
+						}
+						activity.id = mouse_counter++;
+						if ( activity.o.mouse === undefined ) {
+							activity.o.mouse = {
+								activities: [activity],
+								active    : []
+							};
+						}
+						if ( activity instanceof MOUSE.Click ) {
+							if ( activities_[activity.cId].click.indexOf( activity.o ) === -1 ) {
+								activities_[activity.cId].click.push( activity.o );
+							}
+						}
+						if ( activity instanceof MOUSE.DBLClick ) {
+							if ( activities_[activity.cId].dblclick.indexOf( activity.o ) === -1 ) {
+								activities_[activity.cId].dblclick.push( activity.o );
+							}
+						}
+						if ( activity instanceof MOUSE.Over ) {
+							if ( activities_[activity.cId].over.indexOf( activity.o ) === -1 ) {
+								activities_[activity.cId].over.push( activity.o );
+							}
+						}
+						if ( activity instanceof MOUSE.Out ) {
+							if ( activities_[activity.cId].out.indexOf( activity.o ) === -1 ) {
+								activities_[activity.cId].out.push( activity.o );
+							}
+						}
+
+					},
+					remove: function ( activity ) {
+						var i;
+						if ( activity instanceof MOUSE.Click ) {
+							i = activities_[activity.cId].click.indexOf( activity.o );
+							if ( i !== -1 ) {
+								activities_[activity.cId].click.splice( i, 1 );
+							}
+
+						} else if ( activity instanceof MOUSE.DBLClick ) {
+							i = activities_[activity.cId].dblclick.indexOf( activity.o );
+							if ( i !== -1 ) {
+								activities_[activity.cId].dblclick.splice( i, 1 );
+							}
+						}
+						else if ( activity instanceof MOUSE.Over ) {
+							i = activities_[activity.cId].over.indexOf( activity.o );
+							if ( i !== -1 ) {
+								activities_[activity.cId].over.splice( i, 1 );
+							}
+						} else if ( activity instanceof MOUSE.Out ) {
+							i = activities_[activity.cId].out.indexOf( activity.o );
+							if ( i !== -1 ) {
+								activities_[activity.cId].out.splice( i, 1 );
+							}
+						}
+
+
+					},
+					empty : function ( containerId ) {
+						//console.log( "MOUSE EMPTY CONTAINER " + containerId );
+						over = false;
+						activities_[containerId] = {
+							click   : [],
+							dblclick: [],
+							over    : [],
+							out     : [],
+							drag    : []
+						};
+					},
+
+					click            : function ( event, scene, camera, renderer, container ) {
+						var cId = container.attr( "id" );
+
+						if ( activities_[cId] === undefined || activities_[cId].click.length === 0 ) return;
+						actionOnIntersection(
+							MOUSE.EVENT.CLICK,
+							event,
+							scene,
+							camera,
+							renderer,
+							container,
+							activities_[cId].click
+						);
+
+					},
+					dblclick         : function ( event, scene, camera, renderer, container ) {
+
+						var cId = container.attr( "id" );
+						if ( activities_[cId] === undefined || activities_[cId].dblclick.length === 0 ) return;
+
+						actionOnIntersection(
+							MOUSE.EVENT.DBLCLICK,
+							event,
+							scene,
+							camera,
+							renderer,
+							container,
+							activities_[cId].dblclick
+						);
+					},
+					moveOver         : function ( event ) {
+						var cId = event.target.container.attr( "id" );
+						actionOnIntersection(
+							MOUSE.EVENT.OVER,
+							event,
+							event.target.scene,
+							event.target.camera,
+							event.target.renderer,
+							event.target.container,
+							activities_[cId].over );
+
+					},
+					moveOut          : function ( event ) {
+						var cId = event.target.container.attr( "id" );
+						actionOnIntersection(
+							MOUSE.EVENT.OUT,
+							event,
+							event.target.scene,
+							event.target.camera,
+							event.target.renderer,
+							event.target.container,
+							activities_[cId].out );
+
+					},
+					over             : function ( event, scene, camera, renderer, container ) {
+						var cId = container.attr( "id" );
+						if ( activities_[cId] === undefined || activities_[cId].over.length === 0 ) return;
+						renderer.domElement.scene = scene;
+						renderer.domElement.camera = camera;
+						renderer.domElement.renderer = renderer;
+						renderer.domElement.container = container;
+						renderer.domElement.addEventListener( 'mousemove', MOUSE.moveOver, true );
+					},
+					out              : function ( event, scene, camera, renderer, container ) {
+						renderer.domElement.removeEventListener( 'mousemove', MOUSE.moveOut, true );
+					},
+					setPointThreshold: function ( container, object, value ) {
+						if ( !object.hasOwnProperty( "userData" ) ) {
+							object.userData = {};
+						}
+						if ( !object.userData.hasOwnProperty( "threshold" ) ) {
+							object.userData.threshold = {};
+						}
+						object.userData.threshold.point = value;
+						if ( !threshold.hasOwnProperty( container ) ) {
+							threshold[container] = {
+								point: value,
+								line : 10
+							}
+						} else {
+							if ( threshold[container].hasOwnProperty( "point" ) ) {
+								if ( threshold[container].point < value ) {
+									threshold[container].point = value;
+								}
+							} else {
+								threshold[container].point = value;
+							}
+
+						}
+					},
+					setLineThreshold : function ( container, object, value ) {
+						if ( !object.hasOwnProperty( "userData" ) ) {
+							object.userData = {};
+						}
+						if ( !object.userData.hasOwnProperty( "threshold" ) ) {
+							object.userData.threshold = {};
+						}
+						object.userData.threshold.line = value;
+						if ( !threshold.hasOwnProperty( container ) ) {
+							threshold[container] = {
+								line : value,
+								point: 10
+							}
+						} else {
+							if ( threshold[container].hasOwnProperty( "line" ) ) {
+								if ( threshold[container].line < value ) {
+									threshold[container].line = value;
+								}
+							} else {
+								threshold[container].line = value;
+							}
+
+						}
+					},
+					extend           : function ( original, context ) {
+						for ( key in context ) {
+							if ( context.hasOwnProperty( key ) ) {
+								original[key] = context[key];
+							}
+						}
+					}
+				};
+			})();
+		MOUSE.EVENT = {
+			CLICK   : 'click',
+			DBLCLICK: 'dblclick',
+			OVER    : 'over',
+			OUT     : 'out'
+		};
+
+		MOUSE.absoluteToRelativeMouseCoords = function( $container, event ){
+
+			var offsetX = $container.offset().left;
+			var offsetY = $container.offset().top;
+
+			return new F3D.Vector3(
+				(event.pageX - offsetX - $container.width()/2),
+				-(event.pageY - offsetY - $container.height()/2),
+				0 );
+		};
+
+		/*
+		 * Copy activities to childs and init each activity
+		 **/
+		MOUSE.handleActivities = function ( system, env ) {
+			if ( env.activities === undefined || env.activities.length === 0 ) return [];
+
+			if ( !system.material ) {
+				if ( system.children.length !== 0 ) {
+					for ( var i = 0, len = system.children.length; i < len; ++i ) {
+						MOUSE.handleActivities( system.children[i], env );
+					}
+				}
+			} else {
+				if ( system.mouse === undefined ) {
+					system.mouse = {
+						activities: [],
+						active    : []
+					};
+				}
+				var activityChain = MOUSE.initActivities( system, env.activities );
+				system.mouse.activities = activityChain;
+				return activityChain;
+			}
+		};
+		/*
+		 * Creates activities and binds them to system.
+		 * */
+		MOUSE.initActivities = function ( system, activities ) {
+			if ( activities.length === 0 ) return [];
+			var tmp, activity, result = [];
+			for ( var i = 0, il = activities.length; i < il; ++i ) {
+				tmp = activities[i];
+				activity = tmp.callback.apply( tmp.context, [system] );
+				activity.addChilds( MOUSE.initActivities( system, tmp.subActivities ) );
+				result.push( activity );
+			}
+			return result;
+		};
+		MOUSE.FunctionHandle = function ( callback ) {
+
+			this.isLocked = function () {
+				return false;
+			};
+			this.reset = function () {
+				/* stub */
+			};
+			this.exec = function ( e ) {
+				callback( e );
+			}
+		};
+		MOUSE.Mouse = function ( container, object, handle ) {
+			if ( object === undefined ) return;
+			this.handle = handle;
+			if ( typeof handle === 'function' ) {
+				this.handle = new MOUSE.FunctionHandle( handle );
+			}
+			this.childs = [];
+			this.cId = -1;
+			if ( container instanceof $ ) {
+				this.cId = container.find( Config.PLOT_CONTAINER ).attr( "id" );
+			} else {
+				this.cId = $( '#' + container ).find( Config.PLOT_CONTAINER ).attr( "id" );
+			}
+
+			if ( object instanceof F3D.Geometry ) {
+				this.o = new F3D.Mesh( object );
+				this.o.mouse = object.mouse;
+				this.o.backup = object.backup;
+			} else {
+				this.o = object;
+			}
+
+			this.destroy = function () {
+				MOUSE.remove( this );
+			};
+			this.addChilds = function ( a ) {
+				if ( a instanceof Array ) {
+					this.childs = this.childs.concat( a );
+				} else {
+					this.childs.push( a );
+				}
+			};
+
+		};
+		MOUSE.Click = function ( container, object, handle ) {
+			this.type = MOUSE.EVENT.CLICK;
+			MOUSE.extend( this, new MOUSE.Mouse( container, object, handle ) );
+			MOUSE.add( this );
+		};
+		MOUSE.DBLClick = function ( container, object, handle ) {
+			this.type = MOUSE.EVENT.DBLCLICK;
+			MOUSE.extend( this, new MOUSE.Mouse( container, object, handle ) );
+			MOUSE.add( this );
+		};
+		MOUSE.Over = function ( container, object, handle ) {
+			this.type = MOUSE.EVENT.OVER;
+			MOUSE.extend( this, new MOUSE.Mouse( container, object, handle ) );
+			MOUSE.add( this );
+		};
+		MOUSE.Out = function ( container, object, handle ) {
+			this.type = MOUSE.EVENT.OUT;
+			MOUSE.extend( this, new MOUSE.Mouse( container, object, handle ) );
+			MOUSE.add( this );
+		};
+
+		return MOUSE;
+	} );
+
+
+
+
+
+
+var a = {type:'a', childs : [a1,a2], root:a, id:1};
+var a1 = {type:'a1', childs : [], root:a, id:2};
+var a2 = {type:'a2', childs : [], root:a, id:3};
+var b = {type:'b', childs : [], root:b, id:4};
+
+var activities = {
+  activities : [a,b],
+  active : []
+};
+
+activities.active = [a,b];
+
+
+var step = function(){
+  var node;
+  var checkChilds = [];
+  for(var i = 0; i < activities.active.length; ++i){
+    node = activities.active[i];
+    console.log('exec '+node.type);
+  }
+
+  var addedRoots = [];
+  var isRoot = false;
+  var tmp = [];
+
+  for(var i = 0, len = activities.active.length; i < len; ++i){
+    node = activities.active[i];
+
+    if(node.childs && node.childs.length > 0){
+      tmp = tmp.concat(node.childs);
+    }else{
+
+      isRoot = false;
+      for(var j = 0; j < addedRoots.length; ++j){
+
+        if(node.root.id === addedRoots[ j ].id){
+          isRoot = true;
+          break;
+        }
+      }
+
+      if(!isRoot){
+        tmp.push(node.root);
+        addedRoots.push(node.root);
+      }
+
+    }
+  }
+  activities.active = [];
+  activities.active = tmp;
+
+}
+
+step();
+console.log('#############');
+console.log(activities.active);
+step();
+console.log('#############');
+console.log(activities.active);
+

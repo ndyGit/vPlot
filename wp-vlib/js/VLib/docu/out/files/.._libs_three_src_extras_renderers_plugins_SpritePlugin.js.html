@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/src/extras/renderers/plugins/SpritePlugin.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/src/extras/renderers/plugins/SpritePlugin.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @author mikael emtinger / http://gomo.se/
+ * @author alteredq / http://alteredqualia.com/
+ */
+
+THREE.SpritePlugin = function () {
+
+	var _gl, _renderer, _texture;
+
+	var vertices, faces, vertexBuffer, elementBuffer;
+	var program, attributes, uniforms;
+
+	this.init = function ( renderer ) {
+
+		_gl = renderer.context;
+		_renderer = renderer;
+
+		vertices = new Float32Array( [
+			- 0.5, - 0.5, 0, 0, 
+			  0.5, - 0.5, 1, 0,
+			  0.5,   0.5, 1, 1,
+			- 0.5,   0.5, 0, 1
+		] );
+
+		faces = new Uint16Array( [
+			0, 1, 2,
+			0, 2, 3
+		] );
+
+		vertexBuffer  = _gl.createBuffer();
+		elementBuffer = _gl.createBuffer();
+
+		_gl.bindBuffer( _gl.ARRAY_BUFFER, vertexBuffer );
+		_gl.bufferData( _gl.ARRAY_BUFFER, vertices, _gl.STATIC_DRAW );
+
+		_gl.bindBuffer( _gl.ELEMENT_ARRAY_BUFFER, elementBuffer );
+		_gl.bufferData( _gl.ELEMENT_ARRAY_BUFFER, faces, _gl.STATIC_DRAW );
+
+		program = createProgram();
+
+		attributes = {
+			position:			_gl.getAttribLocation ( program, &#x27;position&#x27; ),
+			uv:					_gl.getAttribLocation ( program, &#x27;uv&#x27; )
+		};
+
+		uniforms = {
+			uvOffset:			_gl.getUniformLocation( program, &#x27;uvOffset&#x27; ),
+			uvScale:			_gl.getUniformLocation( program, &#x27;uvScale&#x27; ),
+
+			rotation:			_gl.getUniformLocation( program, &#x27;rotation&#x27; ),
+			scale:				_gl.getUniformLocation( program, &#x27;scale&#x27; ),
+
+			color:				_gl.getUniformLocation( program, &#x27;color&#x27; ),
+			map:				_gl.getUniformLocation( program, &#x27;map&#x27; ),
+			opacity:			_gl.getUniformLocation( program, &#x27;opacity&#x27; ),
+
+			modelViewMatrix: 	_gl.getUniformLocation( program, &#x27;modelViewMatrix&#x27; ),
+			projectionMatrix:	_gl.getUniformLocation( program, &#x27;projectionMatrix&#x27; ),
+
+			fogType:			_gl.getUniformLocation( program, &#x27;fogType&#x27; ),
+			fogDensity:			_gl.getUniformLocation( program, &#x27;fogDensity&#x27; ),
+			fogNear:			_gl.getUniformLocation( program, &#x27;fogNear&#x27; ),
+			fogFar:				_gl.getUniformLocation( program, &#x27;fogFar&#x27; ),
+			fogColor:			_gl.getUniformLocation( program, &#x27;fogColor&#x27; ),
+
+			alphaTest:			_gl.getUniformLocation( program, &#x27;alphaTest&#x27; )
+		};
+
+		var canvas = document.createElement( &#x27;canvas&#x27; );
+		canvas.width = 8;
+		canvas.height = 8;
+
+		var context = canvas.getContext( &#x27;2d&#x27; );
+		context.fillStyle = &#x27;#ffffff&#x27;;
+		context.fillRect( 0, 0, canvas.width, canvas.height );
+
+		_texture = new THREE.Texture( canvas );
+		_texture.needsUpdate = true;
+
+	};
+
+	this.render = function ( scene, camera, viewportWidth, viewportHeight ) {
+
+		var sprites = scene.__webglSprites,
+			nSprites = sprites.length;
+
+		if ( ! nSprites ) return;
+
+		// setup gl
+
+		_gl.useProgram( program );
+
+		_gl.enableVertexAttribArray( attributes.position );
+		_gl.enableVertexAttribArray( attributes.uv );
+
+		_gl.disable( _gl.CULL_FACE );
+		_gl.enable( _gl.BLEND );
+
+		_gl.bindBuffer( _gl.ARRAY_BUFFER, vertexBuffer );
+		_gl.vertexAttribPointer( attributes.position, 2, _gl.FLOAT, false, 2 * 8, 0 );
+		_gl.vertexAttribPointer( attributes.uv, 2, _gl.FLOAT, false, 2 * 8, 8 );
+
+		_gl.bindBuffer( _gl.ELEMENT_ARRAY_BUFFER, elementBuffer );
+
+		_gl.uniformMatrix4fv( uniforms.projectionMatrix, false, camera.projectionMatrix.elements );
+
+		_gl.activeTexture( _gl.TEXTURE0 );
+		_gl.uniform1i( uniforms.map, 0 );
+
+		var oldFogType = 0;
+		var sceneFogType = 0;
+		var fog = scene.fog;
+
+		if ( fog ) {
+
+			_gl.uniform3f( uniforms.fogColor, fog.color.r, fog.color.g, fog.color.b );
+
+			if ( fog instanceof THREE.Fog ) {
+
+				_gl.uniform1f( uniforms.fogNear, fog.near );
+				_gl.uniform1f( uniforms.fogFar, fog.far );
+
+				_gl.uniform1i( uniforms.fogType, 1 );
+				oldFogType = 1;
+				sceneFogType = 1;
+
+			} else if ( fog instanceof THREE.FogExp2 ) {
+
+				_gl.uniform1f( uniforms.fogDensity, fog.density );
+
+				_gl.uniform1i( uniforms.fogType, 2 );
+				oldFogType = 2;
+				sceneFogType = 2;
+
+			}
+
+		} else {
+
+			_gl.uniform1i( uniforms.fogType, 0 );
+			oldFogType = 0;
+			sceneFogType = 0;
+
+		}
+
+
+		// update positions and sort
+
+		var i, sprite, material, fogType, scale = [];
+
+		for( i = 0; i &lt; nSprites; i ++ ) {
+
+			sprite = sprites[ i ];
+			material = sprite.material;
+
+			if ( sprite.visible === false ) continue;
+
+			sprite._modelViewMatrix.multiplyMatrices( camera.matrixWorldInverse, sprite.matrixWorld );
+			sprite.z = - sprite._modelViewMatrix.elements[ 14 ];
+
+		}
+
+		sprites.sort( painterSortStable );
+
+		// render all sprites
+
+		for( i = 0; i &lt; nSprites; i ++ ) {
+
+			sprite = sprites[ i ];
+
+			if ( sprite.visible === false ) continue;
+
+			material = sprite.material;
+
+			_gl.uniform1f( uniforms.alphaTest, material.alphaTest );
+			_gl.uniformMatrix4fv( uniforms.modelViewMatrix, false, sprite._modelViewMatrix.elements );
+
+			scale[ 0 ] = sprite.scale.x;
+			scale[ 1 ] = sprite.scale.y;
+
+			if ( scene.fog &amp;&amp; material.fog ) {
+
+				fogType = sceneFogType;
+
+			} else {
+
+				fogType = 0;
+
+			}
+
+			if ( oldFogType !== fogType ) {
+
+				_gl.uniform1i( uniforms.fogType, fogType );
+				oldFogType = fogType;
+
+			}
+
+			if ( material.map !== null ) {
+
+				_gl.uniform2f( uniforms.uvOffset, material.map.offset.x, material.map.offset.y );
+				_gl.uniform2f( uniforms.uvScale, material.map.repeat.x, material.map.repeat.y );
+
+			} else {
+
+				_gl.uniform2f( uniforms.uvOffset, 0, 0 );
+				_gl.uniform2f( uniforms.uvScale, 1, 1 );
+
+			}
+
+			_gl.uniform1f( uniforms.opacity, material.opacity );
+			_gl.uniform3f( uniforms.color, material.color.r, material.color.g, material.color.b );
+
+			_gl.uniform1f( uniforms.rotation, material.rotation );
+			_gl.uniform2fv( uniforms.scale, scale );
+
+			_renderer.setBlending( material.blending, material.blendEquation, material.blendSrc, material.blendDst );
+			_renderer.setDepthTest( material.depthTest );
+			_renderer.setDepthWrite( material.depthWrite );
+
+			if ( material.map &amp;&amp; material.map.image &amp;&amp; material.map.image.width ) {
+
+				_renderer.setTexture( material.map, 0 );
+
+			} else {
+
+				_renderer.setTexture( _texture, 0 );
+
+			}
+
+			_gl.drawElements( _gl.TRIANGLES, 6, _gl.UNSIGNED_SHORT, 0 );
+
+		}
+
+		// restore gl
+
+		_gl.enable( _gl.CULL_FACE );
+
+	};
+
+	function createProgram () {
+
+		var program = _gl.createProgram();
+
+		var vertexShader = _gl.createShader( _gl.VERTEX_SHADER );
+		var fragmentShader = _gl.createShader( _gl.FRAGMENT_SHADER );
+
+		_gl.shaderSource( vertexShader, [
+
+			&#x27;precision &#x27; + _renderer.getPrecision() + &#x27; float;&#x27;,
+
+			&#x27;uniform mat4 modelViewMatrix;&#x27;,
+			&#x27;uniform mat4 projectionMatrix;&#x27;,
+			&#x27;uniform float rotation;&#x27;,
+			&#x27;uniform vec2 scale;&#x27;,
+			&#x27;uniform vec2 uvOffset;&#x27;,
+			&#x27;uniform vec2 uvScale;&#x27;,
+
+			&#x27;attribute vec2 position;&#x27;,
+			&#x27;attribute vec2 uv;&#x27;,
+
+			&#x27;varying vec2 vUV;&#x27;,
+
+			&#x27;void main() {&#x27;,
+
+				&#x27;vUV = uvOffset + uv * uvScale;&#x27;,
+
+				&#x27;vec2 alignedPosition = position * scale;&#x27;,
+
+				&#x27;vec2 rotatedPosition;&#x27;,
+				&#x27;rotatedPosition.x = cos( rotation ) * alignedPosition.x - sin( rotation ) * alignedPosition.y;&#x27;,
+				&#x27;rotatedPosition.y = sin( rotation ) * alignedPosition.x + cos( rotation ) * alignedPosition.y;&#x27;,
+
+				&#x27;vec4 finalPosition;&#x27;,
+
+				&#x27;finalPosition = modelViewMatrix * vec4( 0.0, 0.0, 0.0, 1.0 );&#x27;,
+				&#x27;finalPosition.xy += rotatedPosition;&#x27;,
+				&#x27;finalPosition = projectionMatrix * finalPosition;&#x27;,
+
+				&#x27;gl_Position = finalPosition;&#x27;,
+
+			&#x27;}&#x27;
+
+		].join( &#x27;\n&#x27; ) );
+
+		_gl.shaderSource( fragmentShader, [
+
+			&#x27;precision &#x27; + _renderer.getPrecision() + &#x27; float;&#x27;,
+
+			&#x27;uniform vec3 color;&#x27;,
+			&#x27;uniform sampler2D map;&#x27;,
+			&#x27;uniform float opacity;&#x27;,
+
+			&#x27;uniform int fogType;&#x27;,
+			&#x27;uniform vec3 fogColor;&#x27;,
+			&#x27;uniform float fogDensity;&#x27;,
+			&#x27;uniform float fogNear;&#x27;,
+			&#x27;uniform float fogFar;&#x27;,
+			&#x27;uniform float alphaTest;&#x27;,
+
+			&#x27;varying vec2 vUV;&#x27;,
+
+			&#x27;void main() {&#x27;,
+
+				&#x27;vec4 texture = texture2D( map, vUV );&#x27;,
+
+				&#x27;if ( texture.a &lt; alphaTest ) discard;&#x27;,
+
+				&#x27;gl_FragColor = vec4( color * texture.xyz, texture.a * opacity );&#x27;,
+
+				&#x27;if ( fogType &gt; 0 ) {&#x27;,
+
+					&#x27;float depth = gl_FragCoord.z / gl_FragCoord.w;&#x27;,
+					&#x27;float fogFactor = 0.0;&#x27;,
+
+					&#x27;if ( fogType == 1 ) {&#x27;,
+
+						&#x27;fogFactor = smoothstep( fogNear, fogFar, depth );&#x27;,
+
+					&#x27;} else {&#x27;,
+
+						&#x27;const float LOG2 = 1.442695;&#x27;,
+						&#x27;float fogFactor = exp2( - fogDensity * fogDensity * depth * depth * LOG2 );&#x27;,
+						&#x27;fogFactor = 1.0 - clamp( fogFactor, 0.0, 1.0 );&#x27;,
+
+					&#x27;}&#x27;,
+
+					&#x27;gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );&#x27;,
+
+				&#x27;}&#x27;,
+
+			&#x27;}&#x27;
+
+		].join( &#x27;\n&#x27; ) );
+
+		_gl.compileShader( vertexShader );
+		_gl.compileShader( fragmentShader );
+
+		_gl.attachShader( program, vertexShader );
+		_gl.attachShader( program, fragmentShader );
+
+		_gl.linkProgram( program );
+
+		return program;
+
+	};
+
+	function painterSortStable ( a, b ) {
+
+		if ( a.z !== b.z ) {
+
+			return b.z - a.z;
+
+		} else {
+
+			return b.id - a.id;
+
+		}
+
+	};
+
+};
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

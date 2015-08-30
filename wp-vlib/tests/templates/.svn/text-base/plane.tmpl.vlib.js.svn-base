@@ -1,0 +1,138 @@
+define(function(require) {
+	var template = (function() {
+
+		// TEST TREE
+		var Tree = (function() {
+			this.name = '';
+			this.config = '';
+			this.childs = [];
+		});
+
+		var template = new Tree();
+		template.name = '3d';
+		template.config = {
+			width : 'auto',
+			height : 'auto'
+		}
+
+		var planePlot = new Tree();
+		planePlot.name = 'planeplot';
+		planePlot.config = {
+			material : {
+				particleSize : 1,
+				opacity : 1,
+				//img : 'data/smiley.png',
+				blending : true,
+				transparent : true,
+				colors : true
+				//ambient: '808080'
+			}
+		};
+
+		var control = new Tree();
+		control.name = 'cameraControl';
+		control.config = {
+				controlType : 'tracball', 
+				//controlType : 'orbit', 
+				pos : {x:0,y:0,z:0}
+		};
+
+		var light1 = new Tree();
+		light1.name = 'light';
+		light1.config = {
+				
+				type 	: 'point',
+				pos		: {
+					x	:	5,
+					y	:	5,
+					z	:	5
+				},
+				intensity : 11,
+				distande : 5,
+				color: 'ff0000'
+		}
+		var light2 = new Tree();
+		light2.name = 'light';
+		light2.config = {
+				
+				type 	: 'ambient',
+				pos		: {
+					x	:	0,
+					y	:	0,
+					z	:	1000
+				},
+	
+				color: '404040'
+		}
+
+		var dataset1 = new Tree();
+		dataset1.name = 'dataset';
+		dataset1.config = {
+			path : 'All_KL_Div.gnuplot.dat',
+			data : [],
+			color: '101010'
+		}
+
+		var dataset2 = new Tree();
+		dataset2.name = 'dataset';
+		dataset2.config = {
+			path : '',
+			data : [ {
+				x : 0,
+				y : -1,
+				z : 0
+			}, {
+				x : 0,
+				y : -2,
+				z : 0
+			}, {
+				x : 0,
+				y : -3,
+				z : 0
+			}, {
+				x : 0,
+				y : -4,
+				z : 0
+			} ]
+		}
+
+		var color1 = new Tree();
+		color1.name = 'color';
+		color1.config = {
+			color : '000000'
+		};
+
+		var color2 = new Tree();
+		color2.name = 'color';
+		color2.config = {
+			color : '0cf600'
+		};
+
+		var heatmapPoints = new Tree();
+		heatmapPoints.name = 'heatmapPoints';
+		heatmapPoints.config = {
+			numberRange : {
+				from : '0',
+				to : '0.3'
+			},
+			spectrum : {
+				from : 'green',
+				to : 'red'
+			}
+		};
+
+		dataset1.childs.push(color1);
+		dataset2.childs.push(color2);
+
+		planePlot.childs.push(dataset1);
+		//planePlot.childs.push(dataset2);
+
+		template.childs.push(planePlot);
+		template.childs.push(light1); // point
+		template.childs.push(light2); // ambient
+		template.childs.push(control);
+
+		return template;
+	})();
+	return template;
+})

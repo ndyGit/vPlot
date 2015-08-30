@@ -1,0 +1,150 @@
+define(['require','core/Utils.vlib'],function(require,Utils) {
+    var template = (function() {
+
+        // TREE NODE STRUCTURE
+        var Tree = Utils.struct.treeNode;
+
+        var template = new Tree('3d');
+        template.config = {
+            antialias : true,
+            alpha : false,
+            scene : {
+                width : 'auto',
+                height : '400'
+            },
+            camera : {
+                x:0,
+                y:0,
+                z:1000
+            }
+        }
+        var control = new Tree('cameraControl');
+        control.config = {
+            controlType : 'tracball',
+                //controlType : 'orbit',
+                pos : {x:0,y:0,z:0}
+            };
+
+            var dataset1= new Tree('dataset');
+            dataset1.config = {
+                data : [ {
+                    x : 1,
+                    y : 1,
+                    z : 0
+                }, {
+                    x : 2,
+                    y : 2,
+                    z : 2
+                }, {
+                    x : 3,
+                    y : 3,
+                    z : 3
+                }]
+            };
+            var dataset2= new Tree('dataset');
+            dataset2.config = {
+                data : [ {
+                    x : 0,
+                    y : 0,
+                    z : 0
+                }, {
+                    x : 1,
+                    y : 0,
+                    z : 0
+                }, {
+                    x : 2,
+                    y : 2,
+                    z : 0
+                }, {
+                    x : 3,
+                    y : 3,
+                    z : -3
+                }, {
+                    x : 5,
+                    y : 1,
+                    z : 0
+                }]
+            };
+
+            var lineplot = new Tree('lineplot');
+            lineplot.config = {
+                lineWidth: 8,
+                opacity: 1,
+                scale : {
+                    'x' : 400,
+                    'y' : 400,
+                    'z' : 400
+                }
+            };
+            var axes = new Tree('axes');
+            axes.config = {
+                valueRange : true,
+                heatmapRange : true,
+                labels : {
+                    'x' : 'x',
+                    'y' : 'y',
+                    'z' : 'z',
+                    'data' : true
+                },
+                range : {
+                    'x' : 'auto',
+                    'y' : 'auto',
+                    'z' : 'auto'
+                },
+                numUnits : {
+                    'x' : 2,
+                    'y' : 2,
+                    'z' : 4,
+                },
+                raster : {
+                    xy : {
+                        show : false,
+                        opacity : 1
+                    },
+                    xz : {
+                        show : false,
+                        opacity : 1
+                    },
+                    yz : {
+                        show : false,
+                        opacity : 1
+                    }
+                }
+            };
+            var heatmap = new Tree('heatmapPoints');
+            heatmap.config = {
+            numberRange : {
+                from : '1',
+                to : '3'
+            },
+            spectrum : {
+                from : 'FFFF00',
+                to : '0000FF'
+            }
+        };
+        var color = new Tree('color');
+        color.config = {
+            color: '737274'
+        }
+        var heatmap2 = new Tree('heatmapPoints');
+            heatmap2.config = {
+            numberRange : {
+                from : '-3',
+                to : '0'
+            },
+            spectrum : {
+                from : '008000',
+                to : 'ff0000'
+            }
+        };
+            dataset1.childs.push(heatmap);
+            dataset2.childs.push(heatmap2);
+            lineplot.childs.push(dataset1);
+            lineplot.childs.push(dataset2);
+            lineplot.childs.push(axes);
+            template.childs.push(control);
+            template.childs.push(lineplot);
+            return template;
+        })();
+        return template;
+    })

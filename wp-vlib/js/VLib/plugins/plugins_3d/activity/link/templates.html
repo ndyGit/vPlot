@@ -1,0 +1,55 @@
+<script type="text/html" class="pluginConfigForm" id="link">
+	<ul class="list-group">
+		<form class="form-horizontal" role="form">
+			<form role="form">
+				<li class="list-group-item">
+					<h3>Link</h3>
+				</li>
+				<li class="list-group-item">
+					<span>Create</span>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionLinkType" id="optionLinkTypeHyperlink" value="hyperlink" checked>
+							<b>Hyperlink</b>
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionLinkType" id="optionLinkTypePlot" value="plot">
+							link to <b>Plot</b>
+						</label>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div id="option-link-hyperlink" style="display:none">
+						<label class="control-label">Hyperlink </label>
+						<div class="controls">
+							<div class="input-group">
+								<span class="input-group-addon">http</span>
+								<input class="form-control" type="text" id="hyperlink">
+							</div>
+							<br/>
+
+							<div class="input-group">
+								<span class="input-group-addon"><input type="checkbox" id="hyperlinkBlank"></span>
+								<span class="form-control">New tab</span>
+							</div>
+						</div>
+					</div>
+					<div id="option-link-plot" style="display:none">
+						<label class="control-label">Plot </label>
+						<div class="controls">
+							<div class="input-group">
+								<span class="input-group-addon">Plot</span>
+								<select class="form-control" id="selectPlot">
+									<option value ="-1"></option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</li>
+
+			</form>
+	</ul>
+</script>

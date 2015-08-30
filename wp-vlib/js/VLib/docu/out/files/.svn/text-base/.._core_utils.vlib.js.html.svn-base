@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../core/utils.vlib.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../core/utils.vlib.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([&#x27;require&#x27;,&#x27;underscore&#x27;],function(require,_) {
+	&#x27;use strict&#x27;;
+	/**
+		Base class of the framework.&lt;br /&gt;
+		On the one hand vLib is an interface to the &quot;outside world&quot;.
+		On the other it provides information to modules.&lt;br /&gt;
+		VLib registers it self as pseudo module and acts as a service provider.&lt;br/&gt;
+		It holds an instance of VMediator.&lt;br /&gt;
+		@class UTILS
+		@module VLib
+		**/
+		var UTILS = {
+
+		/**
+			Creates an unique 16 digit identification number.
+			@method getUUID
+			@return {String}
+			**/
+			getUUID : function(){
+				return &#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;.replace(/[xy]/g, function(c) {
+					var r = Math.random()*16|0, v = c == &#x27;x&#x27; ? r : (r&amp;0x3|0x8);
+					return v.toString(16);
+				});
+			},
+			struct : {
+			/**
+			Plugin flyweight, which represents a plugin.
+			@method struct.treeNode
+			@param name
+				Unique plugin name.
+			@return {Object}
+				Object.id = Unique plugin id.
+				Object.name = Unique plugin name.
+				Object.config = Plugin configuration object.
+				Object.childs = Array for attached child plugins.
+				**/
+				treeNode : function(name) {
+					this.id = name+&#x27;_&#x27;+UTILS.getUUID();
+					this.name = name;
+					this.config = &#x27;&#x27;;
+					this.childs = [];
+				}
+			},
+
+		/*
+		* @param key: x | y | z
+		* @param data: array of objects
+		* {x:value,y:value,z:value}
+		*
+		* Chrome (the V8 engine) uses in-place QuickSort internally
+		* (for arrays of size ≥ 22, else insertion sort) which is fast but not stable
+		*/
+		/**
+			Sort data objects by key.
+			@method sortBy
+			@param data {Array}
+				Array of data objects {x:VALUE,y:VALUE,z:VALUE}.
+			@param key {String}
+				Possible values are (x,y,z)
+			@default x
+			@return {Array}
+				Array of sorted data objects.
+				Sorted by key.
+				**/
+				sortBy : function(data,key){
+					var cX = function(a,b){
+						return parseFloat(a.x)-parseFloat(b.x);
+					};
+					var cY = function(a,b){
+						return parseFloat(a.y)-parseFloat(b.y);
+					};
+					var cZ = function(a,b){
+						return parseFloat(a.z)-parseFloat(b.z);
+					};
+					var sortedData;
+					switch(key){
+						case &#x27;x&#x27;: sortedData = data.sort(cX);break;
+						case &#x27;y&#x27;: sortedData = data.sort(cY);break;
+						case &#x27;z&#x27;: sortedData = data.sort(cZ);break;
+						default: sortedData = data.sort(cX);break;
+					}
+					return sortedData;
+				}
+			};
+	//Class
+	UTILS.CLASS = {
+		/**
+			Recommendation from Harmes and Diaz
+			&quot;Javascript - Objektorientierung und Entwurfsmuster&quot;
+			ISBN: 987-3-7723-6488-4
+			@method CLASS.extend
+			@param subClass
+			@param superClass
+			**/
+			extend : function(subClass,superClass){
+				var F = function(){};
+				F.prototype = superClass.prototype;
+				subClass.prototype = new F();
+				//prototype chaining
+				subClass.prototype.constuctor = subClass;
+				//add varible superClass to subClass
+				subClass.superClass = superClass.prototype;
+				//superClass is Object-Class itself
+				if(superClass.prototype.constuctor == Object.prototype.constuctor){
+					superClass.prototype.constuctor = superClass;
+				}
+			}
+	};
+	// Context3D
+	UTILS.C3D = {
+			 /**
+			Scales data linear with respect to the given borders.&lt;br /&gt;
+			Scale function is &lt;b&gt;(data_(x,y,z)  / range_(x,y,z)) * targetRange(x,y,z)&lt;/b&gt;.&lt;br /&gt;
+			range_ is &lt;b&gt;ZERO to max(border.max,abs(border.min))&lt;/b&gt;
+			@method C3D.scaleLinearToRange
+			@param data {Array}
+				Array of data objects {x:VALUE,y:VALUE,z:VALUE}.
+			@param borders {Object}
+				var Object = {
+					&#x27;x_MAX&#x27;:VALUE,
+					&#x27;y_MAX&#x27;:VALUE,
+					&#x27;z_MAX&#x27;:VALUE,
+					&#x27;x_MIN&#x27;:VALUE,
+					&#x27;y_MIN&#x27;:VALUE,
+					&#x27;z_MIN&#x27;:VALUE,
+					&#x27;x_SCALE_MIN&#x27; : VALUE,
+					&#x27;y_SCALE_MIN&#x27; : VALUE,
+					&#x27;z_SCALE_MIN&#x27; : VALUE,
+					&#x27;x_SCALE_MAX&#x27; : VALUE,
+					&#x27;y_SCALE_MAX&#x27; : VALUE,
+					&#x27;z_SCALE_MAX&#x27; : VALUE,
+				};
+			@return {Array}
+				Array of scaled data objects {x:VALUE,y:VALUE,z:VALUE}
+				**/
+				scaleLinearToRange : function(data, borders) {
+
+					var scaled_data = [];
+
+
+				// range is max (0 to MAX) or (MIN to 0 )
+
+
+				var range_x = Math.max(parseFloat(borders.x_MAX), Math.abs(parseFloat(borders.x_MIN)) );
+				var range_y = Math.max(parseFloat(borders.y_MAX), Math.abs(parseFloat(borders.y_MIN)) );
+				var range_z = Math.max(parseFloat(borders.z_MAX), Math.abs(parseFloat(borders.z_MIN)) );
+
+				if(range_x === 0){
+					range_x = 1;
+				}
+				if(range_y === 0){
+					range_y = 1;
+				}
+				if(range_z === 0){
+					range_z = 1 ;
+				}
+
+
+				var targetRangeX= parseFloat(borders.x_SCALE_MAX) - parseFloat(borders.x_SCALE_MIN);
+				var targetRangeY= parseFloat(borders.y_SCALE_MAX) - parseFloat(borders.y_SCALE_MIN);
+				var targetRangeZ= parseFloat(borders.z_SCALE_MAX) - parseFloat(borders.z_SCALE_MIN);
+
+
+				for ( var index = 0; index &lt; data.length; index++) {
+					var data_x = parseFloat(data[index].x);
+					var data_y = parseFloat(data[index].y);
+					var data_z = parseFloat(data[index].z);
+
+
+					var tmp = {
+						x :  (data_x  / range_x) * targetRangeX,
+						y :  (data_y / range_y ) * targetRangeY,
+						z : (data_z / range_z ) * targetRangeZ
+					};
+
+					scaled_data.push(tmp);
+				}
+
+				return scaled_data;
+				},
+
+
+			 	/**
+			 	Calculates the unit vector (Einheitsvektor) of the given data objects
+				@method C3D.normalize
+				@param data {Array}
+					Array of data objects {x:VALUE,y:VALUE,z:VALUE}.
+				@return {Array}
+					Array of normalized data objects {x:VALUE,y:VALUE,z:VALUE}
+				**/
+				normalize : function(data) {
+
+					var normalized_data = [];
+					for ( var index = 0; index &lt; data.length; ++index) {
+						var ax = parseFloat(data[index].x);
+						var ay = parseFloat(data[index].y);
+						var az = parseFloat(data[index].z);
+
+						var length = Math.sqrt((ax * ax) + (ay * ay) + (az * az));
+						normalized_data.push({
+							x : ax / length,
+							y : ay / length,
+							z : az / length
+						});
+					}
+					return normalized_data;
+
+				},
+				/**
+			 	Finds limit values of the given data.
+				@method C3D.getMinMax
+				@param data {Array}
+					Array of data objects {x:VALUE,y:VALUE,z:VALUE}.
+				@return {Object}
+					Object = {
+						xMin : VALUE,
+						yMin : VALUE,
+						zMin : VALUE,
+						xMax : VALUE,
+						yMax : VALUE,
+						zMax : VALUE,
+					}
+				**/
+				getMinMax : function(data){
+
+					var result = {};
+					result.xMax = Number.NEGATIVE_INFINITY;
+					result.yMax = Number.NEGATIVE_INFINITY;
+					result.zMax = Number.NEGATIVE_INFINITY;
+					result.xMin = Number.POSITIVE_INFINITY;
+					result.yMin = Number.POSITIVE_INFINITY;
+					result.zMin = Number.POSITIVE_INFINITY;
+
+
+					for ( var index = 0; index &lt; data.length; ++index) {
+
+						var x = parseFloat(data[index].x);
+						var y = parseFloat(data[index].y);
+						var z = parseFloat(data[index].z);
+
+						if (x &gt;= result.xMax ) {
+							result.xMax = x;
+						}
+						if (x &lt; result.xMin ) {
+							result.xMin = x;
+						}
+
+						if (y &gt;= result.yMax ) {
+							result.yMax = y;
+						}
+						if (y &lt; result.yMin ) {
+							result.yMin = y;
+						}
+
+						if (z &gt;= result.zMax ) {
+							result.zMax = z;
+						}
+						if (z &lt; result.zMin ) {
+							result.zMin = z;
+						}
+					}
+					return result;
+				},
+				/**
+			 	Finds data dimension x-y.&lt;br /&gt;
+				@method C3D.getDimensions
+				@param data {Array}
+					Array of data objects {x:VALUE,y:VALUE,z:VALUE}.
+				@return {Object}
+					Object = {
+						d1 : VALUE,
+						d2 : VALUE
+					}
+				TODO
+				**/
+				getDimensions : function(data){
+					var data_len = data.length;
+					var x1 = _.uniq( _.collect( data, function( d ){
+						return d.x;
+					})).length;
+					var y1 = _.uniq( _.collect( data, function( d ){
+						return d.y;
+					})).length;
+
+					var x2 = Math.ceil(data_len / x1);
+					var y2 = Math.ceil(data_len / y1);
+
+					var result = {d1:0,d2:0};
+					if(( x1 * x2 ) === data_len){
+						result.d1 = x1;
+						result.d2 = x2;
+					} else if(( y1 * y2 ) === data_len){
+						result.d1 = y1;
+						result.d2 = y2;
+					}
+
+					return result;
+
+				}
+			};
+			return UTILS;
+		});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

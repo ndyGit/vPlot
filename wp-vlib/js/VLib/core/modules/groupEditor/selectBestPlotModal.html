@@ -1,0 +1,24 @@
+<div class="modal fade" id="<%- rc.id %>">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Select best plot</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-info" role="alert"><b><%= rc.plots.length %></b> good plots where found for <b><%- rc.file.name %></b>. Please select one.</div>
+				<select class="form-control group-select" id="vplot-best-select">
+					<% _.each(rc.plots,function(plot, index){ %>
+					<option id="<%- plot.id %>" value="<%- index %>">
+						<%- plot.name %> [ <%- plot.pattern %> ]
+					</option>
+					<% }); %>
+				</select>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="modal-delete">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="modal-save">Save</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>../libs/three/fonts/typeface.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AbstractPlugin.html">AbstractPlugin</a></li>
+            
+                <li><a href="../classes/Config.html">Config</a></li>
+            
+                <li><a href="../classes/Controls.html">Controls</a></li>
+            
+                <li><a href="../classes/Plot.html">Plot</a></li>
+            
+                <li><a href="../classes/Plugin 3D.html">Plugin 3D</a></li>
+            
+                <li><a href="../classes/Plugin Axes.html">Plugin Axes</a></li>
+            
+                <li><a href="../classes/Plugin BasicMaterial.html">Plugin BasicMaterial</a></li>
+            
+                <li><a href="../classes/Plugin CameraControl.html">Plugin CameraControl</a></li>
+            
+                <li><a href="../classes/Plugin Color.html">Plugin Color</a></li>
+            
+                <li><a href="../classes/Plugin Dataset.html">Plugin Dataset</a></li>
+            
+                <li><a href="../classes/Plugin File.html">Plugin File</a></li>
+            
+                <li><a href="../classes/Plugin Function.html">Plugin Function</a></li>
+            
+                <li><a href="../classes/Plugin Heatmap.html">Plugin Heatmap</a></li>
+            
+                <li><a href="../classes/Plugin Light.html">Plugin Light</a></li>
+            
+                <li><a href="../classes/Plugin LinePlot.html">Plugin LinePlot</a></li>
+            
+                <li><a href="../classes/Plugin Plane.html">Plugin Plane</a></li>
+            
+                <li><a href="../classes/Plugin ScatterPlot.html">Plugin ScatterPlot</a></li>
+            
+                <li><a href="../classes/Plugin SurfacePlot.html">Plugin SurfacePlot</a></li>
+            
+                <li><a href="../classes/Plugin WireframeMaterial.html">Plugin WireframeMaterial</a></li>
+            
+                <li><a href="../classes/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../classes/Templates.html">Templates</a></li>
+            
+                <li><a href="../classes/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../classes/UTILS.html">UTILS</a></li>
+            
+                <li><a href="../classes/VLib.html">VLib</a></li>
+            
+                <li><a href="../classes/VMediator.html">VMediator</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Controls.html">Controls</a></li>
+            
+                <li><a href="../modules/main.html">main</a></li>
+            
+                <li><a href="../modules/Plot.html">Plot</a></li>
+            
+                <li><a href="../modules/SceneGraph.html">SceneGraph</a></li>
+            
+                <li><a href="../modules/Templates.html">Templates</a></li>
+            
+                <li><a href="../modules/Toolbox.html">Toolbox</a></li>
+            
+                <li><a href="../modules/VLib.html">VLib</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ../libs/three/fonts/typeface.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*****************************************************************
+
+typeface.js, version 0.15 | typefacejs.neocracy.org
+
+Copyright (c) 2008 - 2009, David Chester davidchester@gmx.net 
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the &quot;Software&quot;), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+*****************************************************************/
+
+(function() {
+
+var _typeface_js = {
+
+	faces: {},
+
+	loadFace: function(typefaceData) {
+
+		var familyName = typefaceData.familyName.toLowerCase();
+		
+		if (!this.faces[familyName]) {
+			this.faces[familyName] = {};
+		}
+		if (!this.faces[familyName][typefaceData.cssFontWeight]) {
+			this.faces[familyName][typefaceData.cssFontWeight] = {};
+		}
+
+		var face = this.faces[familyName][typefaceData.cssFontWeight][typefaceData.cssFontStyle] = typefaceData;
+		face.loaded = true;
+	},
+
+	log: function(message) {
+		
+		if (this.quiet) {
+			return;
+		}
+		
+		message = &quot;typeface.js: &quot; + message;
+		
+		if (this.customLogFn) {
+			this.customLogFn(message);
+
+		} else if (window.console &amp;&amp; window.console.log) {
+			window.console.log(message);
+		}
+		
+	},
+	
+	pixelsFromPoints: function(face, style, points, dimension) {
+		var pixels = points * parseInt(style.fontSize) * 72 / (face.resolution * 100);
+		if (dimension == &#x27;horizontal&#x27; &amp;&amp; style.fontStretchPercent) {
+			pixels *= style.fontStretchPercent;
+		}
+		return pixels;
+	},
+
+	pointsFromPixels: function(face, style, pixels, dimension) {
+		var points = pixels * face.resolution / (parseInt(style.fontSize) * 72 / 100);
+		if (dimension == &#x27;horizontal&#x27; &amp;&amp; style.fontStretchPrecent) {
+			points *= style.fontStretchPercent;
+		}
+		return points;
+	},
+
+	cssFontWeightMap: {
+		normal: &#x27;normal&#x27;,
+		bold: &#x27;bold&#x27;,
+		400: &#x27;normal&#x27;,
+		700: &#x27;bold&#x27;
+	},
+
+	cssFontStretchMap: {
+		&#x27;ultra-condensed&#x27;: 0.55,
+		&#x27;extra-condensed&#x27;: 0.77,
+		&#x27;condensed&#x27;: 0.85,
+		&#x27;semi-condensed&#x27;: 0.93,
+		&#x27;normal&#x27;: 1,
+		&#x27;semi-expanded&#x27;: 1.07,
+		&#x27;expanded&#x27;: 1.15,
+		&#x27;extra-expanded&#x27;: 1.23,
+		&#x27;ultra-expanded&#x27;: 1.45,
+		&#x27;default&#x27;: 1
+	},
+	
+	fallbackCharacter: &#x27;.&#x27;,
+
+	configure: function(args) {
+		var configurableOptionNames = [ &#x27;customLogFn&#x27;,  &#x27;customClassNameRegex&#x27;, &#x27;customTypefaceElementsList&#x27;, &#x27;quiet&#x27;, &#x27;verbose&#x27;, &#x27;disableSelection&#x27; ];
+		
+		for (var i = 0; i &lt; configurableOptionNames.length; i++) {
+			var optionName = configurableOptionNames[i];
+			if (args[optionName]) {
+				if (optionName == &#x27;customLogFn&#x27;) {
+					if (typeof args[optionName] != &#x27;function&#x27;) {
+						throw &quot;customLogFn is not a function&quot;;
+					} else {
+						this.customLogFn = args.customLogFn;
+					}
+				} else {
+					this[optionName] = args[optionName];
+				}
+			}
+		}
+	},
+
+	getTextExtents: function(face, style, text) {
+		var extentX = 0;
+		var extentY = 0;
+		var horizontalAdvance;
+	
+		var textLength = text.length;
+		for (var i = 0; i &lt; textLength; i++) {
+			var glyph = face.glyphs[text.charAt(i)] ? face.glyphs[text.charAt(i)] : face.glyphs[this.fallbackCharacter];
+			var letterSpacingAdjustment = this.pointsFromPixels(face, style, style.letterSpacing);
+
+			// if we&#x27;re on the last character, go with the glyph extent if that&#x27;s more than the horizontal advance
+			extentX += i + 1 == textLength ? Math.max(glyph.x_max, glyph.ha) : glyph.ha;
+			extentX += letterSpacingAdjustment;
+
+			horizontalAdvance += glyph.ha + letterSpacingAdjustment;
+		}
+		return { 
+			x: extentX, 
+			y: extentY,
+			ha: horizontalAdvance
+			
+		};
+	},
+
+	pixelsFromCssAmount: function(cssAmount, defaultValue, element) {
+
+		var matches = undefined;
+
+		if (cssAmount == &#x27;normal&#x27;) {
+			return defaultValue;
+
+		} else if (matches = cssAmount.match(/([\-\d+\.]+)px/)) {
+			return matches[1];
+
+		} else {
+			// thanks to Dean Edwards for this very sneaky way to get IE to convert 
+			// relative values to pixel values
+			
+			var pixelAmount;
+			
+			var leftInlineStyle = element.style.left;
+			var leftRuntimeStyle = element.runtimeStyle.left;
+
+			element.runtimeStyle.left = element.currentStyle.left;
+
+			if (!cssAmount.match(/\d(px|pt)$/)) {
+				element.style.left = &#x27;1em&#x27;;
+			} else {
+				element.style.left = cssAmount || 0;
+			}
+
+			pixelAmount = element.style.pixelLeft;
+		
+			element.style.left = leftInlineStyle;
+			element.runtimeStyle.left = leftRuntimeStyle;
+			
+			return pixelAmount || defaultValue;
+		}
+	},
+
+	capitalizeText: function(text) {
+		return text.replace(/(^|\s)[a-z]/g, function(match) { return match.toUpperCase() } ); 
+	},
+
+	getElementStyle: function(e) {
+		if (window.getComputedStyle) {
+			return window.getComputedStyle(e, &#x27;&#x27;);
+		
+		} else if (e.currentStyle) {
+			return e.currentStyle;
+		}
+	},
+
+	getRenderedText: function(e) {
+
+		var browserStyle = this.getElementStyle(e.parentNode);
+
+		var inlineStyleAttribute = e.parentNode.getAttribute(&#x27;style&#x27;);
+		if (inlineStyleAttribute &amp;&amp; typeof(inlineStyleAttribute) == &#x27;object&#x27;) {
+			inlineStyleAttribute = inlineStyleAttribute.cssText;
+		}
+
+		if (inlineStyleAttribute) {
+
+			var inlineStyleDeclarations = inlineStyleAttribute.split(/\s*\;\s*/);
+
+			var inlineStyle = {};
+			for (var i = 0; i &lt; inlineStyleDeclarations.length; i++) {
+				var declaration = inlineStyleDeclarations[i];
+				var declarationOperands = declaration.split(/\s*\:\s*/);
+				inlineStyle[declarationOperands[0]] = declarationOperands[1];
+			}
+		}
+
+		var style = { 
+			color: browserStyle.color, 
+			fontFamily: browserStyle.fontFamily.split(/\s*,\s*/)[0].replace(/(^&quot;|^&#x27;|&#x27;$|&quot;$)/g, &#x27;&#x27;).toLowerCase(), 
+			fontSize: this.pixelsFromCssAmount(browserStyle.fontSize, 12, e.parentNode),
+			fontWeight: this.cssFontWeightMap[browserStyle.fontWeight],
+			fontStyle: browserStyle.fontStyle ? browserStyle.fontStyle : &#x27;normal&#x27;,
+			fontStretchPercent: this.cssFontStretchMap[inlineStyle &amp;&amp; inlineStyle[&#x27;font-stretch&#x27;] ? inlineStyle[&#x27;font-stretch&#x27;] : &#x27;default&#x27;],
+			textDecoration: browserStyle.textDecoration,
+			lineHeight: this.pixelsFromCssAmount(browserStyle.lineHeight, &#x27;normal&#x27;, e.parentNode),
+			letterSpacing: this.pixelsFromCssAmount(browserStyle.letterSpacing, 0, e.parentNode),
+			textTransform: browserStyle.textTransform
+		};
+
+		var face;
+		if (
+			this.faces[style.fontFamily]  
+			&amp;&amp; this.faces[style.fontFamily][style.fontWeight]
+		) {
+			face = this.faces[style.fontFamily][style.fontWeight][style.fontStyle];
+		}
+
+		var text = e.nodeValue;
+		
+		if (
+			e.previousSibling 
+			&amp;&amp; e.previousSibling.nodeType == 1 
+			&amp;&amp; e.previousSibling.tagName != &#x27;BR&#x27; 
+			&amp;&amp; this.getElementStyle(e.previousSibling).display.match(/inline/)
+		) {
+			text = text.replace(/^\s+/, &#x27; &#x27;);
+		} else {
+			text = text.replace(/^\s+/, &#x27;&#x27;);
+		}
+		
+		if (
+			e.nextSibling 
+			&amp;&amp; e.nextSibling.nodeType == 1 
+			&amp;&amp; e.nextSibling.tagName != &#x27;BR&#x27; 
+			&amp;&amp; this.getElementStyle(e.nextSibling).display.match(/inline/)
+		) {
+			text = text.replace(/\s+$/, &#x27; &#x27;);
+		} else {
+			text = text.replace(/\s+$/, &#x27;&#x27;);
+		}
+		
+		text = text.replace(/\s+/g, &#x27; &#x27;);
+	
+		if (style.textTransform &amp;&amp; style.textTransform != &#x27;none&#x27;) {
+			switch (style.textTransform) {
+				case &#x27;capitalize&#x27;:
+					text = this.capitalizeText(text);
+					break;
+				case &#x27;uppercase&#x27;:
+					text = text.toUpperCase();
+					break;
+				case &#x27;lowercase&#x27;:
+					text = text.toLowerCase();
+					break;
+			}
+		}
+
+		if (!face) {
+			var excerptLength = 12;
+			var textExcerpt = text.substring(0, excerptLength);
+			if (text.length &gt; excerptLength) {
+				textExcerpt += &#x27;...&#x27;;
+			}
+		
+			var fontDescription = style.fontFamily;
+			if (style.fontWeight != &#x27;normal&#x27;) fontDescription += &#x27; &#x27; + style.fontWeight;
+			if (style.fontStyle != &#x27;normal&#x27;) fontDescription += &#x27; &#x27; + style.fontStyle;
+		
+			this.log(&quot;couldn&#x27;t find typeface font: &quot; + fontDescription + &#x27; for text &quot;&#x27; + textExcerpt + &#x27;&quot;&#x27;);
+			return;
+		}
+	
+		var words = text.split(/\b(?=\w)/);
+
+		var containerSpan = document.createElement(&#x27;span&#x27;);
+		containerSpan.className = &#x27;typeface-js-vector-container&#x27;;
+		
+		var wordsLength = words.length;
+		for (var i = 0; i &lt; wordsLength; i++) {
+			var word = words[i];
+			
+			var vector = this.renderWord(face, style, word);
+			
+			if (vector) {
+				containerSpan.appendChild(vector.element);
+
+				if (!this.disableSelection) {
+					var selectableSpan = document.createElement(&#x27;span&#x27;);
+					selectableSpan.className = &#x27;typeface-js-selected-text&#x27;;
+
+					var wordNode = document.createTextNode(word);
+					selectableSpan.appendChild(wordNode);
+
+					if (this.vectorBackend != &#x27;vml&#x27;) {
+						selectableSpan.style.marginLeft = -1 * (vector.width + 1) + &#x27;px&#x27;;
+					}
+					selectableSpan.targetWidth = vector.width;
+					//selectableSpan.style.lineHeight = 1 + &#x27;px&#x27;;
+
+					if (this.vectorBackend == &#x27;vml&#x27;) {
+						vector.element.appendChild(selectableSpan);
+					} else {
+						containerSpan.appendChild(selectableSpan);
+					}
+				}
+			}
+		}
+
+		return containerSpan;
+	},
+
+	renderDocument: function(callback) { 
+		
+		if (!callback)
+			callback = function(e) { e.style.visibility = &#x27;visible&#x27; };
+
+		var elements = document.getElementsByTagName(&#x27;*&#x27;);
+		
+		var elementsLength = elements.length;
+		for (var i = 0; i &lt; elements.length; i++) {
+			if (elements[i].className.match(/(^|\s)typeface-js(\s|$)/) || elements[i].tagName.match(/^(H1|H2|H3|H4|H5|H6)$/)) {
+				this.replaceText(elements[i]);
+				if (typeof callback == &#x27;function&#x27;) {
+					callback(elements[i]);
+				}
+			}
+		}
+
+		if (this.vectorBackend == &#x27;vml&#x27;) {
+			// lamely work around IE&#x27;s quirky leaving off final dynamic shapes
+			var dummyShape = document.createElement(&#x27;v:shape&#x27;);
+			dummyShape.style.display = &#x27;none&#x27;;
+			document.body.appendChild(dummyShape);
+		}
+	},
+
+	replaceText: function(e) {
+
+		var childNodes = [];
+		var childNodesLength = e.childNodes.length;
+
+		for (var i = 0; i &lt; childNodesLength; i++) {
+			this.replaceText(e.childNodes[i]);
+		}
+
+		if (e.nodeType == 3 &amp;&amp; e.nodeValue.match(/\S/)) {
+			var parentNode = e.parentNode;
+
+			if (parentNode.className == &#x27;typeface-js-selected-text&#x27;) {
+				return;
+			}
+
+			var renderedText = this.getRenderedText(e);
+			
+			if (
+				parentNode.tagName == &#x27;A&#x27; 
+				&amp;&amp; this.vectorBackend == &#x27;vml&#x27;
+				&amp;&amp; this.getElementStyle(parentNode).display == &#x27;inline&#x27;
+			) {
+				// something of a hack, use inline-block to get IE to accept clicks in whitespace regions
+				parentNode.style.display = &#x27;inline-block&#x27;;
+				parentNode.style.cursor = &#x27;pointer&#x27;;
+			}
+
+			if (this.getElementStyle(parentNode).display == &#x27;inline&#x27;) {
+				parentNode.style.display = &#x27;inline-block&#x27;;
+			}
+
+			if (renderedText) {	
+				if (parentNode.replaceChild) {
+					parentNode.replaceChild(renderedText, e);
+				} else {
+					parentNode.insertBefore(renderedText, e);
+					parentNode.removeChild(e);
+				}
+				if (this.vectorBackend == &#x27;vml&#x27;) {
+					renderedText.innerHTML = renderedText.innerHTML;
+				}
+
+				var childNodesLength = renderedText.childNodes.length
+				for (var i; i &lt; childNodesLength; i++) {
+					
+					// do our best to line up selectable text with rendered text
+
+					var e = renderedText.childNodes[i];
+					if (e.hasChildNodes() &amp;&amp; !e.targetWidth) {
+						e = e.childNodes[0];
+					}
+					
+					if (e &amp;&amp; e.targetWidth) {
+						var letterSpacingCount = e.innerHTML.length;
+						var wordSpaceDelta = e.targetWidth - e.offsetWidth;
+						var letterSpacing = wordSpaceDelta / (letterSpacingCount || 1);
+
+						if (this.vectorBackend == &#x27;vml&#x27;) {
+							letterSpacing = Math.ceil(letterSpacing);
+						}
+
+						e.style.letterSpacing = letterSpacing + &#x27;px&#x27;;
+						e.style.width = e.targetWidth + &#x27;px&#x27;;
+					}
+				}
+			}
+		}
+	},
+
+	applyElementVerticalMetrics: function(face, style, e) {
+
+		if (style.lineHeight == &#x27;normal&#x27;) {
+			style.lineHeight = this.pixelsFromPoints(face, style, face.lineHeight);
+		}
+
+		var cssLineHeightAdjustment = style.lineHeight - this.pixelsFromPoints(face, style, face.lineHeight);
+
+		e.style.marginTop = Math.round( cssLineHeightAdjustment / 2 ) + &#x27;px&#x27;;
+		e.style.marginBottom = Math.round( cssLineHeightAdjustment / 2) + &#x27;px&#x27;;
+	
+	},
+
+	vectorBackends: {
+
+		canvas: {
+
+			_initializeSurface: function(face, style, text) {
+
+				var extents = this.getTextExtents(face, style, text);
+
+				var canvas = document.createElement(&#x27;canvas&#x27;);
+				if (this.disableSelection) {
+					canvas.innerHTML = text;
+				}
+
+				canvas.height = Math.round(this.pixelsFromPoints(face, style, face.lineHeight));
+				canvas.width = Math.round(this.pixelsFromPoints(face, style, extents.x, &#x27;horizontal&#x27;));
+	
+				this.applyElementVerticalMetrics(face, style, canvas);
+
+				if (extents.x &gt; extents.ha) 
+					canvas.style.marginRight = Math.round(this.pixelsFromPoints(face, style, extents.x - extents.ha, &#x27;horizontal&#x27;)) + &#x27;px&#x27;;
+
+				var ctx = canvas.getContext(&#x27;2d&#x27;);
+
+				var pointScale = this.pixelsFromPoints(face, style, 1);
+				ctx.scale(pointScale * style.fontStretchPercent, -1 * pointScale);
+				ctx.translate(0, -1 * face.ascender);
+				ctx.fillStyle = style.color;
+
+				return { context: ctx, canvas: canvas };
+			},
+
+			_renderGlyph: function(ctx, face, char, style) {
+
+				var glyph = face.glyphs[char];
+
+				if (!glyph) {
+					//this.log.error(&quot;glyph not defined: &quot; + char);
+					return this.renderGlyph(ctx, face, this.fallbackCharacter, style);
+				}
+
+				if (glyph.o) {
+
+					var outline;
+					if (glyph.cached_outline) {
+						outline = glyph.cached_outline;
+					} else {
+						outline = glyph.o.split(&#x27; &#x27;);
+						glyph.cached_outline = outline;
+					}
+
+					var outlineLength = outline.length;
+					for (var i = 0; i &lt; outlineLength; ) {
+
+						var action = outline[i++];
+
+						switch(action) {
+							case &#x27;m&#x27;:
+								ctx.moveTo(outline[i++], outline[i++]);
+								break;
+							case &#x27;l&#x27;:
+								ctx.lineTo(outline[i++], outline[i++]);
+								break;
+
+							case &#x27;q&#x27;:
+								var cpx = outline[i++];
+								var cpy = outline[i++];
+								ctx.quadraticCurveTo(outline[i++], outline[i++], cpx, cpy);
+								break;
+
+							case &#x27;b&#x27;:
+								var x = outline[i++];
+								var y = outline[i++];
+								ctx.bezierCurveTo(outline[i++], outline[i++], outline[i++], outline[i++], x, y);
+								break;
+						}
+					}					
+				}
+				if (glyph.ha) {
+					var letterSpacingPoints = 
+						style.letterSpacing &amp;&amp; style.letterSpacing != &#x27;normal&#x27; ? 
+							this.pointsFromPixels(face, style, style.letterSpacing) : 
+							0;
+
+					ctx.translate(glyph.ha + letterSpacingPoints, 0);
+				}
+			},
+
+			_renderWord: function(face, style, text) {
+				var surface = this.initializeSurface(face, style, text);
+				var ctx = surface.context;
+				var canvas = surface.canvas;
+				ctx.beginPath();
+				ctx.save();
+
+				var chars = text.split(&#x27;&#x27;);
+				var charsLength = chars.length;
+				for (var i = 0; i &lt; charsLength; i++) {
+					this.renderGlyph(ctx, face, chars[i], style);
+				}
+
+				ctx.fill();
+
+				if (style.textDecoration == &#x27;underline&#x27;) {
+
+					ctx.beginPath();
+					ctx.moveTo(0, face.underlinePosition);
+					ctx.restore();
+					ctx.lineTo(0, face.underlinePosition);
+					ctx.strokeStyle = style.color;
+					ctx.lineWidth = face.underlineThickness;
+					ctx.stroke();
+				}
+
+				return { element: ctx.canvas, width: Math.floor(canvas.width) };
+			
+			}
+		},
+
+		vml: {
+
+			_initializeSurface: function(face, style, text) {
+
+				var shape = document.createElement(&#x27;v:shape&#x27;);
+
+				var extents = this.getTextExtents(face, style, text);
+				
+				shape.style.width = shape.style.height = style.fontSize + &#x27;px&#x27;; 
+				shape.style.marginLeft = &#x27;-1px&#x27;; // this seems suspect...
+
+				if (extents.x &gt; extents.ha) {
+					shape.style.marginRight = this.pixelsFromPoints(face, style, extents.x - extents.ha, &#x27;horizontal&#x27;) + &#x27;px&#x27;;
+				}
+
+				this.applyElementVerticalMetrics(face, style, shape);
+
+				var resolutionScale = face.resolution * 100 / 72;
+				shape.coordsize = (resolutionScale / style.fontStretchPercent) + &quot;,&quot; + resolutionScale;
+				
+				shape.coordorigin = &#x27;0,&#x27; + face.ascender;
+				shape.style.flip = &#x27;y&#x27;;
+
+				shape.fillColor = style.color;
+				shape.stroked = false;
+
+				shape.path = &#x27;hh m 0,&#x27; + face.ascender + &#x27; l 0,&#x27; + face.descender + &#x27; &#x27;;
+
+				return shape;
+			},
+
+			_renderGlyph: function(shape, face, char, offsetX, style, vmlSegments) {
+
+				var glyph = face.glyphs[char];
+
+				if (!glyph) {
+					this.log(&quot;glyph not defined: &quot; + char);
+					this.renderGlyph(shape, face, this.fallbackCharacter, offsetX, style);
+					return;
+				}
+				
+				vmlSegments.push(&#x27;m&#x27;);
+
+				if (glyph.o) {
+					
+					var outline, outlineLength;
+					
+					if (glyph.cached_outline) {
+						outline = glyph.cached_outline;
+						outlineLength = outline.length;
+					} else {
+						outline = glyph.o.split(&#x27; &#x27;);
+						outlineLength = outline.length;
+
+						for (var i = 0; i &lt; outlineLength;) {
+
+							switch(outline[i++]) {
+								case &#x27;q&#x27;:
+									outline[i] = Math.round(outline[i++]);
+									outline[i] = Math.round(outline[i++]);
+								case &#x27;m&#x27;:
+								case &#x27;l&#x27;:
+									outline[i] = Math.round(outline[i++]);
+									outline[i] = Math.round(outline[i++]);
+									break;
+							} 
+						}	
+
+						glyph.cached_outline = outline;
+					}
+
+					var prevX, prevY;
+					
+					for (var i = 0; i &lt; outlineLength;) {
+
+						var action = outline[i++];
+
+						var x = Math.round(outline[i++]) + offsetX;
+						var y = Math.round(outline[i++]);
+	
+						switch(action) {
+							case &#x27;m&#x27;:
+								vmlSegments.push(&#x27;xm &#x27;, x, &#x27;,&#x27;, y);
+								break;
+	
+							case &#x27;l&#x27;:
+								vmlSegments.push(&#x27;l &#x27;, x, &#x27;,&#x27;, y);
+								break;
+
+							case &#x27;q&#x27;:
+								var cpx = outline[i++] + offsetX;
+								var cpy = outline[i++];
+
+								var cp1x = Math.round(prevX + 2.0 / 3.0 * (cpx - prevX));
+								var cp1y = Math.round(prevY + 2.0 / 3.0 * (cpy - prevY));
+
+								var cp2x = Math.round(cp1x + (x - prevX) / 3.0);
+								var cp2y = Math.round(cp1y + (y - prevY) / 3.0);
+								
+								vmlSegments.push(&#x27;c &#x27;, cp1x, &#x27;,&#x27;, cp1y, &#x27;,&#x27;, cp2x, &#x27;,&#x27;, cp2y, &#x27;,&#x27;, x, &#x27;,&#x27;, y);
+								break;
+
+							case &#x27;b&#x27;:
+								var cp1x = Math.round(outline[i++]) + offsetX;
+								var cp1y = outline[i++];
+
+								var cp2x = Math.round(outline[i++]) + offsetX;
+								var cp2y = outline[i++];
+
+								vmlSegments.push(&#x27;c &#x27;, cp1x, &#x27;,&#x27;, cp1y, &#x27;,&#x27;, cp2x, &#x27;,&#x27;, cp2y, &#x27;,&#x27;, x, &#x27;,&#x27;, y);
+								break;
+						}
+
+						prevX = x;
+						prevY = y;
+					}					
+				}
+
+				vmlSegments.push(&#x27;x e&#x27;);
+				return vmlSegments;
+			},
+
+			_renderWord: function(face, style, text) {
+				var offsetX = 0;
+				var shape = this.initializeSurface(face, style, text);
+		
+				var letterSpacingPoints = 
+					style.letterSpacing &amp;&amp; style.letterSpacing != &#x27;normal&#x27; ? 
+						this.pointsFromPixels(face, style, style.letterSpacing) : 
+						0;
+
+				letterSpacingPoints = Math.round(letterSpacingPoints);
+				var chars = text.split(&#x27;&#x27;);
+				var vmlSegments = [];
+				for (var i = 0; i &lt; chars.length; i++) {
+					var char = chars[i];
+					vmlSegments = this.renderGlyph(shape, face, char, offsetX, style, vmlSegments);
+					offsetX += face.glyphs[char].ha + letterSpacingPoints ;	
+				}
+
+				if (style.textDecoration == &#x27;underline&#x27;) {
+					var posY = face.underlinePosition - (face.underlineThickness / 2);
+					vmlSegments.push(&#x27;xm &#x27;, 0, &#x27;,&#x27;, posY);
+					vmlSegments.push(&#x27;l &#x27;, offsetX, &#x27;,&#x27;, posY);
+					vmlSegments.push(&#x27;l &#x27;, offsetX, &#x27;,&#x27;, posY + face.underlineThickness);
+					vmlSegments.push(&#x27;l &#x27;, 0, &#x27;,&#x27;, posY + face.underlineThickness);
+					vmlSegments.push(&#x27;l &#x27;, 0, &#x27;,&#x27;, posY);
+					vmlSegments.push(&#x27;x e&#x27;);
+				}
+
+				// make sure to preserve trailing whitespace
+				shape.path += vmlSegments.join(&#x27;&#x27;) + &#x27;m &#x27; + offsetX + &#x27; 0 l &#x27; + offsetX + &#x27; &#x27; + face.ascender;
+				
+				return {
+					element: shape,
+					width: Math.floor(this.pixelsFromPoints(face, style, offsetX, &#x27;horizontal&#x27;))
+				};
+			}
+
+		}
+
+	},
+
+	setVectorBackend: function(backend) {
+
+		this.vectorBackend = backend;
+		var backendFunctions = [&#x27;renderWord&#x27;, &#x27;initializeSurface&#x27;, &#x27;renderGlyph&#x27;];
+
+		for (var i = 0; i &lt; backendFunctions.length; i++) {
+			var backendFunction = backendFunctions[i];
+			this[backendFunction] = this.vectorBackends[backend][&#x27;_&#x27; + backendFunction];
+		}
+	},
+	
+	initialize: function() {
+
+		// quit if this function has already been called
+		if (arguments.callee.done) return; 
+		
+		// flag this function so we don&#x27;t do the same thing twice
+		arguments.callee.done = true;
+
+		// kill the timer
+		if (window._typefaceTimer) clearInterval(_typefaceTimer);
+
+		this.renderDocument( function(e) { e.style.visibility = &#x27;visible&#x27; } );
+
+	}
+	
+};
+
+// IE won&#x27;t accept real selectors...
+var typefaceSelectors = [&#x27;.typeface-js&#x27;, &#x27;h1&#x27;, &#x27;h2&#x27;, &#x27;h3&#x27;, &#x27;h4&#x27;, &#x27;h5&#x27;, &#x27;h6&#x27;];
+
+if (document.createStyleSheet) { 
+
+	var styleSheet = document.createStyleSheet();
+	for (var i = 0; i &lt; typefaceSelectors.length; i++) {
+		var selector = typefaceSelectors[i];
+		styleSheet.addRule(selector, &#x27;visibility: hidden&#x27;);
+	}
+
+	styleSheet.addRule(
+		&#x27;.typeface-js-selected-text&#x27;, 
+		&#x27;-ms-filter: \
+			&quot;Chroma(color=black) \
+			progid:DXImageTransform.Microsoft.MaskFilter(Color=white) \
+			progid:DXImageTransform.Microsoft.MaskFilter(Color=blue) \
+			alpha(opacity=30)&quot; !important; \
+		color: black; \
+		font-family: Modern; \
+		position: absolute; \
+		white-space: pre; \
+		filter: alpha(opacity=0) !important;&#x27;
+	);
+
+	styleSheet.addRule(
+		&#x27;.typeface-js-vector-container&#x27;,
+		&#x27;position: relative&#x27;
+	);
+
+} else if (document.styleSheets) {
+
+	if (!document.styleSheets.length) { (function() {
+		// create a stylesheet if we need to
+		var styleSheet = document.createElement(&#x27;style&#x27;);
+		styleSheet.type = &#x27;text/css&#x27;;
+		document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(styleSheet);
+	})() }
+
+	var styleSheet = document.styleSheets[0];
+	document.styleSheets[0].insertRule(typefaceSelectors.join(&#x27;,&#x27;) + &#x27; { visibility: hidden; }&#x27;, styleSheet.cssRules.length); 
+
+	document.styleSheets[0].insertRule(
+		&#x27;.typeface-js-selected-text { \
+			color: rgba(128, 128, 128, 0); \
+			opacity: 0.30; \
+			position: absolute; \
+			font-family: Arial, sans-serif; \
+			white-space: pre \
+		}&#x27;, 
+		styleSheet.cssRules.length
+	);
+
+	try { 
+		// set selection style for Mozilla / Firefox
+		document.styleSheets[0].insertRule(
+			&#x27;.typeface-js-selected-text::-moz-selection { background: blue; }&#x27;, 
+			styleSheet.cssRules.length
+		); 
+
+	} catch(e) {};
+
+	try { 
+		// set styles for browsers with CSS3 selectors (Safari, Chrome)
+		document.styleSheets[0].insertRule(
+			&#x27;.typeface-js-selected-text::selection { background: blue; }&#x27;, 
+			styleSheet.cssRules.length
+		); 
+
+	} catch(e) {};
+
+	// most unfortunately, sniff for WebKit&#x27;s quirky selection behavior
+	if (/WebKit/i.test(navigator.userAgent)) {
+		document.styleSheets[0].insertRule(
+			&#x27;.typeface-js-vector-container { position: relative }&#x27;,
+			styleSheet.cssRules.length
+		);
+	}
+
+}
+
+var backend =  window.CanvasRenderingContext2D || document.createElement(&#x27;canvas&#x27;).getContext ? &#x27;canvas&#x27; : !!(window.attachEvent &amp;&amp; !window.opera) ? &#x27;vml&#x27; : null;
+
+if (backend == &#x27;vml&#x27;) {
+
+	document.namespaces.add(&quot;v&quot;,&quot;urn:schemas-microsoft-com:vml&quot;,&quot;#default#VML&quot;);
+
+	var styleSheet = document.createStyleSheet();
+	styleSheet.addRule(&#x27;v\\:shape&#x27;, &quot;display: inline-block;&quot;);
+}
+
+_typeface_js.setVectorBackend(backend);
+window._typeface_js = _typeface_js;
+	
+if (/WebKit/i.test(navigator.userAgent)) {
+
+	var _typefaceTimer = setInterval(function() {
+		if (/loaded|complete/.test(document.readyState)) {
+			_typeface_js.initialize(); 
+		}
+	}, 10);
+}
+
+if (document.addEventListener) {
+	window.addEventListener(&#x27;DOMContentLoaded&#x27;, function() { _typeface_js.initialize() }, false);
+} 
+
+/*@cc_on @*/
+/*@if (@_win32)
+
+document.write(&quot;&lt;script id=__ie_onload_typeface defer src=//:&gt;&lt;\/script&gt;&quot;);
+var script = document.getElementById(&quot;__ie_onload_typeface&quot;);
+script.onreadystatechange = function() {
+	if (this.readyState == &quot;complete&quot;) {
+		_typeface_js.initialize(); 
+	}
+};
+
+/*@end @*/
+
+try { console.log(&#x27;initializing typeface.js&#x27;) } catch(e) {};
+
+})();
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

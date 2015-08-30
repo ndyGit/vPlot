@@ -1,0 +1,266 @@
+define([ 'require', 'config','core/AbstractPlugin.vlib','core/Utils.vlib', 'jquery' ], function(require, Config,AbstractPlugin, UTILS, $) {
+
+	/**
+	 * @return object dataset object.data == dataset object.color ==
+	 *         collorCallback(data)
+	 *
+	 */
+	 /**
+			TODO<br />
+			@class Plugin Dataset
+			@constructor
+			@extends AbstractPlugin
+			**/
+			var Plugin = (function() {
+				var name = 'dataset';
+				Plugin.superClass.constuctor.call(this,name);
+				Plugin.superClass.setContext.call(this,Config.PLUGINTYPE.CONTEXT_3D);
+				Plugin.superClass.setType.call(this,Config.PLUGINTYPE.DATA);
+				/** path to plugin-template file * */
+				Plugin.superClass.setTemplates.call(this,Config.absPlugins+ '/plugins_3d/dataset/templates.js');
+				Plugin.superClass.setIcon.call(this,Config.absPlugins+ '/plugins_3d/dataset/icon.png');
+				Plugin.superClass.setAccepts.call(this,{
+					predecessors : [ Config.PLUGINTYPE.PLOT ],
+					successors : [ Config.PLUGINTYPE.COLOR, Config.PLUGINTYPE.FUNCTION ]
+				});
+				Plugin.superClass.setDescription.call(this,'Requires: [ '+this.accepts.predecessors.join(', ')+' ] Accepts: [ '+this.accepts.successors.join(', ')+' ]');
+				/** ********************************** */
+				/** PUBLIC VARIABLES * */
+				/** ********************************** */
+
+		// default color
+		this.color = '000000';
+		this.heatmap = undefined;
+
+		/** ********************************** */
+		/** PUBLIC METHODS * */
+		/** ********************************** */
+		/**
+		 * Takes inserted configuration from the plugin-template and returns the
+		 * parameters as JSON-config-file
+		 *
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 *
+		 * @return config file format: { data:VALUE}
+		 */
+		 this.getConfigCallback = function(containerId) {
+
+		 	var data = $('#' + containerId + ' > form input[id=data]').val();
+
+		 	if (data != "" && data !== undefined) {
+		 		data = JSON.parse(data);
+		 	}else{
+		 		data = [];
+		 	}
+		 	var result = {
+		 		'data' : data
+		 	};
+		 	console.log("[ dataset ][getConfig] " + JSON.stringify(result));
+		 	return result;
+		 }
+		/**
+		 * Takes arguments from config and inserts them to the plugin-template
+		 *
+		 * @param config
+		 *            plugin config file
+		 * @param containerId
+		 *            parent container where the plugin-template got added
+		 */
+		 this.setConfigCallback = function(config, containerId) {
+		 	console.log("[ dataset ][setConfig] " +JSON.stringify(config));
+		 	if (config == "" || config === undefined){
+		 		config = {data:[]};
+		 	}
+
+		 	if (config.data !== undefined) {
+		 		$('#' + containerId + ' > form input[id=data]').val(JSON.stringify(config.data));
+		 	}
+
+		 	//HELPER
+		 	var refreshDataTable = function(config){
+		 		var c = $('#' + containerId).find('#dataTableContainer');
+		 		c.html('')
+		 		$.each(config.data,function(i,o){
+		 			var row = $('<tr/>');
+		 			row.append($('<td/>').html(o.x));
+		 			row.append($('<td/>').html(o.y));
+		 			row.append($('<td/>').html(o.z));
+		 			row.append($('<td/>').html('<button id="'+i+'" type="button" class="deleteData ui-state-default ui-corner-all"><span class="ui-icon ui-icon-close"></span></button>'));
+		 			c.append(row);
+		 		});
+		 		// delete handle
+		 		$('#'+containerId).find('.deleteData').click(function(){
+		 			var index = $(this).attr('id');
+		 			config.data.splice(index,1);
+		 			//update container
+		 			$('#' + containerId + ' > form input[id=data]').val(JSON.stringify(config.data));
+		 			refreshDataTable(config);
+		 		});
+
+
+		 	}
+		 	// add handle
+		 	$('#'+containerId).find('#addDataset').click(function(){
+		 		var x = $('#'+containerId).find('#dataset-x');
+		 		var y = $('#'+containerId).find('#dataset-y');
+		 		var z = $('#'+containerId).find('#dataset-z');
+		 		if(x.val() == '' || y.val() == '' || z.val() == '') return;
+
+		 		var dataset = {'x':x.val(),'y':y.val(),'z':z.val()};
+		 		if(config.data === undefined)
+		 			config.data = [];
+		 		config.data.push(dataset);
+		 			//update container
+		 			$('#' + containerId + ' > form input[id=data]').val(JSON.stringify(config.data));
+		 			x.val('');
+		 			y.val('');
+		 			z.val('');
+		 			refreshDataTable(config);
+		 		});
+		 	// fill table
+		 	refreshDataTable(config);
+
+
+
+		 }
+
+		 this.exec = function(config, childs) {
+		 	console.log("[ dataset ] \t\t EXEC");
+
+		 	/** *********************************** * */
+		 	/** HANDLE CONFIG * */
+		 	/** *********************************** * */
+		 	if (config.data === undefined)
+		 		return;
+
+
+		 	var data = [];
+
+		 	if (config.data) {
+		 		data = data.concat(config.data);
+		 	}
+
+
+		 	/** *********************************** * */
+		 	/** HANDLE SUCCESSOR PLUGINGS * */
+		 	/** *********************************** * */
+		 	var functionCallback = null;
+		 	var colorCallback = null;
+		 	var colorContext = null;
+		 	var functionContext = null;
+		 	var child;
+			// each child is the result of a successor plugin
+			for ( var i = 0; i < childs.length; ++i) {
+				child = childs[i];
+
+				if(child !== undefined && child.pType !== undefined){
+					if($.inArray(child.pType, this.accepts.successors) != -1){
+						switch(child.pType){
+							case Config.PLUGINTYPE.COLOR:
+							colorCallback = child.response.callback;
+							colorContext = child.response.context;
+							if(child.response.heatmap !== undefined){
+								this.heatmap = child.response.heatmap;
+							}
+							break;
+							case Config.PLUGINTYPE.FUNCTION:
+							functionCallback = child.response.callback;
+							functionContext = child.response.context;
+							break;
+						}
+					}
+				}else{
+					console.log("pType of child plugin not set!");
+				}
+			}
+
+			/*
+			 * no color plugin attached. init colorArray with default color
+			 */
+			 if (colorCallback == null || colorContext == null) {
+
+			 	colorCallback = this.colorCallback;
+			 	colorContext = this;
+			 }
+
+			/*
+			 * SCOPE TRAPPING PATTERN
+			 * APPLY FUNCTIONCALLBACK WITH GIVEN SCOPE
+			 *
+			 * CALLBACK AND SCOPE FROM PLUGIN FUNCTION
+			 */
+
+			 if (functionCallback != null && functionContext != null) {
+			 	data = functionCallback.apply(functionContext,[data]);
+			 }
+			/*
+			 * SCOPE TRAPPING PATTERN
+			 * APPLY COLLORCALLBACK WITH GIVEN SCOPE
+			 *
+			 * CALLBACK AND SCOPE FROM PLUGIN (COLOR | HEATMAP)
+			 */
+			 this.colorArray = colorCallback.apply(colorContext,[data]);
+
+
+
+			 return {
+			 	pType : this.type,
+			 	response : {
+			 		data 		: data,
+			 		heatmap 	: this.heatmap,
+			 		colorArray 	: this.colorArray
+			 	}
+			 };
+
+			}
+
+		// helper
+		this.colorCallback = function(data) {
+			return initArray(data.length, '000000');
+		}
+		var initArray = function(length, value) {
+			var arr = [], i = 0;
+			arr.length = length;
+			while (i < length) {
+				arr[i++] = value;
+			}
+			return arr;
+		}
+
+		/** ********************************** */
+		/** PRIVATE METHODS * */
+		/** ********************************** */
+		function fetchData(file) {
+			$.ajaxSetup({
+				async : false
+			});
+			var d;
+			$.get(Config.baseData + "/" + file, {}).done(function(data) {
+				d = new Array();
+
+				var lines = data.split("\n");
+				var vertex;
+				$(lines).each(function(index, line) {
+					yxz = line.split(" ");
+					if (yxz.length == 3) {
+						vertex = {
+							'x' : yxz[1],
+							'y' : yxz[0],
+							'z' : yxz[2],
+						};
+						d.push(vertex);
+					}
+				});
+			});
+			$.ajaxSetup({
+				async : true
+			});
+			return d
+		}
+
+	});
+UTILS.CLASS.extend(Plugin,AbstractPlugin);
+return Plugin;
+
+});

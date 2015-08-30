@@ -1,0 +1,101 @@
+<html>
+<head>
+	<title>SurfacePlot tests</title>
+	<script src="../js/VLib/require.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="../css/custom-theme/jquery-ui-1.10.0.custom.css" />
+	<link rel="stylesheet" href="../css/pageStyle.css" />
+	<style>
+		.pc{
+			width: 100%;
+
+		}
+		.plot{
+			position: relative;
+			border: 3px solid #EEEEEE;
+			float:left;
+			width:30%;
+			height:300px;
+			margin:15px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Mouse.vlib</h1>
+	<h3>ACTIVITY.MOUSE.Over, ACTIVITY.MOUSE.Out</h3>
+	<h4>Target: single object OR object-group</h4>
+
+	<div class="panel panel-default pc">
+
+	</div>
+
+	<script type="text/javascript">
+
+		requirejs.config({
+			appDir: "../",
+			baseUrl: "../js/VLib"
+		});
+		require([
+			'vLib_base',
+			'libs/text!../../tests/templates/activities/over_out/move_line.vlib',
+			'libs/text!../../tests/templates/activities/over_out/scale_line.vlib',
+			'libs/text!../../tests/templates/activities/over_out/fade_line.vlib',
+			'libs/text!../../tests/templates/activities/over_out/link_line.vlib',
+			'libs/text!../../tests/templates/activities/over_out/sim_line.vlib',
+			'libs/text!../../tests/templates/activities/over_out/over_out_line.vlib',
+			],function(Wrapper,
+				m1,
+				s1,
+				f1,
+				l1,
+				x1,x2
+				){
+				var VLib = Wrapper.vLib;
+				var Plot = Wrapper.vPlot;
+				var v = new VLib({
+					basePath : '../',
+					appPath : 'js/VLib',
+					dataPath : 'data/'
+				});
+				var counter = 0;
+				var setup = function(){
+					var container = arguments[0];
+
+					var header = arguments[1];
+					var templates = arguments[2];
+					var plotArray = [];
+					var cId,template;
+
+					var $container = $(container);
+					$container.append('<div class="panel-heading"><b>'+header+'</b></div>');
+					var $body = $('<div />',{
+						class : 'panel-body'
+					});
+					$container.append($body);
+					for(var i = 0; i < templates.length ; ++i){
+						plotArray[i] = new Plot();
+						v.registerModule(plotArray[i]);
+
+						cId = 'plotContainer'+counter;
+						$body.append('<div class="plot" id="'+cId+'" ></div>');
+						plotArray[i].init('#'+cId);
+
+						template = JSON.parse(templates[i]);
+						v.load(template,plotArray[i]);
+						counter++;
+					}
+
+				};
+				//Array.prototype.shift.apply(arguments);
+				setup('.pc','Move',[m1]);
+				setup('.pc','Scale',[s1]);
+				setup('.pc','Fade',[f1]);
+				setup('.pc','Link',[l1]);
+				setup('.pc','-',[x1,x2]);
+
+			});
+</script>
+</body>
+</html>

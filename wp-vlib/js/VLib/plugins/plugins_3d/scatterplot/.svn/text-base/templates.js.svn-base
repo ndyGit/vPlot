@@ -1,0 +1,92 @@
+<script type="text/html" class="pluginConfigForm" id="scatterplot">
+<ul class="list-group">
+	<form role="form">
+	<li class="list-group-item">
+	<h3>Datapoints</h3>
+	</li>
+	 <li class="list-group-item">
+	<div class="form-group">
+		<label class="control-label" for="particleSize">Particle size</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="particleSize">
+			<div id="particleSizeSlider"></div>
+		</div>
+	 </div>
+	 <div class="form-group">
+		<label class="control-label" for="opacity">Opacity</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="opacity">
+			<div id="opacitySlider"></div>
+		</div>
+	 </div>
+	 <div class="form-group">
+		<label class="control-label" for="image">Image</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="image" style="display:none;">
+
+		<select id="iamgeSelect"class="form-control">
+			<option value=""></option>
+			<option value="smiley.png">smiley</option>
+			<option value="particle_1.png">particle 1</option>
+			<option value="disc.png">disc</option>
+			<option value="circle.png">circle</option>
+			<option value="ball.png">ball</option>
+
+		</select>
+		</div>
+	 </div>
+	 <div class="form-group">
+		 <div class="input-group">
+			  <span class="input-group-addon"><input type="checkbox" id="blending"></span>
+			  <span class="form-control" >Blending </span>
+		</div>
+	 </div>
+	 <br />
+	 <div class="form-group">
+	 	<div class="input-group">
+			  <span class="input-group-addon"><input type="checkbox" id="transparent"></span>
+			  <span class="form-control" >Transparent </span>
+		</div>
+	 </div>
+	 <br />
+	 <div class="form-group">
+	 	<div class="input-group">
+			  <span class="input-group-addon"><input type="checkbox" id="colors"></span>
+			  <span class="form-control" >Colors </span>
+		</div>
+	 </div>
+	 <br />
+	 <div class="form-group">
+		<label class="control-label" for="ambient">Ambient color</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="ambient">
+		</div>
+	 </div>
+	 </li>
+	 <li class="list-group-item">
+	 <h3>Scale</h3>
+	 </li>
+	 <li class="list-group-item">
+	 <div class="form-group">
+		<label class="control-label" for="xScale">X scale</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="xScale">
+		</div>
+	 </div>
+	 <div class="form-group">
+		<label class="control-label" for="yScale">Y scale</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="yScale">
+		</div>
+	 </div>
+	 <div class="form-group">
+		<label class="control-label" for="zScale">Z scale</label>
+		<div class="controls">
+			<input class="form-control" type="text" id="zScale">
+		</div>
+	 </div>
+	 </li>
+
+	  </form>
+	</ul>
+</script>

@@ -1,0 +1,422 @@
+<script type="text/html" class="pluginConfigForm" id="axes">
+<ul class="nav nav-tabs" role="tablist">
+	<li class="active"><a href="#design-tab" role="tab" data-toggle="tab">Type</a></li>
+	<li><a href="#labels-tab" role="tab" data-toggle="tab">Labels</a></li>
+	<li><a href="#borders-tab" role="tab" data-toggle="tab">Borders</a></li>
+	<li><a href="#ticks-tab" role="tab" data-toggle="tab">Ticks</a></li>
+	<li><a href="#raster-tab" role="tab" data-toggle="tab">Raster</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="design-tab">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<h4>Axes Type</h4>
+		</li>
+		<li class="list-group-item">
+
+			<div id="axes-type-carousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#axes-type-carousel" data-slide-to="0" class="active"
+					    style="background-color:black;"></li>
+					<li data-target="#axes-type-carousel" data-slide-to="1" style="background-color:black;"></li>
+					<li data-target="#axes-type-carousel" data-slide-to="2" style="background-color:black;"></li>
+					<li data-target="#axes-type-carousel" data-slide-to="3" style="background-color:black;"></li>
+					<li data-target="#axes-type-carousel" data-slide-to="4" style="background-color:black;"></li>
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<img class="axes-img" alt="axes_default.png"/>
+
+						<div class="carousel-caption">Axes</div>
+					</div>
+					<div class="item">
+						<img class="axes-img" alt="axes_arrows.png">
+
+						<div class="carousel-caption">Axes with arrows</div>
+					</div>
+					<div class="item">
+						<img class="axes-img" alt="axes_indicators_only.png">
+
+						<div class="carousel-caption">Border - Indicators</div>
+					</div>
+					<div class="item">
+						<img class="axes-img" alt="axes_indicators.png"/>
+
+						<div class="carousel-caption">
+							Axes and border indicators
+						</div>
+					</div>
+					<div class="item">
+						<img class="axes-img" alt="axes_cube.png"/>
+
+						<div class="carousel-caption">
+							Cube
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="tab-pane" id="labels-tab">
+	<ul class="list-group">
+		<li class="list-group-item header" id="item-labels">
+			<h4>Axis Labels</h4>
+		</li>
+		<li class="list-group-item item-labels" style="display: none;">
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="xLabel"/>
+			</div>
+			<br/>
+
+			<div class="input-group">
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="yLabel"/>
+			</div>
+			<br/>
+
+			<div class="input-group">
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="zLabel"/>
+			</div>
+		</li>
+		<li class="list-group-item header" id="item-ticklabels">
+			<h4>Tick labels</h4>
+		</li>
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<h5> Displayed data on x-axis</h5>
+
+				<div class="radio">
+					<label>
+						<input type="radio" name="optionTicklabelsDataX" value="values" checked>
+						Use calculated values
+					</label>
+				</div>
+
+				<div class="radio">
+					<label>
+						<input type="radio" name="optionTicklabelsDataX" value="labels" checked>
+						Use  axis-labels from dataset
+						<small>( Indices will be used if there are no labels )</small>
+					</label>
+				</div>
+		</li>
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<h5> Displayed data on y-axis</h5>
+			( Indices will be used if there are no labels )
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionTicklabelsDataY" value="values" checked>
+					Use calculated values
+				</label>
+			</div>
+
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionTicklabelsDataY" value="labels" checked>
+					Use  axis-labels from dataset
+					<small>( Indices will be used if there are no labels )</small>
+				</label>
+			</div>
+		</li>
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<h5> Displayed data on z-axis</h5>
+			( Indices will be used if there are no labels )
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionTicklabelsDataZ" value="values" checked>
+					Use calculated values
+				</label>
+			</div>
+
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionTicklabelsDataZ" value="labels" checked>
+					Use  axis-labels from dataset
+					<small>( Indices will be used if there are no labels )</small>
+				</label>
+			</div>
+		</li>
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<h5>Orientation</h5>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionStaticDynamic" value="static" checked>
+							Static orientation
+						</label>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionStaticDynamic" value="dynamic" checked>
+							Dynamic ( look at camera )
+						</label>
+					</div>
+				</div>
+			</div>
+		</li>
+
+
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<h5>Rotation of labels on x-axis ( in grad ) </h5>
+
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="x-rotation-x"/>
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="x-rotation-y"/>
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="x-rotation-z"/>
+			</div>
+
+			<h5>Rotation of labels on y-axis ( in grad ) </h5>
+
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="y-rotation-x"/>
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="y-rotation-y"/>
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="y-rotation-z"/>
+			</div>
+
+			<h5>Rotation of labels on z-axis ( in grad ) </h5>
+
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="z-rotation-x"/>
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="z-rotation-y"/>
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="z-rotation-z"/>
+			</div>
+		</li>
+
+		<li class="list-group-item item-ticklabels" style="display: none;">
+			<b>Offset</b>
+
+			<div style="margin-top:10px;"/>
+			<div class="input-group">
+				<span class="input-group-addon">x labels</span>
+				<input class="form-control" type="text" id="offset-x"/>
+			</div>
+			<div id="offsetSliderX"></div>
+
+			<div class="input-group">
+				<span class="input-group-addon">y labels</span>
+				<input class="form-control" type="text" id="offset-y"/>
+			</div>
+			<div id="offsetSliderY"></div>
+			<div class="input-group">
+				<span class="input-group-addon">z labels</span>
+				<input class="form-control" type="text" id="offset-z"/>
+			</div>
+			<div id="offsetSliderZ"></div>
+		</li>
+
+		<li class="list-group-item header" id="item-format">
+			<h4>Text Format</h4>
+		</li>
+		<li class="list-group-item item-format" style="display: none;">
+			<h5>Fontsize</h5>
+
+			<div class="input-group">
+				<span class="input-group-addon">px</span>
+				<input class="form-control" type="text" id="fontSize"/>
+			</div>
+		</li>
+		<li class="list-group-item item-format" style="display: none;">
+			<h5>Round to decimal places</h5>
+
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="mantissa-x"/>
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="mantissa-y"/>
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="mantissa-z"/>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="tab-pane" id="borders-tab">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<h4>Borders</h4>
+		</li>
+		<li class="list-group-item">
+			<h5>Minimum values</h5>
+			<span class="label label-info">"auto" or custom value.</span>
+
+			<div style="margin-top:10px;">
+				<div class="input-group">
+					<span class="input-group-addon">x</span>
+					<input class="form-control" type="text" id="xMin"/>
+					<span class="input-group-addon">y</span>
+					<input class="form-control" type="text" id="yMin"/>
+					<span class="input-group-addon">z</span>
+					<input class="form-control" type="text" id="zMin"/>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<h5>Maximum values</h5>
+			<span class="label label-info">"auto" or custom value.</span>
+
+			<div style="margin-top:10px;">
+				<div class="input-group">
+					<span class="input-group-addon">x</span>
+					<input class="form-control" type="text" id="xMax"/>
+					<span class="input-group-addon">y</span>
+					<input class="form-control" type="text" id="yMax"/>
+					<span class="input-group-addon">z</span>
+					<input class="form-control" type="text" id="zMax"/>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div style="margin-top:10px;">
+				<div class="input-group">
+							<span class="input-group-addon">
+								<input type="checkbox" id="showHeatmapRange"/>
+							</span>
+					<input type="text" class="form-control" disabled value="show heatmap"/>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="tab-pane" id="ticks-tab">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<h4>Ticks</h4>
+		</li>
+		<li class="list-group-item">
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="mirror-ticklines"/>
+						</span>
+				<input type="text" class="form-control" disabled value="Mirror tick lines"/>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<h5>Steps</h5>
+		</li>
+		<li class="list-group-item">
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="stepType"/>
+						</span>
+				<input id="niceSteps" type="text" class="form-control" disabled value=""/>
+			</div>
+			<div style="margin-top:10px;"/>
+			<div class="input-group">
+				<span class="input-group-addon">x</span>
+				<input class="form-control" type="text" id="granularity-x"/>
+			</div>
+			<div id="granularitySliderX"></div>
+
+			<div class="input-group">
+				<span class="input-group-addon">y</span>
+				<input class="form-control" type="text" id="granularity-y"/>
+			</div>
+			<div id="granularitySliderY"></div>
+
+			<div class="input-group">
+				<span class="input-group-addon">z</span>
+				<input class="form-control" type="text" id="granularity-z"/>
+			</div>
+			<div id="granularitySliderZ"></div>
+		</li>
+	</ul>
+</div>
+
+<div class="tab-pane" id="raster-tab">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<h4>Raster</h4>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show x-y & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="xy-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-xy"/>
+			</div>
+			<div id="raster-xy-slider"></div>
+			<br/>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show x-z & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="xz-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-xz"/>
+			</div>
+			<div id="raster-xz-slider"></div>
+			<br/>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show y-x & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="yx-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-yx"/>
+			</div>
+			<div id="raster-yx-slider"></div>
+			<br/>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show y-z & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="yz-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-yz"/>
+			</div>
+			<div id="raster-yz-slider"></div>
+			<br/>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show z-x & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="zx-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-zx"/>
+			</div>
+			<div id="raster-zx-slider"></div>
+			<br/>
+		</li>
+		<li class="list-group-item">
+			<span class="label label-info">show z-y & opacity</span>
+
+			<div class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox" id="zy-raster-show"/>
+						</span>
+				<input class="form-control" type="text" id="raster-zy"/>
+			</div>
+			<div id="raster-zy-slider"></div>
+			<br/>
+		</li>
+	</ul>
+</div>
+
+</div>
+
+</script>

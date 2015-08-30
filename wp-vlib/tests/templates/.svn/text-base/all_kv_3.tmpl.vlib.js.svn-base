@@ -1,0 +1,187 @@
+define(['require','utils.vlib'],function(require,UTILS) {
+	var template = (function() {
+
+		// TEST TREE
+		var Tree = (function(name) {
+			this.id = name+'_'+UTILS.getUUID();
+			this.name = name;
+			this.config = '';
+			this.childs = [];
+		});
+
+		var template = new Tree('3d');
+		template.config = {
+			scene : {
+				width : 'auto',
+				height : 'auto'
+			},
+			camera : {
+				x:0,
+				y:0,
+				z:1000
+			}
+		}
+
+		var scatterplot = new Tree('scatterplot');
+		scatterplot.config = {
+			material : {
+				particleSize : 11,
+				opacity : 1,
+				img : 'data/smiley.png',
+				blending : false,
+				transparent : true,
+				colors : true,
+				ambient: '808080'
+			},
+			scale:{
+				x:400,
+				y:400,
+				z:0
+			},
+			range : {
+				x:'auto',
+				y:'auto',
+				z:1.5
+			}
+		};
+		var surfaceplot = new Tree('surfaceplot');
+		surfaceplot.config = {
+			material : {
+				particleSize : 20,
+				opacity : 1,
+				img : 'data/smiley.png',
+				blending : false,
+				transparent : true,
+				colors : true,
+				ambient: '808080'
+			},
+			scale:{
+				x:400,
+				y:400,
+				z:400
+			},
+			range : {
+				x:'auto',
+				y:'auto',
+				z: 'auto'
+			}
+		};
+
+		var control = new Tree('cameraControl');
+		control.config = {
+				controlType : 'tracball',
+				//controlType : 'orbit',
+				pos : {x:200,y:200,z:0}
+		};
+
+		var light1 = new Tree('light');
+		light1.config = {
+
+				type 	: 'point',
+				pos		: {
+					x	:	0,
+					y	:	0,
+					z	:	400
+				},
+				intensity : 110,
+				distande : 5,
+				color: 'ff0000'
+		}
+		var light2 = new Tree('light');
+		light2.config = {
+
+				type 	: 'ambient',
+				pos		: {
+					x	:	0,
+					y	:	0,
+					z	:	1000
+				},
+
+				color: '404040'
+		}
+
+		var dataset1 = new Tree('dataset');
+		dataset1.config = {
+			path : 'All_KL_Div.gnuplot.dat',
+			data : [],
+			color: '101010'
+		}
+
+		var dataset2 = new Tree('dataset');
+		dataset2.config = {
+			path : '',
+			data : [ {
+				x : 0,
+				y : -1,
+				z : 0
+			}, {
+				x : 0,
+				y : -2,
+				z : 0
+			}, {
+				x : 0,
+				y : -3,
+				z : 0
+			}, {
+				x : 0,
+				y : -4,
+				z : 0
+			} ]
+		}
+
+		var color1 = new Tree('color');
+		color1.config = {
+			color : 'd712bd'
+		};
+
+		var color2 = new Tree('color');
+		color2.config = {
+			color : '0cf600'
+		};
+
+		var heatmapPoints = new Tree('heatmapPoints');
+		heatmapPoints.config = {
+			numberRange : {
+				from : '0',
+				to : '0.4'
+			},
+			spectrum : {
+				from : '458B00',
+				to : 'ff0000'
+			}
+		};
+		var axes = new Tree('axes');
+		axes.config = {
+			labels:{
+				x:"x",
+				y:"y",
+				z:"z ("+surfaceplot.config.range.z+")"
+			}
+		};
+		var material1 = new Tree('basicMaterial');
+		var material2 = new Tree('wireframeMaterial');
+
+		dataset1.childs.push(heatmapPoints);
+		//dataset2.childs.push(color2);
+
+		scatterplot.childs.push(dataset1);
+		//scatterplot.childs.push(dataset2);
+		//scatterplot.childs.push(axes);
+
+		surfaceplot.childs.push(dataset1);
+		surfaceplot.childs.push(axes);
+		surfaceplot.childs.push(material2);
+		surfaceplot.childs.push(material1);
+
+
+		template.childs.push(surfaceplot);
+		template.childs.push(scatterplot);
+		template.childs.push(light1); // point
+		template.childs.push(light2); // ambient
+		template.childs.push(control);
+
+
+		return template;
+	})();
+	return template;
+})

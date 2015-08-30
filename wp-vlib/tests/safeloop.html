@@ -1,0 +1,168 @@
+<html>
+<head>
+	<title>SurfacePlot tests</title>
+	<script src="../js/VLib/require.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="../css/custom-theme/jquery-ui-1.10.0.custom.css" />
+	<link rel="stylesheet" href="../css/pageStyle.css" />
+	<style>
+		H1, H2, H3, H4 {
+			margin: 0px;
+			text-align: center;
+			width: 100%;
+		}
+		.logContainer{
+			width : 100%;
+			height:100px;
+			float:left;
+			color : #000000;
+		}
+		.pc{
+			width: 500px;
+			height : 500px;
+			float:left;
+			margin:5px;
+		}
+		.plot{
+			position: relative;
+			border: 3px solid gray;
+			float:left;
+			width:500px;
+			height:500px;
+			margin:5px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>UTILS.Safeloop.vlib Demo</h1>
+	<h3>SafeLoop prevents "stop running script" message in browser</h3>
+	<h4>log output during loop.yield</h4>
+	<div id="logList"></div>
+	<div class="pc"></div>
+	<script type="text/javascript">
+		requirejs.config({
+			appDir: "../",
+			baseUrl: "../js/VLib"
+
+		});
+		require(['vLib_utils'],function(UTILS){
+
+			var SafeLoop = UTILS.safeloop;
+			var addTest = function( id, cb ){
+				var c = '<div class="logContainer">';
+				c +=	'<div class="list-group" >'
+				c +=	'	<a href="#" class="list-group-item active">';
+				c +=	'			<div id="log_'+id+'_title"></div>';
+				c +=	'		</a>';
+				c +=	'		<div id="log_'+id+'"></div>';
+				c +=	'	</div>';
+				c +=	'</div>';
+				$('#logList').append(c);
+				cb( id );
+			}
+			var title = function( container, msg ){
+				$( container ).html( msg );
+			};
+			var log = function( container, msg ){
+				var msg_ = '<div class="list-group-item">'+msg+'</div>';
+				$( container ).html( msg_ );
+			};
+
+			var t1 = function( id ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var _iterations_ = 100;
+				var _yield_ = 1000;
+				var _steps_ = 1;
+				var _fun_ = 'variable++ (init = 0)';
+				title(titleContainer,'iter='+_iterations_+' yield='+_yield_+'ms stepsTillYield='+_steps_+' function='+_fun_);
+
+				var test = 0;
+				var runner = function(i){
+					test++;
+					log(logContainer, "runner: "+test);
+				}
+				var done = function(  ){
+					log(logContainer,"done: "+test);
+				}
+				SafeLoop().iterations(_iterations_).yield(_yield_).steps(_steps_)
+				.done(done).loop(runner);
+			};
+			var t2 = function( id ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var _iterations_ = 10000;
+				var _yield_ = 100;
+				var _steps_ = 100;
+				var _fun_ = 'variable++ (init = 0)';
+				title(titleContainer,'iter='+_iterations_+' yield='+_yield_+'ms stepsTillYield='+_steps_+' function='+_fun_);
+
+				var test = 0;
+				var runner = function(i){
+					test++;
+					log(logContainer, "current value: "+test);
+				}
+				var done = function(  ){
+					log(logContainer,"done: "+test);
+				}
+				SafeLoop().iterations(_iterations_).yield(_yield_).steps(_steps_)
+				.done(done).loop(runner);
+			}
+			var t3 = function( id ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var _iterations_ = 10000000;
+				var _yield_ = 1;
+				var _steps_ = 1000;
+				var _fun_ = 'variable++ (init = 0)';
+				title(titleContainer,'iter='+_iterations_+' yield='+_yield_+'ms stepsTillYield='+_steps_+' function='+_fun_);
+
+				var test = 0;
+				var runner = function(i){
+					test++;
+					log(logContainer, "current value: "+test);
+				}
+				var done = function(  ){
+					log(logContainer,"done: "+test);
+				}
+				SafeLoop().iterations(_iterations_).yield(_yield_).steps(_steps_)
+				.done(done).loop(runner);
+			}
+			var t4 = function( id ){
+				var logContainer = '#log_'+id;
+				var titleContainer = logContainer+'_title';
+
+				var _iterations_ = 1000000;
+				var _yield_ = 0;
+				var _steps_ = 1000;
+				var _fun_ = 'test[ i % len ] += 1; (init=[0,0,0,0])';
+				title(titleContainer,'iter='+_iterations_+' yield='+_yield_+'ms stepsTillYield='+_steps_+' function='+_fun_);
+
+				var test = [0,0,0,0];
+				var len = test.length ;
+				var runner = function(i){
+					test[ i % len ] += 1;
+					log(logContainer, "current value: "+test);
+				}
+				var done = function(  ){
+					log(logContainer,"done: "+test);
+				}
+				SafeLoop().iterations(_iterations_).yield(_yield_).steps(_steps_)
+				.done(done).loop(runner);
+			}
+
+			addTest(1,t1);
+			addTest(2,t2);
+			addTest(3,t3);
+			addTest(4,t4);
+
+		});
+
+</script>
+</body>
+</html>
