@@ -9,8 +9,7 @@ A Demo can be found [HERE](http://vplot.yettie.at/)
 
 ### Usage ###
 Download this repository.<br />
-Browse to the following subfolder: <i>wp-vlib/js/VLib/</i> <br />
-In order to add external dependencies open a terminal-window and run the following command:
+In order to add external dependencies browse to <i>wp-vlib/js/VLib/</i>, open a terminal-window and run the following command:
 ```html
 bower install
 ```
