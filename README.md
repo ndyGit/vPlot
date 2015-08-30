@@ -6,8 +6,7 @@ The aim of this project is to simplify the installation process of the {v}Plot.j
 
 ### Usage ###
 Download this repository.<br />
-Browse to the following subfolder:<br />
-<i>wp-vlib/js/VLib/</i>
+Browse to the following subfolder: <i>wp-vlib/js/VLib/</i> <br />
 Open a terminal-window and run the following command:
 ```html
 bower install
