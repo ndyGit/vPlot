@@ -1,7 +1,7 @@
 vPlot
 ========
 
-#### Wordpress Plugin ####
+#### A Wordpress Plugin ####
 The aim of this project is to simplify the installation process of the {v}Plot.js Framework.
 
 ### Usage ###
