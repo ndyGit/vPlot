@@ -13,7 +13,7 @@ requirejs.config( {
 		'three_multilinetext'       : 'libs/threeCustom/helpers/MultilineTextHelper',
 		'three_trackball_controls'  : 'libs/threeCustom/controls/TrackballControls',
 		'three_orbit_controls'      : 'libs/threeCustom/controls/OrbitControls',
-		'orgChart'                  : 'libs/jOrgChart/jquery.jOrgChart',
+		'orgChart'                  : 'libs/jOrgChart_AMD/jquery.jOrgChart',
 		'bootstrap'                 : 'libs/vendor/bootstrap/dist/js/bootstrap.min',
 		'text'                      : 'libs/vendor/text/text'
 	},
@@ -26,37 +26,33 @@ requirejs.config( {
 			exports: 'THREE'
 		},
 		'fontHelveticer'          : {
-			'deps': ['three']
+			deps: ['three']
 		},
 		'tween'                   : {
 			exports: 'TWEEN'
 		},
 		'threeShaderLib': {
 			exports: 'THREE',
-			'deps' : ['three']
+			deps : ['three']
 		},
 		'three_multilinetext': {
 			exports: 'THREE',
-			'deps' : ['three']
+			deps : ['three']
 		},
 		'three_trackball_controls': {
 			exports: 'THREE',
-			'deps' : ['three']
+			deps : ['three']
 		},
 		'three_orbit_controls': {
 			exports: 'THREE',
-			'deps' : ['three']
+			deps : ['three']
 		},
 		'jquery_ui': {
 			exports: '$',
-			'deps' : ['jquery']
-		},
-		'orgChart' : {
-			exports: '$',
-			'deps' : ['jquery']
+			deps : ['jquery']
 		},
 		'bootstrap': {
-			'deps': ['jquery']
+			deps: ['jquery']
 		}
 	}
 
