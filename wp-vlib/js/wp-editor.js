@@ -17,7 +17,7 @@ requirejs.config( {
 	}
 } );
 
-require( ['require','vlib_full', '../wp-database-driver'], function ( require,Wrapper, DBDriver ) {
+require( ['require','vLib_full', '../wp-database-driver'], function ( require,Wrapper, DBDriver ) {
 
 	/**
 	 * Wordpress backend app.

@@ -30,7 +30,6 @@ if ( !is_dir( $uploaddir ) ) {
 /* move uploaded files from tmp to destination */
 for ( $i = 0; $i < count( $files[ 'name' ] ); $i++ ) {
 
-
 	/* Get the tmp file path */
 	$tmpFilePath = $files[ 'tmp_name' ][ $i ];
 	if ( $tmpFilePath != "" ) {
