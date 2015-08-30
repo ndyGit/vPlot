@@ -1,7 +1,7 @@
 /**
  * Created by Andreas Gratzer on 24/11/14.
  */
-define( ['require', 'config', 'core/Utils.vlib', 'jquery', 'core/Framework3d.vlib'],
+define( ['require', 'config', 'core/Utils.vlib', 'jquery', 'core/Framework3D.vlib'],
 	function ( require, Config, UTILS, $, F3D ) {
 		"use strict";
 		var FirstPersonControls = function ( camera, $container, config ) {
