@@ -1,4 +1,4 @@
-# vPlot
+vPlot
 ========
 
 #### Wordpress Plugin ####
