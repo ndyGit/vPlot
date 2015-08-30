@@ -11,6 +11,8 @@ Open a terminal-window and run the following command:
 ```html
 bower install
 ```
+Upload the <i>wp-vlib</i> to your Wordpress-Plugin folder.<br />
+
 Set <b>read</b> and <b>write</b> permissions for the following folder:<br />
 wp-vlib/js/VLib/data/<b>groups</b>
 
