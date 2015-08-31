@@ -5,8 +5,6 @@ vPlot
 The aim of this project is to simplify the installation process of the {v}Plot.js Framework.<br />
 [{v}Plot.js](https://github.com/ndyGit/vPlot.js) is an Interactive Information Visualization Framework based on THREE.js
 
-A Demo can be found [HERE](http://vplot.yettie.at/)
-
 ### Usage ###
 Download this repository.<br />
 In order to add external dependencies browse to <i>wp-vlib/js/VLib/</i>, open a terminal-window and run the following command:
@@ -20,3 +18,6 @@ wp-vlib/js/VLib/data/<b>groups</b>
 
 Set <b>execute</b> permissions for
 wp-vlib/processBulkUpload.php
+
+#Examples
+A Demo can be found [HERE](http://vplot.yettie.at/)
