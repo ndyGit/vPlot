@@ -24,5 +24,5 @@ wp-vlib/processBulkUpload.php
 A Demo can be found [HERE](http://vplot.yettie.at/)
 
 #Screenshots
-![Alt text](http://yettie.at/showcase/vplot/backend.png?raw=true "Backend")
+![Alt text](http://yettie.at/showcase/vplot/backend1.png?raw=true "Backend")
 ![Alt text](http://yettie.at/showcase/vplot/frontend.png?raw=true "Frontend")
