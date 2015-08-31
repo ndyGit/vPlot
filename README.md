@@ -1,9 +1,10 @@
 vPlot
 ========
 
-#### A Wordpress Plugin ####
+#### A Wordpress Plugin for {v}Plot.js####
 The aim of this project is to simplify the installation process of the {v}Plot.js Framework.<br />
-[{v}Plot.js](https://github.com/ndyGit/vPlot.js) is an Interactive Information Visualization Framework based on THREE.js
+{v}Plot.js is an Interactive Information Visualization Framework based on THREE.js.
+Primarily it was designed for the field of 3D data visualisation. The dimensions can be reduced to two or even extended to four. Interactive facilities are provided. Click- Activities are starting animations, loading internal or external content and are providing additional information. Programming skills are not required. Components of a plot can be assembled via drag&drop. Each element can be configured through Graphical User Interfaces.
 
 ### Usage ###
 Download this repository.<br />
