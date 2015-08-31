@@ -24,3 +24,4 @@ A Demo can be found [HERE](http://vplot.yettie.at/)
 
 #Screenshots
 ![Alt text](http://yettie.at/showcase/vplot/backend.png?raw=true "Backend")
+![Alt text](http://yettie.at/showcase/vplot/modal.png?raw=true "Modal")
